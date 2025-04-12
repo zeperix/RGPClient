@@ -1,4 +1,4 @@
-package com.moonlight;
+package com.limelight;
 
 import android.content.ContentProvider;
 import android.content.ContentResolver;
@@ -8,7 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 
-import com.moonlight.grid.assets.DiskAssetLoader;
+import com.limelight.grid.assets.DiskAssetLoader;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package com.moonlight.nvstream.av;
+package com.limelight.nvstream.av;
 
 public class ByteBufferDescriptor {
     public byte[] data;

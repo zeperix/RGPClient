@@ -1,4 +1,4 @@
-package com.moonlight.nvstream;
+package com.limelight.nvstream;
 
 public interface NvConnectionListener {
     void stageStarting(String stage);

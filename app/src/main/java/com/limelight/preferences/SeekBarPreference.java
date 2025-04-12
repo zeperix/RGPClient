@@ -1,4 +1,4 @@
-package com.moonlight.preferences;
+package com.limelight.preferences;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -15,7 +15,7 @@ import android.widget.TextView;
 import androidx.preference.DialogPreference;
 import androidx.preference.Preference;
 
-import com.moonlight.R;
+import com.limelight.R;
 
 import java.util.Locale;
 

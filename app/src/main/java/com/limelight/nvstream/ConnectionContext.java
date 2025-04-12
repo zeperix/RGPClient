@@ -1,6 +1,6 @@
-package com.moonlight.nvstream;
+package com.limelight.nvstream;
 
-import com.moonlight.nvstream.http.ComputerDetails;
+import com.limelight.nvstream.http.ComputerDetails;
 
 import java.security.cert.X509Certificate;
 

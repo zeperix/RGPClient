@@ -1,4 +1,4 @@
-package com.moonlight.nvstream.http;
+package com.limelight.nvstream.http;
 
 import androidx.annotation.NonNull;
 

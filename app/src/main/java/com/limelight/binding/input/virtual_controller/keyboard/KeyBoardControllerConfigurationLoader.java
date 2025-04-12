@@ -2,9 +2,9 @@
  * Created by Karim Mreisi.
  */
 
-package com.moonlight.binding.input.virtual_controller.keyboard;
+package com.limelight.binding.input.virtual_controller.keyboard;
 
-import static com.moonlight.GameMenu.getModifier;
+import static com.limelight.GameMenu.getModifier;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,13 +16,13 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 import androidx.preference.PreferenceManager;
 
-import com.moonlight.GameMenu;
-import com.moonlight.LimeLog;
-import com.moonlight.R;
-import com.moonlight.nvstream.NvConnection;
-import com.moonlight.nvstream.input.KeyboardPacket;
-import com.moonlight.preferences.PreferenceConfiguration;
-import com.moonlight.utils.KeyMapper;
+import com.limelight.GameMenu;
+import com.limelight.LimeLog;
+import com.limelight.R;
+import com.limelight.nvstream.NvConnection;
+import com.limelight.nvstream.input.KeyboardPacket;
+import com.limelight.preferences.PreferenceConfiguration;
+import com.limelight.utils.KeyMapper;
 
 import org.jcodec.common.ArrayUtil;
 import org.json.JSONArray;

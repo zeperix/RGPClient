@@ -2,7 +2,7 @@
  * Created by Karim Mreisi.
  */
 
-package com.moonlight.binding.input.virtual_controller;
+package com.limelight.binding.input.virtual_controller;
 
 import android.content.Context;
 import android.os.Build;
@@ -17,10 +17,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.moonlight.LimeLog;
-import com.moonlight.R;
-import com.moonlight.binding.input.ControllerHandler;
-import com.moonlight.preferences.PreferenceConfiguration;
+import com.limelight.LimeLog;
+import com.limelight.R;
+import com.limelight.binding.input.ControllerHandler;
+import com.limelight.preferences.PreferenceConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;

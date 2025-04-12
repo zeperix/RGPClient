@@ -1,4 +1,4 @@
-package com.moonlight;
+package com.limelight;
 
 import android.app.Activity;
 import android.app.Service;
@@ -8,19 +8,19 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 
-import com.moonlight.computers.ComputerDatabaseManager;
-import com.moonlight.computers.ComputerManagerListener;
-import com.moonlight.computers.ComputerManagerService;
-import com.moonlight.nvstream.http.ComputerDetails;
-import com.moonlight.nvstream.http.NvApp;
-import com.moonlight.nvstream.http.NvHTTP;
-import com.moonlight.nvstream.http.PairingManager;
-import com.moonlight.nvstream.wol.WakeOnLanSender;
-import com.moonlight.utils.CacheHelper;
-import com.moonlight.utils.Dialog;
-import com.moonlight.utils.ServerHelper;
-import com.moonlight.utils.SpinnerDialog;
-import com.moonlight.utils.UiHelper;
+import com.limelight.computers.ComputerDatabaseManager;
+import com.limelight.computers.ComputerManagerListener;
+import com.limelight.computers.ComputerManagerService;
+import com.limelight.nvstream.http.ComputerDetails;
+import com.limelight.nvstream.http.NvApp;
+import com.limelight.nvstream.http.NvHTTP;
+import com.limelight.nvstream.http.PairingManager;
+import com.limelight.nvstream.wol.WakeOnLanSender;
+import com.limelight.utils.CacheHelper;
+import com.limelight.utils.Dialog;
+import com.limelight.utils.ServerHelper;
+import com.limelight.utils.SpinnerDialog;
+import com.limelight.utils.UiHelper;
 
 import org.xmlpull.v1.XmlPullParserException;
 

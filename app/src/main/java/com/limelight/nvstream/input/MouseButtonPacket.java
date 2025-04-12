@@ -1,4 +1,4 @@
-package com.moonlight.nvstream.input;
+package com.limelight.nvstream.input;
 
 public class MouseButtonPacket {
     public static final byte PRESS_EVENT = 0x07;

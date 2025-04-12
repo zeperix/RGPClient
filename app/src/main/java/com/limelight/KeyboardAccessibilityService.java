@@ -1,4 +1,4 @@
-package com.moonlight;
+package com.limelight;
 
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;

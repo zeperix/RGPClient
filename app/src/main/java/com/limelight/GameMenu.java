@@ -1,4 +1,4 @@
-package com.moonlight;
+package com.limelight;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,12 +12,12 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.moonlight.binding.input.GameInputDevice;
-import com.moonlight.binding.input.KeyboardTranslator;
-import com.moonlight.nvstream.NvConnection;
-import com.moonlight.nvstream.input.KeyboardPacket;
-import com.moonlight.preferences.PreferenceConfiguration;
-import com.moonlight.utils.KeyMapper;
+import com.limelight.binding.input.GameInputDevice;
+import com.limelight.binding.input.KeyboardTranslator;
+import com.limelight.nvstream.NvConnection;
+import com.limelight.nvstream.input.KeyboardPacket;
+import com.limelight.preferences.PreferenceConfiguration;
+import com.limelight.utils.KeyMapper;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

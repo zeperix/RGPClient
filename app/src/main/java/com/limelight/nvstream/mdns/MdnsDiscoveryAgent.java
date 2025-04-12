@@ -1,6 +1,6 @@
-package com.moonlight.nvstream.mdns;
+package com.limelight.nvstream.mdns;
 
-import com.moonlight.LimeLog;
+import com.limelight.LimeLog;
 
 import java.net.Inet4Address;
 import java.net.Inet6Address;

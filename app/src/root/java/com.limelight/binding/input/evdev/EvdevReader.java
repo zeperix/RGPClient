@@ -1,11 +1,11 @@
-package com.moonlight.binding.input.evdev;
+package com.limelight.binding.input.evdev;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-import com.moonlight.LimeLog;
+import com.limelight.LimeLog;
 
 public class EvdevReader {
     private static void readAll(InputStream in, ByteBuffer bb) throws IOException {

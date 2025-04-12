@@ -1,12 +1,12 @@
-package com.moonlight.discovery;
+package com.limelight.discovery;
 
 import java.util.List;
 
-import com.moonlight.nvstream.mdns.MdnsComputer;
-import com.moonlight.nvstream.mdns.JmDNSDiscoveryAgent;
-import com.moonlight.nvstream.mdns.MdnsDiscoveryAgent;
-import com.moonlight.nvstream.mdns.MdnsDiscoveryListener;
-import com.moonlight.nvstream.mdns.NsdManagerDiscoveryAgent;
+import com.limelight.nvstream.mdns.MdnsComputer;
+import com.limelight.nvstream.mdns.JmDNSDiscoveryAgent;
+import com.limelight.nvstream.mdns.MdnsDiscoveryAgent;
+import com.limelight.nvstream.mdns.MdnsDiscoveryListener;
+import com.limelight.nvstream.mdns.NsdManagerDiscoveryAgent;
 
 import android.app.Service;
 import android.content.Intent;

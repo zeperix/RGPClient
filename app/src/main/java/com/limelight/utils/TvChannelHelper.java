@@ -1,4 +1,4 @@
-package com.moonlight.utils;
+package com.limelight.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -16,11 +16,11 @@ import android.media.tv.TvContract;
 import android.net.Uri;
 import android.os.Build;
 
-import com.moonlight.LimeLog;
-import com.moonlight.PosterContentProvider;
-import com.moonlight.R;
-import com.moonlight.nvstream.http.ComputerDetails;
-import com.moonlight.nvstream.http.NvApp;
+import com.limelight.LimeLog;
+import com.limelight.PosterContentProvider;
+import com.limelight.R;
+import com.limelight.nvstream.http.ComputerDetails;
+import com.limelight.nvstream.http.NvApp;
 
 import java.io.IOException;
 import java.io.OutputStream;

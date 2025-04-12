@@ -1,4 +1,4 @@
-package com.moonlight.grid.assets;
+package com.limelight.grid.assets;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -11,9 +11,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.moonlight.R;
-import com.moonlight.nvstream.http.ComputerDetails;
-import com.moonlight.nvstream.http.NvApp;
+import com.limelight.R;
+import com.limelight.nvstream.http.ComputerDetails;
+import com.limelight.nvstream.http.NvApp;
 
 import java.io.IOException;
 import java.io.InputStream;

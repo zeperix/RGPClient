@@ -1,4 +1,4 @@
-package com.moonlight.binding.video;
+package com.limelight.binding.video;
 
 import android.os.SystemClock;
 

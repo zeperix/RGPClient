@@ -1,4 +1,4 @@
-package com.moonlight.binding.input;
+package com.limelight.binding.input;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -33,19 +33,19 @@ import android.view.MotionEvent;
 import android.view.Surface;
 import android.widget.Toast;
 
-import com.moonlight.GameMenu;
-import com.moonlight.LimeLog;
-import com.moonlight.R;
-import com.moonlight.binding.input.driver.AbstractController;
-import com.moonlight.binding.input.driver.UsbDriverListener;
-import com.moonlight.binding.input.driver.UsbDriverService;
-import com.moonlight.nvstream.NvConnection;
-import com.moonlight.nvstream.input.ControllerPacket;
-import com.moonlight.nvstream.input.MouseButtonPacket;
-import com.moonlight.nvstream.jni.MoonBridge;
-import com.moonlight.preferences.PreferenceConfiguration;
-import com.moonlight.ui.GameGestures;
-import com.moonlight.utils.Vector2d;
+import com.limelight.GameMenu;
+import com.limelight.LimeLog;
+import com.limelight.R;
+import com.limelight.binding.input.driver.AbstractController;
+import com.limelight.binding.input.driver.UsbDriverListener;
+import com.limelight.binding.input.driver.UsbDriverService;
+import com.limelight.nvstream.NvConnection;
+import com.limelight.nvstream.input.ControllerPacket;
+import com.limelight.nvstream.input.MouseButtonPacket;
+import com.limelight.nvstream.jni.MoonBridge;
+import com.limelight.preferences.PreferenceConfiguration;
+import com.limelight.ui.GameGestures;
+import com.limelight.utils.Vector2d;
 
 import org.cgutman.shieldcontrollerextensions.SceChargingState;
 import org.cgutman.shieldcontrollerextensions.SceConnectionType;

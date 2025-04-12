@@ -1,4 +1,4 @@
-package com.moonlight.preferences;
+package com.limelight.preferences;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 
-import com.moonlight.utils.HelpLauncher;
+import com.limelight.utils.HelpLauncher;
 
 public class WebLauncherPreference extends Preference {
     private String url;

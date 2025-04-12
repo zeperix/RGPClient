@@ -1,4 +1,4 @@
-package com.moonlight.utils;
+package com.limelight.utils;
 
 public class KeyMapper {
     /* Linux Key Codes 

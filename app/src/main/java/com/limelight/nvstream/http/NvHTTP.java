@@ -1,4 +1,4 @@
-package com.moonlight.nvstream.http;
+package com.limelight.nvstream.http;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -44,12 +44,12 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import com.moonlight.BuildConfig;
-import com.moonlight.LimeLog;
-import com.moonlight.nvstream.ConnectionContext;
-import com.moonlight.nvstream.http.PairingManager.PairState;
-import com.moonlight.nvstream.jni.MoonBridge;
-import com.moonlight.utils.DeviceUtils;
+import com.limelight.BuildConfig;
+import com.limelight.LimeLog;
+import com.limelight.nvstream.ConnectionContext;
+import com.limelight.nvstream.http.PairingManager.PairState;
+import com.limelight.nvstream.jni.MoonBridge;
+import com.limelight.utils.DeviceUtils;
 
 import okhttp3.ConnectionPool;
 import okhttp3.HttpUrl;

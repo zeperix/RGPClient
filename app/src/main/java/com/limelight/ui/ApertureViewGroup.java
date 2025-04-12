@@ -1,4 +1,4 @@
-package com.moonlight.ui;
+package com.limelight.ui;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -15,8 +15,8 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.LinearLayout;
 
-import com.moonlight.R;
-import com.moonlight.utils.UiHelper;
+import com.limelight.R;
+import com.limelight.utils.UiHelper;
 
 
 public class ApertureViewGroup extends LinearLayout {

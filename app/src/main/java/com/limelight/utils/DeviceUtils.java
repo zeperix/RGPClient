@@ -1,4 +1,4 @@
-package com.moonlight.utils;
+package com.limelight.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

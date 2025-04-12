@@ -1,4 +1,4 @@
-package com.moonlight.binding.video;
+package com.limelight.binding.video;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -13,13 +13,13 @@ import org.jcodec.codecs.h264.H264Utils;
 import org.jcodec.codecs.h264.io.model.SeqParameterSet;
 import org.jcodec.codecs.h264.io.model.VUIParameters;
 
-import com.moonlight.BuildConfig;
-import com.moonlight.LimeLog;
-import com.moonlight.R;
-import com.moonlight.nvstream.av.video.VideoDecoderRenderer;
-import com.moonlight.nvstream.jni.MoonBridge;
-import com.moonlight.preferences.PreferenceConfiguration;
-import com.moonlight.utils.TrafficStatsHelper;
+import com.limelight.BuildConfig;
+import com.limelight.LimeLog;
+import com.limelight.R;
+import com.limelight.nvstream.av.video.VideoDecoderRenderer;
+import com.limelight.nvstream.jni.MoonBridge;
+import com.limelight.preferences.PreferenceConfiguration;
+import com.limelight.utils.TrafficStatsHelper;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

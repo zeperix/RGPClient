@@ -1,4 +1,4 @@
-package com.moonlight.preferences;
+package com.limelight.preferences;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -8,11 +8,11 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.widget.Toast;
 
-import com.moonlight.R;
-import com.moonlight.binding.input.virtual_controller.VirtualControllerConfigurationLoader;
+import com.limelight.R;
+import com.limelight.binding.input.virtual_controller.VirtualControllerConfigurationLoader;
 
-import static com.moonlight.binding.input.virtual_controller.keyboard.KeyBoardControllerConfigurationLoader.OSC_PREFERENCE;
-import static com.moonlight.binding.input.virtual_controller.keyboard.KeyBoardControllerConfigurationLoader.OSC_PREFERENCE_VALUE;
+import static com.limelight.binding.input.virtual_controller.keyboard.KeyBoardControllerConfigurationLoader.OSC_PREFERENCE;
+import static com.limelight.binding.input.virtual_controller.keyboard.KeyBoardControllerConfigurationLoader.OSC_PREFERENCE_VALUE;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

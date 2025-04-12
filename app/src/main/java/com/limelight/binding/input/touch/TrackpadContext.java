@@ -1,10 +1,10 @@
-package com.moonlight.binding.input.touch;
+package com.limelight.binding.input.touch;
 
 import android.os.Handler;
 import android.os.Looper;
 
-import com.moonlight.nvstream.NvConnection;
-import com.moonlight.nvstream.input.MouseButtonPacket;
+import com.limelight.nvstream.NvConnection;
+import com.limelight.nvstream.input.MouseButtonPacket;
 
 public class TrackpadContext implements TouchContext {
     private int lastTouchX = 0;

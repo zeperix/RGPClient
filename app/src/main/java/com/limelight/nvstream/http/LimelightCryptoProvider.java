@@ -1,4 +1,4 @@
-package com.moonlight.nvstream.http;
+package com.limelight.nvstream.http;
 
 import java.security.PrivateKey;
 import java.security.cert.X509Certificate;

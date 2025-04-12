@@ -1,4 +1,4 @@
-package com.moonlight.grid.assets;
+package com.limelight.grid.assets;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
 import android.os.Build;
 
-import com.moonlight.LimeLog;
-import com.moonlight.utils.CacheHelper;
+import com.limelight.LimeLog;
+import com.limelight.utils.CacheHelper;
 
 import java.io.File;
 import java.io.IOException;

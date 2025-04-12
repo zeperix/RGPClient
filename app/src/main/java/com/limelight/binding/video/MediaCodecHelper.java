@@ -1,4 +1,4 @@
-package com.moonlight.binding.video;
+package com.limelight.binding.video;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,8 +22,8 @@ import android.media.MediaCodecInfo.CodecProfileLevel;
 import android.media.MediaFormat;
 import android.os.Build;
 
-import com.moonlight.LimeLog;
-import com.moonlight.preferences.PreferenceConfiguration;
+import com.limelight.LimeLog;
+import com.limelight.preferences.PreferenceConfiguration;
 
 public class MediaCodecHelper {
     

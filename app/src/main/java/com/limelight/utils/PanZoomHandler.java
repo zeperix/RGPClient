@@ -1,4 +1,4 @@
-package com.moonlight.utils;
+package com.limelight.utils;
 
 import android.content.Context;
 import android.view.GestureDetector;
@@ -6,8 +6,8 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 
-import com.moonlight.Game;
-import com.moonlight.preferences.PreferenceConfiguration;
+import com.limelight.Game;
+import com.limelight.preferences.PreferenceConfiguration;
 
 public class PanZoomHandler {
     static private final float MAX_SCALE = 10.0f;

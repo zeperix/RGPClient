@@ -1,4 +1,4 @@
-package com.moonlight.preferences;
+package com.limelight.preferences;
 
 import android.content.Context;
 import android.content.Intent;
@@ -45,17 +45,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.moonlight.DebugInfoActivity;
-import com.moonlight.BuildConfig;
-import com.moonlight.GameMenu;
-import com.moonlight.LimeLog;
-import com.moonlight.PcView;
-import com.moonlight.R;
-import com.moonlight.binding.input.virtual_controller.keyboard.KeyBoardControllerConfigurationLoader;
-import com.moonlight.binding.video.MediaCodecHelper;
-import com.moonlight.utils.Dialog;
-import com.moonlight.utils.FileUriUtils;
-import com.moonlight.utils.UiHelper;
+import com.limelight.DebugInfoActivity;
+import com.limelight.BuildConfig;
+import com.limelight.GameMenu;
+import com.limelight.LimeLog;
+import com.limelight.PcView;
+import com.limelight.R;
+import com.limelight.binding.input.virtual_controller.keyboard.KeyBoardControllerConfigurationLoader;
+import com.limelight.binding.video.MediaCodecHelper;
+import com.limelight.utils.Dialog;
+import com.limelight.utils.FileUriUtils;
+import com.limelight.utils.UiHelper;
 import org.json.JSONObject;
 import java.io.File;
 import java.util.Arrays;

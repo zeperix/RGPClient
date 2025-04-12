@@ -2,7 +2,7 @@
  * Created by Karim Mreisi.
  */
 
-package com.moonlight.binding.input.virtual_controller.keyboard;
+package com.limelight.binding.input.virtual_controller.keyboard;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,8 +14,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.moonlight.Game;
-import com.moonlight.binding.input.virtual_controller.VirtualController;
+import com.limelight.Game;
+import com.limelight.binding.input.virtual_controller.VirtualController;
 
 import org.json.JSONException;
 import org.json.JSONObject;

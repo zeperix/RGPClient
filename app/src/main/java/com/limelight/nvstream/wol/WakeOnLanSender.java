@@ -1,4 +1,4 @@
-package com.moonlight.nvstream.wol;
+package com.limelight.nvstream.wol;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -6,8 +6,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Scanner;
 
-import com.moonlight.LimeLog;
-import com.moonlight.nvstream.http.ComputerDetails;
+import com.limelight.LimeLog;
+import com.limelight.nvstream.http.ComputerDetails;
 
 public class WakeOnLanSender {
     // These ports will always be tried as-is.

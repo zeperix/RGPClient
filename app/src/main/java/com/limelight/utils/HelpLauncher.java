@@ -1,11 +1,11 @@
-package com.moonlight.utils;
+package com.limelight.utils;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 
-import com.moonlight.HelpActivity;
+import com.limelight.HelpActivity;
 
 public class HelpLauncher {
     public static void launchUrl(Context context, String url) {

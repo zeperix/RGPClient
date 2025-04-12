@@ -1,4 +1,4 @@
-package com.moonlight.grid;
+package com.limelight.grid;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.moonlight.R;
+import com.limelight.R;
 
 import java.util.ArrayList;
 

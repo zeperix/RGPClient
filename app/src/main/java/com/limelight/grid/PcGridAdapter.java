@@ -1,4 +1,4 @@
-package com.moonlight.grid;
+package com.limelight.grid;
 
 import android.content.Context;
 import android.view.View;
@@ -7,11 +7,11 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.moonlight.PcView;
-import com.moonlight.R;
-import com.moonlight.nvstream.http.ComputerDetails;
-import com.moonlight.nvstream.http.PairingManager;
-import com.moonlight.preferences.PreferenceConfiguration;
+import com.limelight.PcView;
+import com.limelight.R;
+import com.limelight.nvstream.http.ComputerDetails;
+import com.limelight.nvstream.http.PairingManager;
+import com.limelight.preferences.PreferenceConfiguration;
 
 import java.util.Collections;
 import java.util.Comparator;

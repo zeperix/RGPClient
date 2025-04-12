@@ -1,4 +1,4 @@
-package com.moonlight.preferences;
+package com.limelight.preferences;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
 
-import com.moonlight.utils.UiHelper;
+import com.limelight.utils.UiHelper;
 
 public class LanguagePreference extends ListPreference {
 

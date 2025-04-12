@@ -1,26 +1,26 @@
-package com.moonlight;
+package com.limelight;
 
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.HashSet;
 import java.util.List;
 
-import com.moonlight.computers.ComputerManagerListener;
-import com.moonlight.computers.ComputerManagerService;
-import com.moonlight.grid.AppGridAdapter;
-import com.moonlight.nvstream.http.ComputerDetails;
-import com.moonlight.nvstream.http.NvApp;
-import com.moonlight.nvstream.http.NvHTTP;
-import com.moonlight.nvstream.http.PairingManager;
-import com.moonlight.preferences.PreferenceConfiguration;
-import com.moonlight.ui.AdapterFragment;
-import com.moonlight.ui.AdapterFragmentCallbacks;
-import com.moonlight.utils.CacheHelper;
-import com.moonlight.utils.Dialog;
-import com.moonlight.utils.ServerHelper;
-import com.moonlight.utils.ShortcutHelper;
-import com.moonlight.utils.SpinnerDialog;
-import com.moonlight.utils.UiHelper;
+import com.limelight.computers.ComputerManagerListener;
+import com.limelight.computers.ComputerManagerService;
+import com.limelight.grid.AppGridAdapter;
+import com.limelight.nvstream.http.ComputerDetails;
+import com.limelight.nvstream.http.NvApp;
+import com.limelight.nvstream.http.NvHTTP;
+import com.limelight.nvstream.http.PairingManager;
+import com.limelight.preferences.PreferenceConfiguration;
+import com.limelight.ui.AdapterFragment;
+import com.limelight.ui.AdapterFragmentCallbacks;
+import com.limelight.utils.CacheHelper;
+import com.limelight.utils.Dialog;
+import com.limelight.utils.ServerHelper;
+import com.limelight.utils.ShortcutHelper;
+import com.limelight.utils.SpinnerDialog;
+import com.limelight.utils.UiHelper;
 
 import android.app.Activity;
 import android.app.Service;

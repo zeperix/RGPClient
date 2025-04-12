@@ -1,11 +1,11 @@
-package com.moonlight.binding;
+package com.limelight.binding;
 
 import android.content.Context;
 
-import com.moonlight.binding.audio.AndroidAudioRenderer;
-import com.moonlight.binding.crypto.AndroidCryptoProvider;
-import com.moonlight.nvstream.av.audio.AudioRenderer;
-import com.moonlight.nvstream.http.LimelightCryptoProvider;
+import com.limelight.binding.audio.AndroidAudioRenderer;
+import com.limelight.binding.crypto.AndroidCryptoProvider;
+import com.limelight.nvstream.av.audio.AudioRenderer;
+import com.limelight.nvstream.http.LimelightCryptoProvider;
 
 public class PlatformBinding {
     public static LimelightCryptoProvider getCryptoProvider(Context c) {

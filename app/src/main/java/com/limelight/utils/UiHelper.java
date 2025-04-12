@@ -1,4 +1,4 @@
-package com.moonlight.utils;
+package com.limelight.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,12 +22,12 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.moonlight.AppView;
-import com.moonlight.Game;
-import com.moonlight.LimeLog;
-import com.moonlight.R;
-import com.moonlight.nvstream.http.ComputerDetails;
-import com.moonlight.preferences.PreferenceConfiguration;
+import com.limelight.AppView;
+import com.limelight.Game;
+import com.limelight.LimeLog;
+import com.limelight.R;
+import com.limelight.nvstream.http.ComputerDetails;
+import com.limelight.preferences.PreferenceConfiguration;
 
 import java.util.Locale;
 

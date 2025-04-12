@@ -1,4 +1,4 @@
-package com.moonlight;
+package com.limelight;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.moonlight.utils.DeviceUtils;
+import com.limelight.utils.DeviceUtils;
 
 import java.util.ArrayList;
 import java.util.List;

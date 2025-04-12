@@ -1,4 +1,4 @@
-package com.moonlight.nvstream.mdns;
+package com.limelight.nvstream.mdns;
 
 import java.net.Inet6Address;
 import java.net.InetAddress;

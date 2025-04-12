@@ -1,15 +1,15 @@
-# RGPClient Android
+# Artemis Android
 
-Previously named Moonlight
+Previously named Moonlight Noir
 
 An open source client for [Apollo](https://github.com/ClassicOldSong/Apollo)/[Sunshine](https://github.com/LizardByte/Sunshine).
 
-RGPClient Android will allow you to stream your collection of games from your Windows PC to your Android device,
+Artemis Android will allow you to stream your collection of games from your Windows PC to your Android device,
 whether in your own home or over the internet.
 
-RGPClient is currently the best fork of Moonlight with loads of optimizations for office usage.
+Artemis is currently the best fork of Moonlight with loads of optimizations for office usage.
 
-A more seamless experience with virtual display will be RGPClient paired with [Apollo](https://github.com/ClassicOldSong/Apollo).
+A more seamless experience with virtual display will be Artemis paired with [Apollo](https://github.com/ClassicOldSong/Apollo).
 
 # Features
 
@@ -64,7 +64,7 @@ The main repo had stayed silent for 5 months, with nobody actually responding to
 
 ## Downloads
 * [Download APK directly](https://github.com/ClassicOldSong/moonlight-android/releases)
-* [Use Obtainium](https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22com.moonlight.noir%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FClassicOldSong%2Fmoonlight-android%22%2C%22author%22%3A%22ClassicOldSong%22%2C%22name%22%3A%22Artemis%22%2C%22additionalSettings%22%3A%22%7B%5C%22apkFilterRegEx%5C%22%3A%5C%22nonRoot%5C%22%2C%5C%22matchGroutToUse%5C%22%3A%5C%22%241%5C%22%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22v(.%2B)%5C%22%7D%22%7D) (recommended)
+* [Use Obtainium](https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22com.limelight.noir%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FClassicOldSong%2Fmoonlight-android%22%2C%22author%22%3A%22ClassicOldSong%22%2C%22name%22%3A%22Artemis%22%2C%22additionalSettings%22%3A%22%7B%5C%22apkFilterRegEx%5C%22%3A%5C%22nonRoot%5C%22%2C%5C%22matchGroutToUse%5C%22%3A%5C%22%241%5C%22%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22v(.%2B)%5C%22%7D%22%7D) (recommended)
 
 ## Building
 * Install Android Studio and the Android NDK

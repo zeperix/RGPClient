@@ -1,11 +1,11 @@
-package com.moonlight.binding.input.driver;
+package com.limelight.binding.input.driver;
 
 import android.hardware.usb.UsbConstants;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbDeviceConnection;
 
-import com.moonlight.LimeLog;
-import com.moonlight.nvstream.input.ControllerPacket;
+import com.limelight.LimeLog;
+import com.limelight.nvstream.input.ControllerPacket;
 
 import java.nio.ByteBuffer;
 

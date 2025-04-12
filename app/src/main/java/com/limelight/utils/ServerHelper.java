@@ -1,20 +1,20 @@
-package com.moonlight.utils;
+package com.limelight.utils;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.moonlight.AppView;
-import com.moonlight.Game;
-import com.moonlight.R;
-import com.moonlight.ShortcutTrampoline;
-import com.moonlight.binding.PlatformBinding;
-import com.moonlight.computers.ComputerManagerService;
-import com.moonlight.nvstream.http.ComputerDetails;
-import com.moonlight.nvstream.http.HostHttpResponseException;
-import com.moonlight.nvstream.http.NvApp;
-import com.moonlight.nvstream.http.NvHTTP;
-import com.moonlight.nvstream.jni.MoonBridge;
+import com.limelight.AppView;
+import com.limelight.Game;
+import com.limelight.R;
+import com.limelight.ShortcutTrampoline;
+import com.limelight.binding.PlatformBinding;
+import com.limelight.computers.ComputerManagerService;
+import com.limelight.nvstream.http.ComputerDetails;
+import com.limelight.nvstream.http.HostHttpResponseException;
+import com.limelight.nvstream.http.NvApp;
+import com.limelight.nvstream.http.NvHTTP;
+import com.limelight.nvstream.jni.MoonBridge;
 
 import org.xmlpull.v1.XmlPullParserException;
 

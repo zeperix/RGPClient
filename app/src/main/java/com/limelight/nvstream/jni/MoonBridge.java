@@ -1,8 +1,8 @@
-package com.moonlight.nvstream.jni;
+package com.limelight.nvstream.jni;
 
-import com.moonlight.nvstream.NvConnectionListener;
-import com.moonlight.nvstream.av.audio.AudioRenderer;
-import com.moonlight.nvstream.av.video.VideoDecoderRenderer;
+import com.limelight.nvstream.NvConnectionListener;
+import com.limelight.nvstream.av.audio.AudioRenderer;
+import com.limelight.nvstream.av.video.VideoDecoderRenderer;
 
 public class MoonBridge {
     /* See documentation in Limelight.h for information about these functions and constants */

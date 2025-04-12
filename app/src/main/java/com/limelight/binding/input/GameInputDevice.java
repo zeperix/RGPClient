@@ -1,6 +1,6 @@
-package com.moonlight.binding.input;
+package com.limelight.binding.input;
 
-import com.moonlight.GameMenu;
+import com.limelight.GameMenu;
 
 import java.util.List;
 

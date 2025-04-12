@@ -1,4 +1,4 @@
-package com.moonlight.computers;
+package com.limelight.computers;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter;
 import java.util.Locale;
 import java.util.Random;
 
-import com.moonlight.LimeLog;
+import com.limelight.LimeLog;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.moonlight.ui;
+package com.limelight.ui;
 
 
 import android.app.Activity;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
-import com.moonlight.R;
+import com.limelight.R;
 
 public class AdapterFragment extends Fragment {
     private AdapterFragmentCallbacks callbacks;

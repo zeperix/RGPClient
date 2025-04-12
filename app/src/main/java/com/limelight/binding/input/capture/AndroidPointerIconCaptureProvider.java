@@ -1,4 +1,4 @@
-package com.moonlight.binding.input.capture;
+package com.limelight.binding.input.capture;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

@@ -1,4 +1,4 @@
-package com.moonlight;
+package com.limelight;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;

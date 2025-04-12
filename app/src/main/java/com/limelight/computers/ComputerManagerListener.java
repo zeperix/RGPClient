@@ -1,6 +1,6 @@
-package com.moonlight.computers;
+package com.limelight.computers;
 
-import com.moonlight.nvstream.http.ComputerDetails;
+import com.limelight.nvstream.http.ComputerDetails;
 
 public interface ComputerManagerListener {
     void notifyComputerUpdated(ComputerDetails details);

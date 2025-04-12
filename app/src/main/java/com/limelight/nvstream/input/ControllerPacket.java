@@ -1,4 +1,4 @@
-package com.moonlight.nvstream.input;
+package com.limelight.nvstream.input;
 
 public class ControllerPacket {
     public static final int A_FLAG = 0x1000;

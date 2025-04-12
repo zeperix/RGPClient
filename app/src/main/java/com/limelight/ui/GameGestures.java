@@ -1,6 +1,6 @@
-package com.moonlight.ui;
+package com.limelight.ui;
 
-import com.moonlight.binding.input.GameInputDevice;
+import com.limelight.binding.input.GameInputDevice;
 
 public interface GameGestures {
     void toggleKeyboard();

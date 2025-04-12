@@ -1,4 +1,4 @@
-package com.moonlight.binding.audio;
+package com.limelight.binding.audio;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,9 @@ import android.media.AudioTrack;
 import android.media.audiofx.AudioEffect;
 import android.os.Build;
 
-import com.moonlight.LimeLog;
-import com.moonlight.nvstream.av.audio.AudioRenderer;
-import com.moonlight.nvstream.jni.MoonBridge;
+import com.limelight.LimeLog;
+import com.limelight.nvstream.av.audio.AudioRenderer;
+import com.limelight.nvstream.jni.MoonBridge;
 
 public class AndroidAudioRenderer implements AudioRenderer {
 

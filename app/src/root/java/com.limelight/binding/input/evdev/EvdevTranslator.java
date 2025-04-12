@@ -1,4 +1,4 @@
-package com.moonlight.binding.input.evdev;
+package com.limelight.binding.input.evdev;
 
 import android.view.KeyEvent;
 

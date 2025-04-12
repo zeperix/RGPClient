@@ -1,6 +1,6 @@
-package com.moonlight.binding.input.driver;
+package com.limelight.binding.input.driver;
 
-import com.moonlight.nvstream.jni.MoonBridge;
+import com.limelight.nvstream.jni.MoonBridge;
 
 public abstract class AbstractController {
 

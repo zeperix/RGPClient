@@ -1,11 +1,11 @@
-package com.moonlight.grid.assets;
+package com.limelight.grid.assets;
 
 import android.content.Context;
 
-import com.moonlight.LimeLog;
-import com.moonlight.binding.PlatformBinding;
-import com.moonlight.nvstream.http.NvHTTP;
-import com.moonlight.utils.ServerHelper;
+import com.limelight.LimeLog;
+import com.limelight.binding.PlatformBinding;
+import com.limelight.nvstream.http.NvHTTP;
+import com.limelight.utils.ServerHelper;
 
 import java.io.IOException;
 import java.io.InputStream;

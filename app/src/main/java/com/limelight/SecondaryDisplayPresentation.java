@@ -1,4 +1,4 @@
-package com.moonlight;
+package com.limelight;
 
 import android.app.Presentation;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.view.Display;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.moonlight.ui.StreamView;
+import com.limelight.ui.StreamView;
 
 /**
  * Description

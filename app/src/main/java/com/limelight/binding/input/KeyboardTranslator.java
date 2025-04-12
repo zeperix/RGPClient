@@ -1,4 +1,4 @@
-package com.moonlight.binding.input;
+package com.limelight.binding.input;
 
 import android.annotation.TargetApi;
 import android.hardware.input.InputManager;
@@ -7,9 +7,9 @@ import android.util.SparseArray;
 import android.view.InputDevice;
 import android.view.KeyEvent;
 
-import com.moonlight.LimeLog;
-import com.moonlight.preferences.PreferenceConfiguration;
-import com.moonlight.utils.KeyMapper;
+import com.limelight.LimeLog;
+import com.limelight.preferences.PreferenceConfiguration;
+import com.limelight.utils.KeyMapper;
 
 import java.util.Arrays;
 

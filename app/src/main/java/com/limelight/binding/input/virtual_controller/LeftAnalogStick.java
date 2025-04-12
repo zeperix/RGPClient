@@ -2,11 +2,11 @@
  * Created by Karim Mreisi.
  */
 
-package com.moonlight.binding.input.virtual_controller;
+package com.limelight.binding.input.virtual_controller;
 
 import android.content.Context;
 
-import com.moonlight.nvstream.input.ControllerPacket;
+import com.limelight.nvstream.input.ControllerPacket;
 
 public class LeftAnalogStick extends AnalogStick {
     public LeftAnalogStick(final VirtualController controller, final Context context) {

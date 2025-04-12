@@ -1,4 +1,4 @@
-package com.moonlight.nvstream.input;
+package com.limelight.nvstream.input;
 
 public class KeyboardPacket {
     public static final byte KEY_DOWN = 0x03;

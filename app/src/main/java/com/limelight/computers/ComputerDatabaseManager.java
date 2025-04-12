@@ -1,4 +1,4 @@
-package com.moonlight.computers;
+package com.limelight.computers;
 
 import java.io.ByteArrayInputStream;
 import java.security.cert.CertificateEncodingException;
@@ -9,9 +9,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
-import com.moonlight.LimeLog;
-import com.moonlight.nvstream.http.ComputerDetails;
-import com.moonlight.nvstream.http.NvHTTP;
+import com.limelight.LimeLog;
+import com.limelight.nvstream.http.ComputerDetails;
+import com.limelight.nvstream.http.NvHTTP;
 
 import android.content.ContentValues;
 import android.content.Context;

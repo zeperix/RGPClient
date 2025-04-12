@@ -2,7 +2,7 @@
  * Created by Karim Mreisi.
  */
 
-package com.moonlight.binding.input.virtual_controller.keyboard;
+package com.limelight.binding.input.virtual_controller.keyboard;
 
 import android.content.Context;
 import android.graphics.Canvas;
