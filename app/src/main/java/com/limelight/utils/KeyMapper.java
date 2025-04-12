@@ -1,4 +1,4 @@
-package com.limelight.utils;
+package com.rgpclient.utils;
 
 public class KeyMapper {
     /* Linux Key Codes 

@@ -1,4 +1,4 @@
-package com.limelight.nvstream.input;
+package com.rgpclient.nvstream.input;
 
 public class MouseButtonPacket {
     public static final byte PRESS_EVENT = 0x07;

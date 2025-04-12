@@ -1,4 +1,4 @@
-package com.limelight.grid;
+package com.rgpclient.grid;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
@@ -8,15 +8,15 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.limelight.AppView;
-import com.limelight.LimeLog;
-import com.limelight.R;
-import com.limelight.grid.assets.CachedAppAssetLoader;
-import com.limelight.grid.assets.DiskAssetLoader;
-import com.limelight.grid.assets.MemoryAssetLoader;
-import com.limelight.grid.assets.NetworkAssetLoader;
-import com.limelight.nvstream.http.ComputerDetails;
-import com.limelight.preferences.PreferenceConfiguration;
+import com.rgpclient.AppView;
+import com.rgpclient.LimeLog;
+import com.rgpclient.R;
+import com.rgpclient.grid.assets.CachedAppAssetLoader;
+import com.rgpclient.grid.assets.DiskAssetLoader;
+import com.rgpclient.grid.assets.MemoryAssetLoader;
+import com.rgpclient.grid.assets.NetworkAssetLoader;
+import com.rgpclient.nvstream.http.ComputerDetails;
+import com.rgpclient.preferences.PreferenceConfiguration;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.limelight.preferences;
+package com.rgpclient.preferences;
 
 import android.content.Context;
 import android.content.res.TypedArray;

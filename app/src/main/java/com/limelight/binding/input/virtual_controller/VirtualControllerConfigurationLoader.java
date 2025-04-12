@@ -2,16 +2,16 @@
  * Created by Karim Mreisi.
  */
 
-package com.limelight.binding.input.virtual_controller;
+package com.rgpclient.binding.input.virtual_controller;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.DisplayMetrics;
 
-import com.limelight.R;
-import com.limelight.nvstream.input.ControllerPacket;
-import com.limelight.preferences.PreferenceConfiguration;
+import com.rgpclient.R;
+import com.rgpclient.nvstream.input.ControllerPacket;
+import com.rgpclient.preferences.PreferenceConfiguration;
 
 import org.json.JSONException;
 import org.json.JSONObject;

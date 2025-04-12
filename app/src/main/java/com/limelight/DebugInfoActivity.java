@@ -1,4 +1,4 @@
-package com.limelight;
+package com.rgpclient;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.limelight.utils.DeviceUtils;
+import com.rgpclient.utils.DeviceUtils;
 
 import java.util.ArrayList;
 import java.util.List;

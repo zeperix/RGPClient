@@ -1,4 +1,4 @@
-package com.limelight.preferences;
+package com.rgpclient.preferences;
 
 import android.content.Context;
 import android.content.Intent;
@@ -45,17 +45,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.limelight.DebugInfoActivity;
-import com.limelight.BuildConfig;
-import com.limelight.GameMenu;
-import com.limelight.LimeLog;
-import com.limelight.PcView;
-import com.limelight.R;
-import com.limelight.binding.input.virtual_controller.keyboard.KeyBoardControllerConfigurationLoader;
-import com.limelight.binding.video.MediaCodecHelper;
-import com.limelight.utils.Dialog;
-import com.limelight.utils.FileUriUtils;
-import com.limelight.utils.UiHelper;
+import com.rgpclient.DebugInfoActivity;
+import com.rgpclient.BuildConfig;
+import com.rgpclient.GameMenu;
+import com.rgpclient.LimeLog;
+import com.rgpclient.PcView;
+import com.rgpclient.R;
+import com.rgpclient.binding.input.virtual_controller.keyboard.KeyBoardControllerConfigurationLoader;
+import com.rgpclient.binding.video.MediaCodecHelper;
+import com.rgpclient.utils.Dialog;
+import com.rgpclient.utils.FileUriUtils;
+import com.rgpclient.utils.UiHelper;
 import org.json.JSONObject;
 import java.io.File;
 import java.util.Arrays;

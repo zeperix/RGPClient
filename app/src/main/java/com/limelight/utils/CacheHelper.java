@@ -1,4 +1,4 @@
-package com.limelight.utils;
+package com.rgpclient.utils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

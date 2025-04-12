@@ -1,4 +1,4 @@
-package com.limelight.binding.input.capture;
+package com.rgpclient.binding.input.capture;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

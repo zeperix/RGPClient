@@ -1,6 +1,6 @@
-package com.limelight.binding.input;
+package com.rgpclient.binding.input;
 
-import com.limelight.GameMenu;
+import com.rgpclient.GameMenu;
 
 import java.util.List;
 

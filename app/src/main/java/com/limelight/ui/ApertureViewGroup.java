@@ -1,4 +1,4 @@
-package com.limelight.ui;
+package com.rgpclient.ui;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -15,8 +15,8 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.LinearLayout;
 
-import com.limelight.R;
-import com.limelight.utils.UiHelper;
+import com.rgpclient.R;
+import com.rgpclient.utils.UiHelper;
 
 
 public class ApertureViewGroup extends LinearLayout {

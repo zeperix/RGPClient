@@ -1,4 +1,4 @@
-package com.limelight;
+package com.rgpclient;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,12 +12,12 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.limelight.binding.input.GameInputDevice;
-import com.limelight.binding.input.KeyboardTranslator;
-import com.limelight.nvstream.NvConnection;
-import com.limelight.nvstream.input.KeyboardPacket;
-import com.limelight.preferences.PreferenceConfiguration;
-import com.limelight.utils.KeyMapper;
+import com.rgpclient.binding.input.GameInputDevice;
+import com.rgpclient.binding.input.KeyboardTranslator;
+import com.rgpclient.nvstream.NvConnection;
+import com.rgpclient.nvstream.input.KeyboardPacket;
+import com.rgpclient.preferences.PreferenceConfiguration;
+import com.rgpclient.utils.KeyMapper;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

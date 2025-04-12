@@ -1,4 +1,4 @@
-package com.limelight.preferences;
+package com.rgpclient.preferences;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -15,7 +15,7 @@ import android.widget.TextView;
 import androidx.preference.DialogPreference;
 import androidx.preference.Preference;
 
-import com.limelight.R;
+import com.rgpclient.R;
 
 import java.util.Locale;
 

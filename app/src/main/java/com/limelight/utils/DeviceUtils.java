@@ -1,4 +1,4 @@
-package com.limelight.utils;
+package com.rgpclient.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

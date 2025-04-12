@@ -1,4 +1,4 @@
-package com.limelight.preferences;
+package com.rgpclient.preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,7 +8,7 @@ import android.view.Display;
 
 import androidx.preference.PreferenceManager;
 
-import com.limelight.nvstream.jni.MoonBridge;
+import com.rgpclient.nvstream.jni.MoonBridge;
 
 public class PreferenceConfiguration {
     public enum ScaleMode {

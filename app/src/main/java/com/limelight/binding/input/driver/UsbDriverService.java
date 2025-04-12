@@ -1,4 +1,4 @@
-package com.limelight.binding.input.driver;
+package com.rgpclient.binding.input.driver;
 
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
@@ -17,9 +17,9 @@ import android.os.IBinder;
 import android.view.InputDevice;
 import android.widget.Toast;
 
-import com.limelight.LimeLog;
-import com.limelight.R;
-import com.limelight.preferences.PreferenceConfiguration;
+import com.rgpclient.LimeLog;
+import com.rgpclient.R;
+import com.rgpclient.preferences.PreferenceConfiguration;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class UsbDriverService extends Service implements UsbDriverListener {
 
     private static final String ACTION_USB_PERMISSION =
-            "com.limelight.USB_PERMISSION";
+            "com.rgpclient.USB_PERMISSION";
 
     private UsbManager usbManager;
     private PreferenceConfiguration prefConfig;

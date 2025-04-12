@@ -1,4 +1,4 @@
-package com.limelight.nvstream.mdns;
+package com.rgpclient.nvstream.mdns;
 
 import java.net.Inet6Address;
 import java.net.InetAddress;

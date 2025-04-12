@@ -1,4 +1,4 @@
-package com.limelight.binding.input.evdev;
+package com.rgpclient.binding.input.evdev;
 
 public interface EvdevListener {
     int BUTTON_LEFT = 1;

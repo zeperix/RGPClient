@@ -1,4 +1,4 @@
-package com.limelight.binding.input.driver;
+package com.rgpclient.binding.input.driver;
 
 import android.hardware.usb.UsbConstants;
 import android.hardware.usb.UsbDevice;
@@ -7,9 +7,9 @@ import android.hardware.usb.UsbEndpoint;
 import android.hardware.usb.UsbInterface;
 import android.os.SystemClock;
 
-import com.limelight.LimeLog;
-import com.limelight.nvstream.input.ControllerPacket;
-import com.limelight.nvstream.jni.MoonBridge;
+import com.rgpclient.LimeLog;
+import com.rgpclient.nvstream.input.ControllerPacket;
+import com.rgpclient.nvstream.jni.MoonBridge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

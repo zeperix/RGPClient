@@ -2,10 +2,10 @@
 -dontobfuscate
 
 # Our code
--keep class com.limelight.binding.input.evdev.* {*;}
+-keep class com.rgpclient.binding.input.evdev.* {*;}
 
 # Moonlight common
--keep class com.limelight.nvstream.jni.* {*;}
+-keep class com.rgpclient.nvstream.jni.* {*;}
 
 # Okio
 -keep class sun.misc.Unsafe {*;}

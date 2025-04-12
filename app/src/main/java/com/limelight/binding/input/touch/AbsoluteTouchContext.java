@@ -1,11 +1,11 @@
-package com.limelight.binding.input.touch;
+package com.rgpclient.binding.input.touch;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 
-import com.limelight.nvstream.NvConnection;
-import com.limelight.nvstream.input.MouseButtonPacket;
+import com.rgpclient.nvstream.NvConnection;
+import com.rgpclient.nvstream.input.MouseButtonPacket;
 
 public class AbsoluteTouchContext implements TouchContext {
     private int lastTouchDownX = 0;

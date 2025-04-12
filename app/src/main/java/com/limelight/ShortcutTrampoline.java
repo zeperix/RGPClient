@@ -1,4 +1,4 @@
-package com.limelight;
+package com.rgpclient;
 
 import android.app.Activity;
 import android.app.Service;
@@ -8,19 +8,19 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 
-import com.limelight.computers.ComputerDatabaseManager;
-import com.limelight.computers.ComputerManagerListener;
-import com.limelight.computers.ComputerManagerService;
-import com.limelight.nvstream.http.ComputerDetails;
-import com.limelight.nvstream.http.NvApp;
-import com.limelight.nvstream.http.NvHTTP;
-import com.limelight.nvstream.http.PairingManager;
-import com.limelight.nvstream.wol.WakeOnLanSender;
-import com.limelight.utils.CacheHelper;
-import com.limelight.utils.Dialog;
-import com.limelight.utils.ServerHelper;
-import com.limelight.utils.SpinnerDialog;
-import com.limelight.utils.UiHelper;
+import com.rgpclient.computers.ComputerDatabaseManager;
+import com.rgpclient.computers.ComputerManagerListener;
+import com.rgpclient.computers.ComputerManagerService;
+import com.rgpclient.nvstream.http.ComputerDetails;
+import com.rgpclient.nvstream.http.NvApp;
+import com.rgpclient.nvstream.http.NvHTTP;
+import com.rgpclient.nvstream.http.PairingManager;
+import com.rgpclient.nvstream.wol.WakeOnLanSender;
+import com.rgpclient.utils.CacheHelper;
+import com.rgpclient.utils.Dialog;
+import com.rgpclient.utils.ServerHelper;
+import com.rgpclient.utils.SpinnerDialog;
+import com.rgpclient.utils.UiHelper;
 
 import org.xmlpull.v1.XmlPullParserException;
 

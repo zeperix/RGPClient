@@ -1,4 +1,4 @@
-package com.limelight;
+package com.rgpclient;
 
 import android.app.Presentation;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.view.Display;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.limelight.ui.StreamView;
+import com.rgpclient.ui.StreamView;
 
 /**
  * Description

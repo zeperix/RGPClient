@@ -1,4 +1,4 @@
-package com.limelight.grid;
+package com.rgpclient.grid;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.limelight.R;
+import com.rgpclient.R;
 
 import java.util.ArrayList;
 

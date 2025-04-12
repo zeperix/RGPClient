@@ -1,4 +1,4 @@
-package com.limelight;
+package com.rgpclient;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -9,7 +9,7 @@ import android.webkit.WebViewClient;
 import android.window.OnBackInvokedCallback;
 import android.window.OnBackInvokedDispatcher;
 
-import com.limelight.utils.SpinnerDialog;
+import com.rgpclient.utils.SpinnerDialog;
 
 public class HelpActivity extends Activity {
 

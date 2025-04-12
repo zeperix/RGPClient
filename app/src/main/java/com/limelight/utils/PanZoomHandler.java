@@ -1,4 +1,4 @@
-package com.limelight.utils;
+package com.rgpclient.utils;
 
 import android.content.Context;
 import android.view.GestureDetector;
@@ -6,8 +6,8 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 
-import com.limelight.Game;
-import com.limelight.preferences.PreferenceConfiguration;
+import com.rgpclient.Game;
+import com.rgpclient.preferences.PreferenceConfiguration;
 
 public class PanZoomHandler {
     static private final float MAX_SCALE = 10.0f;

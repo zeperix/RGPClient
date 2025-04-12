@@ -1,4 +1,4 @@
-package com.limelight.binding.video;
+package com.rgpclient.binding.video;
 
 public interface CrashListener {
     void notifyCrash(Exception e);

@@ -1,6 +1,6 @@
-package com.limelight.nvstream;
+package com.rgpclient.nvstream;
 
-import com.limelight.nvstream.http.ComputerDetails;
+import com.rgpclient.nvstream.http.ComputerDetails;
 
 import java.security.cert.X509Certificate;
 

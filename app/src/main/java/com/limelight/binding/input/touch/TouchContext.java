@@ -1,4 +1,4 @@
-package com.limelight.binding.input.touch;
+package com.rgpclient.binding.input.touch;
 
 public interface TouchContext {
     int getActionIndex();

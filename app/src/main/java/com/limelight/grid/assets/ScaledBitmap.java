@@ -1,4 +1,4 @@
-package com.limelight.grid.assets;
+package com.rgpclient.grid.assets;
 
 import android.graphics.Bitmap;
 

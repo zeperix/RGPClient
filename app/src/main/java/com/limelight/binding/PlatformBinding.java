@@ -1,11 +1,11 @@
-package com.limelight.binding;
+package com.rgpclient.binding;
 
 import android.content.Context;
 
-import com.limelight.binding.audio.AndroidAudioRenderer;
-import com.limelight.binding.crypto.AndroidCryptoProvider;
-import com.limelight.nvstream.av.audio.AudioRenderer;
-import com.limelight.nvstream.http.LimelightCryptoProvider;
+import com.rgpclient.binding.audio.AndroidAudioRenderer;
+import com.rgpclient.binding.crypto.AndroidCryptoProvider;
+import com.rgpclient.nvstream.av.audio.AudioRenderer;
+import com.rgpclient.nvstream.http.LimelightCryptoProvider;
 
 public class PlatformBinding {
     public static LimelightCryptoProvider getCryptoProvider(Context c) {

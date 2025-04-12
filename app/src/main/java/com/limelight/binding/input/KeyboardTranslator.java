@@ -1,4 +1,4 @@
-package com.limelight.binding.input;
+package com.rgpclient.binding.input;
 
 import android.annotation.TargetApi;
 import android.hardware.input.InputManager;
@@ -7,9 +7,9 @@ import android.util.SparseArray;
 import android.view.InputDevice;
 import android.view.KeyEvent;
 
-import com.limelight.LimeLog;
-import com.limelight.preferences.PreferenceConfiguration;
-import com.limelight.utils.KeyMapper;
+import com.rgpclient.LimeLog;
+import com.rgpclient.preferences.PreferenceConfiguration;
+import com.rgpclient.utils.KeyMapper;
 
 import java.util.Arrays;
 

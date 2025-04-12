@@ -2,9 +2,9 @@
  * Created by Karim Mreisi.
  */
 
-package com.limelight.binding.input.virtual_controller.keyboard;
+package com.rgpclient.binding.input.virtual_controller.keyboard;
 
-import static com.limelight.GameMenu.getModifier;
+import static com.rgpclient.GameMenu.getModifier;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,13 +16,13 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 import androidx.preference.PreferenceManager;
 
-import com.limelight.GameMenu;
-import com.limelight.LimeLog;
-import com.limelight.R;
-import com.limelight.nvstream.NvConnection;
-import com.limelight.nvstream.input.KeyboardPacket;
-import com.limelight.preferences.PreferenceConfiguration;
-import com.limelight.utils.KeyMapper;
+import com.rgpclient.GameMenu;
+import com.rgpclient.LimeLog;
+import com.rgpclient.R;
+import com.rgpclient.nvstream.NvConnection;
+import com.rgpclient.nvstream.input.KeyboardPacket;
+import com.rgpclient.preferences.PreferenceConfiguration;
+import com.rgpclient.utils.KeyMapper;
 
 import org.jcodec.common.ArrayUtil;
 import org.json.JSONArray;

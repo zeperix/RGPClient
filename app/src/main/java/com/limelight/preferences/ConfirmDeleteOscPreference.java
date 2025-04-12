@@ -1,13 +1,13 @@
-package com.limelight.preferences;
+package com.rgpclient.preferences;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.widget.Toast;
 
-import com.limelight.R;
+import com.rgpclient.R;
 
-import static com.limelight.binding.input.virtual_controller.VirtualControllerConfigurationLoader.OSC_PREFERENCE;
+import static com.rgpclient.binding.input.virtual_controller.VirtualControllerConfigurationLoader.OSC_PREFERENCE;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

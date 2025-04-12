@@ -1,20 +1,20 @@
-package com.limelight.utils;
+package com.rgpclient.utils;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.limelight.AppView;
-import com.limelight.Game;
-import com.limelight.R;
-import com.limelight.ShortcutTrampoline;
-import com.limelight.binding.PlatformBinding;
-import com.limelight.computers.ComputerManagerService;
-import com.limelight.nvstream.http.ComputerDetails;
-import com.limelight.nvstream.http.HostHttpResponseException;
-import com.limelight.nvstream.http.NvApp;
-import com.limelight.nvstream.http.NvHTTP;
-import com.limelight.nvstream.jni.MoonBridge;
+import com.rgpclient.AppView;
+import com.rgpclient.Game;
+import com.rgpclient.R;
+import com.rgpclient.ShortcutTrampoline;
+import com.rgpclient.binding.PlatformBinding;
+import com.rgpclient.computers.ComputerManagerService;
+import com.rgpclient.nvstream.http.ComputerDetails;
+import com.rgpclient.nvstream.http.HostHttpResponseException;
+import com.rgpclient.nvstream.http.NvApp;
+import com.rgpclient.nvstream.http.NvHTTP;
+import com.rgpclient.nvstream.jni.MoonBridge;
 
 import org.xmlpull.v1.XmlPullParserException;
 

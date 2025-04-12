@@ -1,4 +1,4 @@
-package com.limelight.nvstream.av;
+package com.rgpclient.nvstream.av;
 
 public class ByteBufferDescriptor {
     public byte[] data;

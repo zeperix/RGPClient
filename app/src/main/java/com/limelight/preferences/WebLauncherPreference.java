@@ -1,4 +1,4 @@
-package com.limelight.preferences;
+package com.rgpclient.preferences;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 
-import com.limelight.utils.HelpLauncher;
+import com.rgpclient.utils.HelpLauncher;
 
 public class WebLauncherPreference extends Preference {
     private String url;

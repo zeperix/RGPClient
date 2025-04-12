@@ -1,4 +1,4 @@
-package com.limelight.utils;
+package com.rgpclient.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,12 +22,12 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.limelight.AppView;
-import com.limelight.Game;
-import com.limelight.LimeLog;
-import com.limelight.R;
-import com.limelight.nvstream.http.ComputerDetails;
-import com.limelight.preferences.PreferenceConfiguration;
+import com.rgpclient.AppView;
+import com.rgpclient.Game;
+import com.rgpclient.LimeLog;
+import com.rgpclient.R;
+import com.rgpclient.nvstream.http.ComputerDetails;
+import com.rgpclient.preferences.PreferenceConfiguration;
 
 import java.util.Locale;
 

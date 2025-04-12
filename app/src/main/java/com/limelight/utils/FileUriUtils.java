@@ -1,4 +1,4 @@
-package com.limelight.utils;
+package com.rgpclient.utils;
 
 import android.content.Context;
 import android.net.Uri;

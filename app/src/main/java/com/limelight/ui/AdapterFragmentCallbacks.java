@@ -1,4 +1,4 @@
-package com.limelight.ui;
+package com.rgpclient.ui;
 
 import android.widget.AbsListView;
 

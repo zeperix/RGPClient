@@ -1,4 +1,4 @@
-package com.limelight.nvstream.http;
+package com.rgpclient.nvstream.http;
 
 import android.widget.Toast;
 
@@ -8,7 +8,7 @@ import org.bouncycastle.crypto.params.KeyParameter;
 
 import org.xmlpull.v1.XmlPullParserException;
 
-import com.limelight.LimeLog;
+import com.rgpclient.LimeLog;
 
 import java.security.cert.Certificate;
 import java.io.*;

@@ -2,7 +2,7 @@
  * Created by Karim Mreisi.
  */
 
-package com.limelight.binding.input.virtual_controller;
+package com.rgpclient.binding.input.virtual_controller;
 
 import android.content.Context;
 import android.os.Build;
@@ -17,10 +17,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.limelight.LimeLog;
-import com.limelight.R;
-import com.limelight.binding.input.ControllerHandler;
-import com.limelight.preferences.PreferenceConfiguration;
+import com.rgpclient.LimeLog;
+import com.rgpclient.R;
+import com.rgpclient.binding.input.ControllerHandler;
+import com.rgpclient.preferences.PreferenceConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,7 @@
  * Created by Karim Mreisi.
  */
 
-package com.limelight.binding.input.virtual_controller.keyboard;
+package com.rgpclient.binding.input.virtual_controller.keyboard;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -23,9 +23,9 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.limelight.Game;
-import com.limelight.R;
-import com.limelight.preferences.PreferenceConfiguration;
+import com.rgpclient.Game;
+import com.rgpclient.R;
+import com.rgpclient.preferences.PreferenceConfiguration;
 
 import java.util.BitSet;
 import java.util.HashMap;

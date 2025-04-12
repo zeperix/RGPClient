@@ -1,4 +1,4 @@
-package com.limelight.binding.input.virtual_controller.keyboard;
+package com.rgpclient.binding.input.virtual_controller.keyboard;
 
 import android.content.Context;
 import android.graphics.Canvas;

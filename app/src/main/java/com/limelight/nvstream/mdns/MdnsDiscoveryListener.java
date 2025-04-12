@@ -1,4 +1,4 @@
-package com.limelight.nvstream.mdns;
+package com.rgpclient.nvstream.mdns;
 
 public interface MdnsDiscoveryListener {
     void notifyComputerAdded(MdnsComputer computer);

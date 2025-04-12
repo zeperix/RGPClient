@@ -1,4 +1,4 @@
-package com.limelight.nvstream.http;
+package com.rgpclient.nvstream.http;
 
 import java.io.IOException;
 

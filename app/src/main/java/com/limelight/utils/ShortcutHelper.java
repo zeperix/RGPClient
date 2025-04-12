@@ -1,4 +1,4 @@
-package com.limelight.utils;
+package com.rgpclient.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -8,9 +8,9 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 
-import com.limelight.R;
-import com.limelight.nvstream.http.ComputerDetails;
-import com.limelight.nvstream.http.NvApp;
+import com.rgpclient.R;
+import com.rgpclient.nvstream.http.ComputerDetails;
+import com.rgpclient.nvstream.http.NvApp;
 
 import java.util.Collections;
 import java.util.LinkedList;

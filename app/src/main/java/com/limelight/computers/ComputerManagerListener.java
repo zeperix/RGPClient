@@ -1,6 +1,6 @@
-package com.limelight.computers;
+package com.rgpclient.computers;
 
-import com.limelight.nvstream.http.ComputerDetails;
+import com.rgpclient.nvstream.http.ComputerDetails;
 
 public interface ComputerManagerListener {
     void notifyComputerUpdated(ComputerDetails details);

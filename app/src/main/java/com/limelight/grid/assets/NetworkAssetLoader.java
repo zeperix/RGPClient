@@ -1,11 +1,11 @@
-package com.limelight.grid.assets;
+package com.rgpclient.grid.assets;
 
 import android.content.Context;
 
-import com.limelight.LimeLog;
-import com.limelight.binding.PlatformBinding;
-import com.limelight.nvstream.http.NvHTTP;
-import com.limelight.utils.ServerHelper;
+import com.rgpclient.LimeLog;
+import com.rgpclient.binding.PlatformBinding;
+import com.rgpclient.nvstream.http.NvHTTP;
+import com.rgpclient.utils.ServerHelper;
 
 import java.io.IOException;
 import java.io.InputStream;

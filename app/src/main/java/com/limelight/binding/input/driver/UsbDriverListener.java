@@ -1,4 +1,4 @@
-package com.limelight.binding.input.driver;
+package com.rgpclient.binding.input.driver;
 
 public interface UsbDriverListener {
     void reportControllerState(int controllerId, int buttonFlags,

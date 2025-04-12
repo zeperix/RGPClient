@@ -1,4 +1,4 @@
-package com.limelight.binding.video;
+package com.rgpclient.binding.video;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -13,13 +13,13 @@ import org.jcodec.codecs.h264.H264Utils;
 import org.jcodec.codecs.h264.io.model.SeqParameterSet;
 import org.jcodec.codecs.h264.io.model.VUIParameters;
 
-import com.limelight.BuildConfig;
-import com.limelight.LimeLog;
-import com.limelight.R;
-import com.limelight.nvstream.av.video.VideoDecoderRenderer;
-import com.limelight.nvstream.jni.MoonBridge;
-import com.limelight.preferences.PreferenceConfiguration;
-import com.limelight.utils.TrafficStatsHelper;
+import com.rgpclient.BuildConfig;
+import com.rgpclient.LimeLog;
+import com.rgpclient.R;
+import com.rgpclient.nvstream.av.video.VideoDecoderRenderer;
+import com.rgpclient.nvstream.jni.MoonBridge;
+import com.rgpclient.preferences.PreferenceConfiguration;
+import com.rgpclient.utils.TrafficStatsHelper;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

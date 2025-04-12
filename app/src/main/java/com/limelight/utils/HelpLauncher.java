@@ -1,11 +1,11 @@
-package com.limelight.utils;
+package com.rgpclient.utils;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 
-import com.limelight.HelpActivity;
+import com.rgpclient.HelpActivity;
 
 public class HelpLauncher {
     public static void launchUrl(Context context, String url) {

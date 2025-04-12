@@ -1,4 +1,4 @@
-package com.limelight.grid;
+package com.rgpclient.grid;
 
 import android.content.Context;
 import android.view.View;
@@ -7,11 +7,11 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.limelight.PcView;
-import com.limelight.R;
-import com.limelight.nvstream.http.ComputerDetails;
-import com.limelight.nvstream.http.PairingManager;
-import com.limelight.preferences.PreferenceConfiguration;
+import com.rgpclient.PcView;
+import com.rgpclient.R;
+import com.rgpclient.nvstream.http.ComputerDetails;
+import com.rgpclient.nvstream.http.PairingManager;
+import com.rgpclient.preferences.PreferenceConfiguration;
 
 import java.util.Collections;
 import java.util.Comparator;

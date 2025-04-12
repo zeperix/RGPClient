@@ -1,4 +1,4 @@
-package com.limelight.nvstream.http;
+package com.rgpclient.nvstream.http;
 
 import java.security.PrivateKey;
 import java.security.cert.X509Certificate;

@@ -2,7 +2,7 @@
  * Created by Karim Mreisi.
  */
 
-package com.limelight.binding.input.virtual_controller.keyboard;
+package com.rgpclient.binding.input.virtual_controller.keyboard;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,9 +12,9 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 
-import com.limelight.binding.input.virtual_controller.VirtualController;
-import com.limelight.binding.input.virtual_controller.VirtualControllerElement;
-import com.limelight.preferences.PreferenceConfiguration;
+import com.rgpclient.binding.input.virtual_controller.VirtualController;
+import com.rgpclient.binding.input.virtual_controller.VirtualControllerElement;
+import com.rgpclient.preferences.PreferenceConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;

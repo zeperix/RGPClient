@@ -1,12 +1,12 @@
-package com.limelight.discovery;
+package com.rgpclient.discovery;
 
 import java.util.List;
 
-import com.limelight.nvstream.mdns.MdnsComputer;
-import com.limelight.nvstream.mdns.JmDNSDiscoveryAgent;
-import com.limelight.nvstream.mdns.MdnsDiscoveryAgent;
-import com.limelight.nvstream.mdns.MdnsDiscoveryListener;
-import com.limelight.nvstream.mdns.NsdManagerDiscoveryAgent;
+import com.rgpclient.nvstream.mdns.MdnsComputer;
+import com.rgpclient.nvstream.mdns.JmDNSDiscoveryAgent;
+import com.rgpclient.nvstream.mdns.MdnsDiscoveryAgent;
+import com.rgpclient.nvstream.mdns.MdnsDiscoveryListener;
+import com.rgpclient.nvstream.mdns.NsdManagerDiscoveryAgent;
 
 import android.app.Service;
 import android.content.Intent;

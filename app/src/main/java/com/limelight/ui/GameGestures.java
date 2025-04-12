@@ -1,6 +1,6 @@
-package com.limelight.ui;
+package com.rgpclient.ui;
 
-import com.limelight.binding.input.GameInputDevice;
+import com.rgpclient.binding.input.GameInputDevice;
 
 public interface GameGestures {
     void toggleKeyboard();

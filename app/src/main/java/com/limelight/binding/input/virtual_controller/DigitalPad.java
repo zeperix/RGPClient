@@ -2,7 +2,7 @@
  * Created by Karim Mreisi.
  */
 
-package com.limelight.binding.input.virtual_controller;
+package com.rgpclient.binding.input.virtual_controller;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,9 +15,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 
-import com.limelight.LimeLog;
-import com.limelight.R;
-import com.limelight.preferences.PreferenceConfiguration;
+import com.rgpclient.LimeLog;
+import com.rgpclient.R;
+import com.rgpclient.preferences.PreferenceConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;

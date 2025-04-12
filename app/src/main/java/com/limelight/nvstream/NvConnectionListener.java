@@ -1,4 +1,4 @@
-package com.limelight.nvstream;
+package com.rgpclient.nvstream;
 
 public interface NvConnectionListener {
     void stageStarting(String stage);
