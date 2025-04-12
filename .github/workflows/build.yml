@@ -43,4 +43,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: app-release.apk
-        path: app/build/outputs/apk/release/*.apk
+        path: app/build/outputs/apk/nonRoot_game/release/app-nonRoot_game-release.apk
