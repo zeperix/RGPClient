@@ -94,6 +94,7 @@ import android.widget.FrameLayout;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
@@ -257,6 +258,13 @@ public class Game extends Activity implements SurfaceHolder.Callback,
     }
 
     public GameMenuCallbacks gameMenuCallbacks;
+
+    // Floating menu button
+    private ImageButton floatingMenuButton;
+    private float dX, dY;
+    private boolean isMovingButton = false;
+    private static final float CLICK_ACTION_THRESHOLD = 5;
+    private float startX, startY;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -679,6 +687,58 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         }
 
         gameMenuCallbacks = new GameMenu(this, conn);
+
+        // Setup floating menu button
+        floatingMenuButton = findViewById(R.id.floatingMenuButton);
+        updateFloatingButtonVisibility();
+        
+        // Touch listener for drag and click
+        floatingMenuButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        startX = event.getRawX();
+                        startY = event.getRawY();
+                        dX = view.getX() - event.getRawX();
+                        dY = view.getY() - event.getRawY();
+                        isMovingButton = false;
+                        return true;
+                    case MotionEvent.ACTION_MOVE:
+                        float newX = event.getRawX() + dX;
+                        float newY = event.getRawY() + dY;
+                        
+                        // Check if it's a move or just a tap
+                        if (Math.abs(event.getRawX() - startX) > CLICK_ACTION_THRESHOLD ||
+                                Math.abs(event.getRawY() - startY) > CLICK_ACTION_THRESHOLD) {
+                            isMovingButton = true;
+                        }
+                        
+                        // Ensure the button stays within screen bounds
+                        if (newX < 0) newX = 0;
+                        if (newY < 0) newY = 0;
+                        if (newX > getWindow().getDecorView().getWidth() - view.getWidth()) {
+                            newX = getWindow().getDecorView().getWidth() - view.getWidth();
+                        }
+                        if (newY > getWindow().getDecorView().getHeight() - view.getHeight()) {
+                            newY = getWindow().getDecorView().getHeight() - view.getHeight();
+                        }
+                        
+                        view.setX(newX);
+                        view.setY(newY);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        if (!isMovingButton) {
+                            // It's a click event, show menu
+                            showGameMenu(null);
+                        }
+                        isMovingButton = false;
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
     }
 
     private void initKeyboardController(){
@@ -3378,7 +3438,8 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
     @Override
     public void onBackPressed() {
-        if(prefConfig.enableBackMenu){
+        if(prefConfig.enableBackMenu) {
+            // We still handle back button normally but keep the floating button visible
             showGameMenu(null);
             return;
         }
@@ -3577,5 +3638,11 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             }
         });
         streamView.setClipToOutline(true);
+    }
+
+    private void updateFloatingButtonVisibility() {
+        if (floatingMenuButton != null) {
+            floatingMenuButton.setVisibility(prefConfig.enableBackMenu ? View.VISIBLE : View.GONE);
+        }
     }
 }

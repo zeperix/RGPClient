@@ -291,29 +291,38 @@ public class GameMenu implements Game.GameMenuCallbacks {
     private void showAdvancedMenu(GameInputDevice device) {
         List<MenuOption> options = new ArrayList<>();
 
-        if (game.presentation == null) {
-            options.add(new MenuOption(getString(R.string.game_menu_select_mouse_mode), true,
-                    game::selectMouseMode));
-        }
-
         options.add(new MenuOption(getString(R.string.game_menu_hud), true,
                 game::toggleHUD));
 
-        options.add(new MenuOption(getString(R.string.game_menu_toggle_keyboard_model), true,
-                game::showHideKeyboardController));
+        options.add(new MenuOption(getString(R.string.game_menu_switch_touch_sensitivity_model), true,
+                game::switchTouchSensitivity));
 
-        options.add(new MenuOption(getString(R.string.game_menu_toggle_virtual_model), true,
-                game::showHideVirtualController));
-        options.add(new MenuOption(getString(R.string.game_menu_toggle_virtual_keyboard_model), true,
-                game::showHidekeyBoardLayoutController));
+        options.add(new MenuOption(getString(R.string.game_menu_upload_clipboard), true,
+                () -> game.sendClipboard(true)));
+
+        options.add(new MenuOption(getString(R.string.game_menu_fetch_clipboard), true,
+                () -> game.getClipboard(0)));
+
+        options.add(new MenuOption(getString(R.string.game_menu_server_cmd), true,
+                () -> {
+                    ArrayList<String> serverCmds = game.getServerCmds();
+
+                    if (serverCmds.isEmpty()) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(game);
+                        builder.setTitle(R.string.game_dialog_title_server_cmd_empty);
+                        builder.setMessage(R.string.game_dialog_message_server_cmd_empty);
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    } else {
+                        this.showServerCmd(serverCmds);
+                    }
+                }));
 
         options.add(new MenuOption(getString(R.string.game_menu_task_manager), true,
                 () -> sendKeys(new short[]{KeyboardTranslator.VK_LCONTROL, KeyboardTranslator.VK_LSHIFT, KeyboardTranslator.VK_ESCAPE})));
 
         options.add(new MenuOption(getString(R.string.game_menu_send_keys), true, this::showSpecialKeysMenu));
-
-        options.add(new MenuOption(getString(R.string.game_menu_switch_touch_sensitivity_model), true,
-                game::switchTouchSensitivity));
 
         if (device != null) {
             options.addAll(device.getGameMenuOptions());
@@ -343,41 +352,31 @@ public class GameMenu implements Game.GameMenuCallbacks {
 
         options.add(new MenuOption(getString(R.string.game_menu_disconnect), game::disconnect));
 
-        options.add(new MenuOption(getString(R.string.game_menu_quit_session), game::quit));
-
-        options.add(new MenuOption(getString(R.string.game_menu_upload_clipboard), true,
-                () -> game.sendClipboard(true)));
-
-        options.add(new MenuOption(getString(R.string.game_menu_fetch_clipboard), true,
-                () -> game.getClipboard(0)));
-
-        options.add(new MenuOption(getString(R.string.game_menu_server_cmd), true,
-                () -> {
-                    ArrayList<String> serverCmds = game.getServerCmds();
-
-                    if (serverCmds.isEmpty()) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(game);
-                        builder.setTitle(R.string.game_dialog_title_server_cmd_empty);
-                        builder.setMessage(R.string.game_dialog_message_server_cmd_empty);
-
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                    } else {
-                        this.showServerCmd(serverCmds);
-                    }
-                }));
-
+        options.add(new MenuOption(getString(R.string.game_menu_toggle_virtual_model), true,
+                game::showHideVirtualController));
+                
         options.add(new MenuOption(getString(R.string.game_menu_toggle_keyboard), true,
                 game::toggleKeyboard));
-
+                
+        options.add(new MenuOption(getString(R.string.game_menu_toggle_virtual_keyboard_model), true,
+                game::showHidekeyBoardLayoutController));
+                
+        options.add(new MenuOption(getString(R.string.game_menu_toggle_keyboard_model), true,
+                game::showHideKeyboardController));
+                
+        options.add(new MenuOption(getString(R.string.game_menu_select_mouse_mode), true,
+                game::selectMouseMode));
+                
         options.add(new MenuOption(getString(game.isZoomModeEnabled() ? R.string.game_menu_disable_zoom_mode : R.string.game_menu_enable_zoom_mode), true,
                 game::toggleZoomMode));
-
+                
         options.add(new MenuOption(getString(R.string.game_menu_rotate_screen), true,
                 game::rotateScreen));
 
         options.add(new MenuOption(getString(R.string.game_menu_advanced), true,
                 () -> showAdvancedMenu(device)));
+                
+        options.add(new MenuOption(getString(R.string.game_menu_quit_session), game::quit));
 
         options.add(new MenuOption(getString(R.string.game_menu_cancel), null));
 

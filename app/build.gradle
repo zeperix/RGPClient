@@ -87,6 +87,15 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            storeFile file("../my-release-key.jks")
+            storePassword "khongnho"
+            keyAlias "ZeronX"
+            keyPassword "khongnho"
+        }
+    }
+
     buildTypes {
         debug {
             applicationIdSuffix ".noirdebug"
@@ -133,6 +142,7 @@ android {
             resValue "string", "app_label_root", "Artemis (Root)"
             resValue "string", "app_label_game", "Artemis (Game)"
 
+            signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

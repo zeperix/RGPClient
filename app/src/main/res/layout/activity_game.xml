@@ -88,5 +88,19 @@
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
+    
+    <!-- Floating Menu Button -->
+    <ImageButton
+        android:id="@+id/floatingMenuButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/floating_menu_button"
+        android:contentDescription="@string/menu_button"
+        android:src="@drawable/ic_menu"
+        android:visibility="visible" />
 
 </merge>
