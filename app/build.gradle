@@ -89,7 +89,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("../my-release-key.jks")
+            storeFile file("../release-key.jks")
             storePassword "khongnho"
             keyAlias "ZeronX"
             keyPassword "khongnho"
