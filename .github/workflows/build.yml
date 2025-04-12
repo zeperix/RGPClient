@@ -1,9 +1,8 @@
-name: Build APK
+name: Build & Upload APK to GitHub Release
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
+  release:
+    types: [created]  # Chỉ trigger khi tạo release
 
 jobs:
   build:
@@ -39,8 +38,9 @@ jobs:
     - name: Build APK
       run: ./gradlew assembleRelease
 
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
+    - name: Upload to GitHub Release
+      uses: softprops/action-gh-release@v2
       with:
-        name: app-release.apk
-        path: app/build/outputs/apk/nonRoot_game/release/app-nonRoot_game-release.apk
+        files: app/build/outputs/apk/nonRoot_game/release/app-nonRoot_game-release.apk
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
