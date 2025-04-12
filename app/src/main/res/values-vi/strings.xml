@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Shortcut strings -->
-    <string name="scut_deleted_pc">PC đã xóa</string>
-    <string name="scut_not_paired">PC chưa ghép nối</string>
+    <string name="scut_deleted_pc">Đã xóa PC</string>
+    <string name="scut_not_paired">Chưa ghép nối PC</string>
     <string name="scut_pc_not_found">Không tìm thấy PC</string>
     <string name="scut_invalid_uuid">PC được cung cấp không hợp lệ</string>
     <string name="scut_invalid_app_id">Ứng dụng được cung cấp không hợp lệ</string>
@@ -411,13 +411,13 @@
     <!-- New Strings -->
     <string name="title_checkbox_mouse_local_cursor">Sử dụng con trỏ chuột nội bộ</string>
     <string name="summary_checkbox_mouse_local_cursor">Con trỏ chuột vật lý ngoài sẽ bị bắt, tùy chọn này sẽ hiển thị con trỏ chuột của hệ thống Android</string>
-    
+
     <string name="title_checkbox_onscreen_style_official">Giao diện tay cầm ảo chính thức</string>
     <string name="summary_checkbox_onscreen_style_official">Nếu bạn vẫn thích kiểu giao diện tay cầm ảo cũ, bạn có thể chọn tùy chọn này.\nNút có thể là hình vuông nếu bạn chọn nút ảo phía dưới [Nút bình thường là nút vuông]</string>
-    
+
     <string name="title_checkbox_enable_perf_overlay_lite">Bật chế độ đơn giản</string>
     <string name="summary_checkbox_enable_perf_overlay_lite">Hiển thị thông tin hiệu suất đơn giản: Tốc độ mạng / Độ trễ / Giải mã / Tỷ lệ mất gói / FPS</string>
-    
+
     <string name="title_checkbox_enable_perf_overlay_lite_dialog">Nhấp chế độ đơn giản để hiển thị tùy chọn nhanh</string>
     <string name="summary_checkbox_enable_perf_overlay_lite_dialog">Thay đổi chức năng nút quay lại, hiển thị menu nhanh trong game.</string>
 
