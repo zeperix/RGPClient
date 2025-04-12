@@ -341,15 +341,15 @@
 
     <!-- In Game menu -->
     <string name="game_menu_toggle_keyboard">Hiển thị bàn phím mềm</string>
-    <string name="game_menu_hud">Chuyển đổi lớp phủ hiệu suất</string>
+    <string name="game_menu_hud">Hiển thị lớp phủ hiệu suất</string>
     <string name="game_menu_select_mouse_mode">Chọn chế độ chuột</string>
     <string name="game_menu_enable_zoom_mode">Bật Pan/Zoom</string>
     <string name="game_menu_disable_zoom_mode">Tắt Pan/Zoom</string>
     <string name="game_menu_rotate_screen">Xoay màn hình</string>
-    <string name="game_menu_toggle_keyboard_model">Chuyển đổi phím đặc biệt</string>s
-    <string name="game_menu_toggle_virtual_model">Chuyển đổi bộ điều khiển trên màn hình</string>
-    <string name="game_menu_toggle_virtual_keyboard_model">Chuyển đổi bàn phím đầy đủ trên màn hình</string>
-    <string name="game_menu_switch_touch_sensitivity_model">Chuyển đổi độ nhạy cảm ứng</string>
+    <string name="game_menu_toggle_keyboard_model">Hiển thị phím đặc biệt</string>s
+    <string name="game_menu_toggle_virtual_model">Hiển thị gamepad</string>
+    <string name="game_menu_toggle_virtual_keyboard_model">Hiển thị bàn phím đầy đủ</string>
+    <string name="game_menu_switch_touch_sensitivity_model">Thay đổi độ nhạy cảm ứng</string>
 
 
     <string name="game_menu_toggle_mouse_on">Bật mô phỏng chuột bằng bộ điều khiển</string>
