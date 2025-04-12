@@ -173,8 +173,8 @@
     <string name="summary_fps_list">Tăng để có luồng video mượt mà hơn. Giảm để có hiệu suất tốt hơn trên các thiết bị cấp thấp.</string>
     <string name="title_seekbar_bitrate">Tốc độ bit video</string>
     <string name="summary_seekbar_bitrate">Tăng để có chất lượng hình ảnh tốt hơn. Giảm để cải thiện hiệu suất trên các kết nối chậm hơn.</string>
-    <string name="title_seekbar_metered_bitrate">Tốc độ bit video trên mạng bị đo lường</string>
-    <string name="summary_seekbar_metered_bitrate">Tốc độ bit cao tiêu tốn nhiều dữ liệu hơn, tốc độ bit thấp hơn cải thiện độ mượt mà trong mạng bị đo lường.\nĐặt 0 cho ¼ của cài đặt tốc độ bit ở trên.</string>
+    <string name="title_seekbar_metered_bitrate">Tốc độ bit video khi dùng dữ liệu di động</string>
+    <string name="summary_seekbar_metered_bitrate">Tốc độ bit cao tiêu tốn nhiều dữ liệu hơn, tốc độ bit thấp hơn cải thiện độ mượt mà trên mạng di động.\nĐặt 0 cho ¼ tốc độ bit ở trên.</string>
     <string name="suffix_seekbar_bitrate_mbps">Mbps</string>
     <string name="title_resolution_scale_factor">Hệ số tỷ lệ độ phân giải</string>
     <string name="summary_resolution_scale_factor">Độ phân giải màn hình ảo được yêu cầu phía máy chủ sẽ được nhân với hệ số này. Độ phân giải phát trực tuyến không bị ảnh hưởng.\nVí dụ: 120% sẽ làm cho 2000x1000 trở thành 2400x1200.\nĐặt hệ số tỷ lệ cao hơn sẽ cải thiện chất lượng hình ảnh cho một số trò chơi.\nYêu cầu Apollo để có hiệu lực.</string>
@@ -239,7 +239,7 @@
     <string name="title_checkbox_show_onscreen_controls">Hiển thị điều khiển trên màn hình</string>
     <string name="summary_checkbox_show_onscreen_controls">Hiển thị lớp phủ bộ điều khiển ảo trên màn hình cảm ứng</string>
     <string name="title_hide_osc_when_has_gamepad">Ẩn OSC khi sử dụng Bộ điều khiển</string>
-    <string name="summary_hide_osc_when_has_gamepad">Ẩn OSC khi một bộ điều khiển vật lý được kết nối</string>
+    <string name="summary_hide_osc_when_has_gamepad">Ẩn gamepad ảo khi gamepad vật lý được kết nối</string>
     <string name="title_checkbox_vibrate_osc">Bật rung</string>
     <string name="summary_checkbox_vibrate_osc">Rung thiết bị của bạn để mô phỏng rung cho các điều khiển trên màn hình</string>
     <string name="title_only_l3r3">Chỉ hiển thị L3 và R3</string>
@@ -397,7 +397,7 @@
     <string name="summary_export_keyboard_layout">Xuất bố cục bàn phím hiện tại</string>
 
     <string name="title_manual_enter_bitrate">Tùy chỉnh bitrate</string>
-    <string name="summary_manual_enter_bitrate">Nhập bitrate thủ công.\nCó thể vượt quá giới hạn tối đa của thanh trượt.</string>
+    <string name="summary_manual_enter_bitrate">Tự nhập tốc độ truyền tải.\nCó thể vượt quá giới hạn tối đa của thanh trượt.</string>
     <string name="dialog_manual_enter_bitrate">Nhập bitrate tính bằng Mbps. Làm tròn đến 0.5.</string>
 
     <string name="title_custom_refresh_rate">Tùy chỉnh tần số quét</string>
