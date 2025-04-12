@@ -1,26 +1,26 @@
-package com.rgpclient;
+package com.moonlight;
 
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.HashSet;
 import java.util.List;
 
-import com.rgpclient.computers.ComputerManagerListener;
-import com.rgpclient.computers.ComputerManagerService;
-import com.rgpclient.grid.AppGridAdapter;
-import com.rgpclient.nvstream.http.ComputerDetails;
-import com.rgpclient.nvstream.http.NvApp;
-import com.rgpclient.nvstream.http.NvHTTP;
-import com.rgpclient.nvstream.http.PairingManager;
-import com.rgpclient.preferences.PreferenceConfiguration;
-import com.rgpclient.ui.AdapterFragment;
-import com.rgpclient.ui.AdapterFragmentCallbacks;
-import com.rgpclient.utils.CacheHelper;
-import com.rgpclient.utils.Dialog;
-import com.rgpclient.utils.ServerHelper;
-import com.rgpclient.utils.ShortcutHelper;
-import com.rgpclient.utils.SpinnerDialog;
-import com.rgpclient.utils.UiHelper;
+import com.moonlight.computers.ComputerManagerListener;
+import com.moonlight.computers.ComputerManagerService;
+import com.moonlight.grid.AppGridAdapter;
+import com.moonlight.nvstream.http.ComputerDetails;
+import com.moonlight.nvstream.http.NvApp;
+import com.moonlight.nvstream.http.NvHTTP;
+import com.moonlight.nvstream.http.PairingManager;
+import com.moonlight.preferences.PreferenceConfiguration;
+import com.moonlight.ui.AdapterFragment;
+import com.moonlight.ui.AdapterFragmentCallbacks;
+import com.moonlight.utils.CacheHelper;
+import com.moonlight.utils.Dialog;
+import com.moonlight.utils.ServerHelper;
+import com.moonlight.utils.ShortcutHelper;
+import com.moonlight.utils.SpinnerDialog;
+import com.moonlight.utils.UiHelper;
 
 import android.app.Activity;
 import android.app.Service;

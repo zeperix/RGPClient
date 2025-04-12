@@ -1,4 +1,4 @@
-package com.rgpclient.ui;
+package com.moonlight.ui;
 
 import android.annotation.TargetApi;
 import android.content.ClipData;

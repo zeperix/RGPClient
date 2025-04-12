@@ -1,4 +1,4 @@
-package com.rgpclient.nvstream.mdns;
+package com.moonlight.nvstream.mdns;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
@@ -17,7 +17,7 @@ import javax.jmdns.ServiceInfo;
 import javax.jmdns.ServiceListener;
 import javax.jmdns.impl.NetworkTopologyDiscoveryImpl;
 
-import com.rgpclient.LimeLog;
+import com.moonlight.LimeLog;
 
 public class JmDNSDiscoveryAgent extends MdnsDiscoveryAgent implements ServiceListener {
     private static final String SERVICE_TYPE = "_nvstream._tcp.local.";

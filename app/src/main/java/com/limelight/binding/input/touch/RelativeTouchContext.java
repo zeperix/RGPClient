@@ -1,12 +1,12 @@
-package com.rgpclient.binding.input.touch;
+package com.moonlight.binding.input.touch;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 
-import com.rgpclient.nvstream.NvConnection;
-import com.rgpclient.nvstream.input.MouseButtonPacket;
-import com.rgpclient.preferences.PreferenceConfiguration;
+import com.moonlight.nvstream.NvConnection;
+import com.moonlight.nvstream.input.MouseButtonPacket;
+import com.moonlight.preferences.PreferenceConfiguration;
 
 public class RelativeTouchContext implements TouchContext {
     private int lastTouchX = 0;

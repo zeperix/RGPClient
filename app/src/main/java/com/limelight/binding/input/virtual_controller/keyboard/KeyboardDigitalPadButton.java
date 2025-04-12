@@ -1,4 +1,4 @@
-package com.rgpclient.binding.input.virtual_controller.keyboard;
+package com.moonlight.binding.input.virtual_controller.keyboard;
 
 import android.content.Context;
 import android.graphics.Canvas;

@@ -1,4 +1,4 @@
-package com.rgpclient.binding.input.driver;
+package com.moonlight.binding.input.driver;
 
 public interface UsbDriverListener {
     void reportControllerState(int controllerId, int buttonFlags,

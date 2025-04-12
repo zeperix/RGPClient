@@ -1,4 +1,4 @@
-package com.rgpclient.nvstream;
+package com.moonlight.nvstream;
 
 import static java.lang.Thread.sleep;
 
@@ -30,17 +30,17 @@ import javax.crypto.SecretKey;
 
 import org.xmlpull.v1.XmlPullParserException;
 
-import com.rgpclient.LimeLog;
-import com.rgpclient.nvstream.av.audio.AudioRenderer;
-import com.rgpclient.nvstream.av.video.VideoDecoderRenderer;
-import com.rgpclient.nvstream.http.ComputerDetails;
-import com.rgpclient.nvstream.http.HostHttpResponseException;
-import com.rgpclient.nvstream.http.LimelightCryptoProvider;
-import com.rgpclient.nvstream.http.NvApp;
-import com.rgpclient.nvstream.http.NvHTTP;
-import com.rgpclient.nvstream.http.PairingManager;
-import com.rgpclient.nvstream.input.MouseButtonPacket;
-import com.rgpclient.nvstream.jni.MoonBridge;
+import com.moonlight.LimeLog;
+import com.moonlight.nvstream.av.audio.AudioRenderer;
+import com.moonlight.nvstream.av.video.VideoDecoderRenderer;
+import com.moonlight.nvstream.http.ComputerDetails;
+import com.moonlight.nvstream.http.HostHttpResponseException;
+import com.moonlight.nvstream.http.LimelightCryptoProvider;
+import com.moonlight.nvstream.http.NvApp;
+import com.moonlight.nvstream.http.NvHTTP;
+import com.moonlight.nvstream.http.PairingManager;
+import com.moonlight.nvstream.input.MouseButtonPacket;
+import com.moonlight.nvstream.jni.MoonBridge;
 
 public class NvConnection {
     // Context parameters

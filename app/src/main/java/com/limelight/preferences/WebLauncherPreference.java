@@ -1,4 +1,4 @@
-package com.rgpclient.preferences;
+package com.moonlight.preferences;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 
-import com.rgpclient.utils.HelpLauncher;
+import com.moonlight.utils.HelpLauncher;
 
 public class WebLauncherPreference extends Preference {
     private String url;

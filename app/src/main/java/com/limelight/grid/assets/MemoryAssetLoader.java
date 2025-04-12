@@ -1,8 +1,8 @@
-package com.rgpclient.grid.assets;
+package com.moonlight.grid.assets;
 
 import android.util.LruCache;
 
-import com.rgpclient.LimeLog;
+import com.moonlight.LimeLog;
 
 import java.lang.ref.SoftReference;
 import java.util.HashMap;

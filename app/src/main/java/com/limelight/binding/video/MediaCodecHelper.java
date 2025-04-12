@@ -1,4 +1,4 @@
-package com.rgpclient.binding.video;
+package com.moonlight.binding.video;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,8 +22,8 @@ import android.media.MediaCodecInfo.CodecProfileLevel;
 import android.media.MediaFormat;
 import android.os.Build;
 
-import com.rgpclient.LimeLog;
-import com.rgpclient.preferences.PreferenceConfiguration;
+import com.moonlight.LimeLog;
+import com.moonlight.preferences.PreferenceConfiguration;
 
 public class MediaCodecHelper {
     

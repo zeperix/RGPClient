@@ -1,12 +1,12 @@
-package com.rgpclient.binding.input.capture;
+package com.moonlight.binding.input.capture;
 
 import android.app.Activity;
 
-import com.rgpclient.BuildConfig;
-import com.rgpclient.LimeLog;
-import com.rgpclient.R;
-import com.rgpclient.binding.input.evdev.EvdevCaptureProviderShim;
-import com.rgpclient.binding.input.evdev.EvdevListener;
+import com.moonlight.BuildConfig;
+import com.moonlight.LimeLog;
+import com.moonlight.R;
+import com.moonlight.binding.input.evdev.EvdevCaptureProviderShim;
+import com.moonlight.binding.input.evdev.EvdevListener;
 
 public class InputCaptureManager {
     public static InputCaptureProvider getInputCaptureProvider(Activity activity, EvdevListener rootListener) {

@@ -1,4 +1,4 @@
-package com.rgpclient.binding.input.capture;
+package com.moonlight.binding.input.capture;
 
 
 import android.content.Context;

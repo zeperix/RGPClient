@@ -1,4 +1,4 @@
-package com.rgpclient;
+package com.moonlight;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,12 +12,12 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.rgpclient.binding.input.GameInputDevice;
-import com.rgpclient.binding.input.KeyboardTranslator;
-import com.rgpclient.nvstream.NvConnection;
-import com.rgpclient.nvstream.input.KeyboardPacket;
-import com.rgpclient.preferences.PreferenceConfiguration;
-import com.rgpclient.utils.KeyMapper;
+import com.moonlight.binding.input.GameInputDevice;
+import com.moonlight.binding.input.KeyboardTranslator;
+import com.moonlight.nvstream.NvConnection;
+import com.moonlight.nvstream.input.KeyboardPacket;
+import com.moonlight.preferences.PreferenceConfiguration;
+import com.moonlight.utils.KeyMapper;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

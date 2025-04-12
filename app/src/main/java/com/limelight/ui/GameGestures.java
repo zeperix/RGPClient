@@ -1,6 +1,6 @@
-package com.rgpclient.ui;
+package com.moonlight.ui;
 
-import com.rgpclient.binding.input.GameInputDevice;
+import com.moonlight.binding.input.GameInputDevice;
 
 public interface GameGestures {
     void toggleKeyboard();

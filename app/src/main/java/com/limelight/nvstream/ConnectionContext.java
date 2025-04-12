@@ -1,6 +1,6 @@
-package com.rgpclient.nvstream;
+package com.moonlight.nvstream;
 
-import com.rgpclient.nvstream.http.ComputerDetails;
+import com.moonlight.nvstream.http.ComputerDetails;
 
 import java.security.cert.X509Certificate;
 

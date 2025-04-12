@@ -1,4 +1,4 @@
-package com.rgpclient;
+package com.moonlight;
 
 import android.app.Activity;
 import android.app.Service;
@@ -8,19 +8,19 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 
-import com.rgpclient.computers.ComputerDatabaseManager;
-import com.rgpclient.computers.ComputerManagerListener;
-import com.rgpclient.computers.ComputerManagerService;
-import com.rgpclient.nvstream.http.ComputerDetails;
-import com.rgpclient.nvstream.http.NvApp;
-import com.rgpclient.nvstream.http.NvHTTP;
-import com.rgpclient.nvstream.http.PairingManager;
-import com.rgpclient.nvstream.wol.WakeOnLanSender;
-import com.rgpclient.utils.CacheHelper;
-import com.rgpclient.utils.Dialog;
-import com.rgpclient.utils.ServerHelper;
-import com.rgpclient.utils.SpinnerDialog;
-import com.rgpclient.utils.UiHelper;
+import com.moonlight.computers.ComputerDatabaseManager;
+import com.moonlight.computers.ComputerManagerListener;
+import com.moonlight.computers.ComputerManagerService;
+import com.moonlight.nvstream.http.ComputerDetails;
+import com.moonlight.nvstream.http.NvApp;
+import com.moonlight.nvstream.http.NvHTTP;
+import com.moonlight.nvstream.http.PairingManager;
+import com.moonlight.nvstream.wol.WakeOnLanSender;
+import com.moonlight.utils.CacheHelper;
+import com.moonlight.utils.Dialog;
+import com.moonlight.utils.ServerHelper;
+import com.moonlight.utils.SpinnerDialog;
+import com.moonlight.utils.UiHelper;
 
 import org.xmlpull.v1.XmlPullParserException;
 

@@ -1,4 +1,4 @@
-package com.rgpclient.nvstream.av.video;
+package com.moonlight.nvstream.av.video;
 
 public abstract class VideoDecoderRenderer {
     public abstract int setup(int format, int width, int height, int redrawRate);

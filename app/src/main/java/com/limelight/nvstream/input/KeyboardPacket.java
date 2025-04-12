@@ -1,4 +1,4 @@
-package com.rgpclient.nvstream.input;
+package com.moonlight.nvstream.input;
 
 public class KeyboardPacket {
     public static final byte KEY_DOWN = 0x03;

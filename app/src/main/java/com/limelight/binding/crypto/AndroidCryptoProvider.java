@@ -1,4 +1,4 @@
-package com.rgpclient.binding.crypto;
+package com.moonlight.binding.crypto;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -39,8 +39,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Base64;
 
-import com.rgpclient.LimeLog;
-import com.rgpclient.nvstream.http.LimelightCryptoProvider;
+import com.moonlight.LimeLog;
+import com.moonlight.nvstream.http.LimelightCryptoProvider;
 
 public class AndroidCryptoProvider implements LimelightCryptoProvider {
 

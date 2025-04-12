@@ -2,7 +2,7 @@
  * Created by Karim Mreisi.
  */
 
-package com.rgpclient.binding.input.virtual_controller;
+package com.moonlight.binding.input.virtual_controller;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,7 +12,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 
-import com.rgpclient.preferences.PreferenceConfiguration;
+import com.moonlight.preferences.PreferenceConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;

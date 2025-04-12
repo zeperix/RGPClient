@@ -1,4 +1,4 @@
-package com.rgpclient.nvstream.mdns;
+package com.moonlight.nvstream.mdns;
 
 import java.net.Inet6Address;
 import java.net.InetAddress;

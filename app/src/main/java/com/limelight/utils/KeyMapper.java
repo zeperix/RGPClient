@@ -1,4 +1,4 @@
-package com.rgpclient.utils;
+package com.moonlight.utils;
 
 public class KeyMapper {
     /* Linux Key Codes 

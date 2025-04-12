@@ -1,4 +1,4 @@
-package com.rgpclient.computers;
+package com.moonlight.computers;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter;
 import java.util.Locale;
 import java.util.Random;
 
-import com.rgpclient.LimeLog;
+import com.moonlight.LimeLog;
 
 import android.content.Context;
 

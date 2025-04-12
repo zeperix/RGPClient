@@ -1,4 +1,4 @@
-package com.rgpclient.utils;
+package com.moonlight.utils;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.widget.Button;
 
-import com.rgpclient.R;
+import com.moonlight.R;
 
 public class Dialog implements Runnable {
     private final String title;

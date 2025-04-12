@@ -1,4 +1,4 @@
-package com.rgpclient;
+package com.moonlight;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.rgpclient.utils.DeviceUtils;
+import com.moonlight.utils.DeviceUtils;
 
 import java.util.ArrayList;
 import java.util.List;

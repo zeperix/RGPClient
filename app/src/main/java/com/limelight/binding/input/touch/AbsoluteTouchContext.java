@@ -1,11 +1,11 @@
-package com.rgpclient.binding.input.touch;
+package com.moonlight.binding.input.touch;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 
-import com.rgpclient.nvstream.NvConnection;
-import com.rgpclient.nvstream.input.MouseButtonPacket;
+import com.moonlight.nvstream.NvConnection;
+import com.moonlight.nvstream.input.MouseButtonPacket;
 
 public class AbsoluteTouchContext implements TouchContext {
     private int lastTouchDownX = 0;

@@ -1,6 +1,6 @@
-package com.rgpclient.binding.input.driver;
+package com.moonlight.binding.input.driver;
 
-import com.rgpclient.nvstream.jni.MoonBridge;
+import com.moonlight.nvstream.jni.MoonBridge;
 
 public abstract class AbstractController {
 

@@ -2,7 +2,7 @@
  * Created by Karim Mreisi.
  */
 
-package com.rgpclient.binding.input.virtual_controller.keyboard;
+package com.moonlight.binding.input.virtual_controller.keyboard;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,8 +13,8 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 
-import com.rgpclient.LimeLog;
-import com.rgpclient.preferences.PreferenceConfiguration;
+import com.moonlight.LimeLog;
+import com.moonlight.preferences.PreferenceConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;

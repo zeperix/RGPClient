@@ -1,4 +1,4 @@
-package com.rgpclient.nvstream.http;
+package com.moonlight.nvstream.http;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -44,12 +44,12 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import com.rgpclient.BuildConfig;
-import com.rgpclient.LimeLog;
-import com.rgpclient.nvstream.ConnectionContext;
-import com.rgpclient.nvstream.http.PairingManager.PairState;
-import com.rgpclient.nvstream.jni.MoonBridge;
-import com.rgpclient.utils.DeviceUtils;
+import com.moonlight.BuildConfig;
+import com.moonlight.LimeLog;
+import com.moonlight.nvstream.ConnectionContext;
+import com.moonlight.nvstream.http.PairingManager.PairState;
+import com.moonlight.nvstream.jni.MoonBridge;
+import com.moonlight.utils.DeviceUtils;
 
 import okhttp3.ConnectionPool;
 import okhttp3.HttpUrl;

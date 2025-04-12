@@ -1,4 +1,4 @@
-package com.rgpclient.binding.video;
+package com.moonlight.binding.video;
 
 import android.os.SystemClock;
 

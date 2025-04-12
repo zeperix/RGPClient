@@ -2,16 +2,16 @@
  * Created by Karim Mreisi.
  */
 
-package com.rgpclient.binding.input.virtual_controller;
+package com.moonlight.binding.input.virtual_controller;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.DisplayMetrics;
 
-import com.rgpclient.R;
-import com.rgpclient.nvstream.input.ControllerPacket;
-import com.rgpclient.preferences.PreferenceConfiguration;
+import com.moonlight.R;
+import com.moonlight.nvstream.input.ControllerPacket;
+import com.moonlight.preferences.PreferenceConfiguration;
 
 import org.json.JSONException;
 import org.json.JSONObject;

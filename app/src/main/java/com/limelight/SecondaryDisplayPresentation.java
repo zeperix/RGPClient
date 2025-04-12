@@ -1,4 +1,4 @@
-package com.rgpclient;
+package com.moonlight;
 
 import android.app.Presentation;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.view.Display;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.rgpclient.ui.StreamView;
+import com.moonlight.ui.StreamView;
 
 /**
  * Description

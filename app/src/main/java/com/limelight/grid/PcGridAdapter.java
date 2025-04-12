@@ -1,4 +1,4 @@
-package com.rgpclient.grid;
+package com.moonlight.grid;
 
 import android.content.Context;
 import android.view.View;
@@ -7,11 +7,11 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.rgpclient.PcView;
-import com.rgpclient.R;
-import com.rgpclient.nvstream.http.ComputerDetails;
-import com.rgpclient.nvstream.http.PairingManager;
-import com.rgpclient.preferences.PreferenceConfiguration;
+import com.moonlight.PcView;
+import com.moonlight.R;
+import com.moonlight.nvstream.http.ComputerDetails;
+import com.moonlight.nvstream.http.PairingManager;
+import com.moonlight.preferences.PreferenceConfiguration;
 
 import java.util.Collections;
 import java.util.Comparator;

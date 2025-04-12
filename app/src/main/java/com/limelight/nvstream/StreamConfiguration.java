@@ -1,7 +1,7 @@
-package com.rgpclient.nvstream;
+package com.moonlight.nvstream;
 
-import com.rgpclient.nvstream.http.NvApp;
-import com.rgpclient.nvstream.jni.MoonBridge;
+import com.moonlight.nvstream.http.NvApp;
+import com.moonlight.nvstream.jni.MoonBridge;
 
 public class StreamConfiguration {
     public static final int INVALID_APP_ID = 0;

@@ -1,4 +1,4 @@
-package com.rgpclient.grid;
+package com.moonlight.grid;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
@@ -8,15 +8,15 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.rgpclient.AppView;
-import com.rgpclient.LimeLog;
-import com.rgpclient.R;
-import com.rgpclient.grid.assets.CachedAppAssetLoader;
-import com.rgpclient.grid.assets.DiskAssetLoader;
-import com.rgpclient.grid.assets.MemoryAssetLoader;
-import com.rgpclient.grid.assets.NetworkAssetLoader;
-import com.rgpclient.nvstream.http.ComputerDetails;
-import com.rgpclient.preferences.PreferenceConfiguration;
+import com.moonlight.AppView;
+import com.moonlight.LimeLog;
+import com.moonlight.R;
+import com.moonlight.grid.assets.CachedAppAssetLoader;
+import com.moonlight.grid.assets.DiskAssetLoader;
+import com.moonlight.grid.assets.MemoryAssetLoader;
+import com.moonlight.grid.assets.NetworkAssetLoader;
+import com.moonlight.nvstream.http.ComputerDetails;
+import com.moonlight.preferences.PreferenceConfiguration;
 
 import java.util.ArrayList;
 import java.util.Collections;

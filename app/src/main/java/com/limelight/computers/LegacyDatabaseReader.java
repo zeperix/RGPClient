@@ -1,13 +1,13 @@
-package com.rgpclient.computers;
+package com.moonlight.computers;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
-import com.rgpclient.LimeLog;
-import com.rgpclient.nvstream.http.ComputerDetails;
-import com.rgpclient.nvstream.http.NvHTTP;
+import com.moonlight.LimeLog;
+import com.moonlight.nvstream.http.ComputerDetails;
+import com.moonlight.nvstream.http.NvHTTP;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

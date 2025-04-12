@@ -1,4 +1,4 @@
-package com.rgpclient.utils;
+package com.moonlight.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -16,11 +16,11 @@ import android.media.tv.TvContract;
 import android.net.Uri;
 import android.os.Build;
 
-import com.rgpclient.LimeLog;
-import com.rgpclient.PosterContentProvider;
-import com.rgpclient.R;
-import com.rgpclient.nvstream.http.ComputerDetails;
-import com.rgpclient.nvstream.http.NvApp;
+import com.moonlight.LimeLog;
+import com.moonlight.PosterContentProvider;
+import com.moonlight.R;
+import com.moonlight.nvstream.http.ComputerDetails;
+import com.moonlight.nvstream.http.NvApp;
 
 import java.io.IOException;
 import java.io.OutputStream;

@@ -1,4 +1,4 @@
-package com.rgpclient.ui;
+package com.moonlight.ui;
 
 
 import android.app.Activity;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
-import com.rgpclient.R;
+import com.moonlight.R;
 
 public class AdapterFragment extends Fragment {
     private AdapterFragmentCallbacks callbacks;

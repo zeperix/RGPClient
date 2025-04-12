@@ -1,4 +1,4 @@
-package com.rgpclient.nvstream.http;
+package com.moonlight.nvstream.http;
 
 import androidx.annotation.NonNull;
 

@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center" />
 
-    <com.rgpclient.ui.StreamView
+    <com.moonlight.ui.StreamView
         android:id="@+id/surfaceView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,9 +22,9 @@
         android:focusedByDefault="true">
 
         <requestFocus />
-    </com.rgpclient.ui.StreamView>
+    </com.moonlight.ui.StreamView>
 
-<!--    <com.rgpclient.ui.ApertureViewGroup-->
+<!--    <com.moonlight.ui.ApertureViewGroup-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="match_parent"-->
 <!--        app:aperture_color1="#5CF950"-->
@@ -35,7 +35,7 @@
 <!--        app:aperture_border_angle="24dp"-->
 <!--        app:aperture_duration="6000"-->
 <!--        app:aperture_middle_color="#6CD2F8">-->
-<!--    </com.rgpclient.ui.ApertureViewGroup>-->
+<!--    </com.moonlight.ui.ApertureViewGroup>-->
 
     <TextView
         android:id="@+id/notificationOverlay"

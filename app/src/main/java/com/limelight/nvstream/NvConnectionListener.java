@@ -1,4 +1,4 @@
-package com.rgpclient.nvstream;
+package com.moonlight.nvstream;
 
 public interface NvConnectionListener {
     void stageStarting(String stage);

@@ -1,6 +1,6 @@
-package com.rgpclient.computers;
+package com.moonlight.computers;
 
-import com.rgpclient.nvstream.http.ComputerDetails;
+import com.moonlight.nvstream.http.ComputerDetails;
 
 public interface ComputerManagerListener {
     void notifyComputerUpdated(ComputerDetails details);

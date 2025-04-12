@@ -1,6 +1,6 @@
-package com.rgpclient.binding.input;
+package com.moonlight.binding.input;
 
-import com.rgpclient.GameMenu;
+import com.moonlight.GameMenu;
 
 import java.util.List;
 

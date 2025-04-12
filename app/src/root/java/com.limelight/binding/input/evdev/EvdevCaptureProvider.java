@@ -1,12 +1,12 @@
-package com.rgpclient.binding.input.evdev;
+package com.moonlight.binding.input.evdev;
 
 import android.app.Activity;
 import android.os.Build;
 import android.os.Looper;
 import android.widget.Toast;
 
-import com.rgpclient.LimeLog;
-import com.rgpclient.binding.input.capture.InputCaptureProvider;
+import com.moonlight.LimeLog;
+import com.moonlight.binding.input.capture.InputCaptureProvider;
 
 import java.io.DataOutputStream;
 import java.io.File;

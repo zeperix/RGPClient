@@ -1,4 +1,4 @@
-package com.rgpclient.preferences;
+package com.moonlight.preferences;
 
 
 import android.content.Context;

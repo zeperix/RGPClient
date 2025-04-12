@@ -1,4 +1,4 @@
-package com.rgpclient.binding.input.evdev;
+package com.moonlight.binding.input.evdev;
 
 public interface EvdevListener {
     int BUTTON_LEFT = 1;

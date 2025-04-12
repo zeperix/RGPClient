@@ -1,4 +1,4 @@
-package com.rgpclient.preferences;
+package com.moonlight.preferences;
 
 import java.io.IOException;
 import java.net.Inet4Address;
@@ -12,18 +12,18 @@ import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import com.rgpclient.LimeLog;
-import com.rgpclient.PcView;
-import com.rgpclient.binding.PlatformBinding;
-import com.rgpclient.computers.ComputerManagerService;
-import com.rgpclient.R;
-import com.rgpclient.nvstream.http.ComputerDetails;
-import com.rgpclient.nvstream.http.NvHTTP;
-import com.rgpclient.nvstream.jni.MoonBridge;
-import com.rgpclient.utils.Dialog;
-import com.rgpclient.utils.ServerHelper;
-import com.rgpclient.utils.SpinnerDialog;
-import com.rgpclient.utils.UiHelper;
+import com.moonlight.LimeLog;
+import com.moonlight.PcView;
+import com.moonlight.binding.PlatformBinding;
+import com.moonlight.computers.ComputerManagerService;
+import com.moonlight.R;
+import com.moonlight.nvstream.http.ComputerDetails;
+import com.moonlight.nvstream.http.NvHTTP;
+import com.moonlight.nvstream.jni.MoonBridge;
+import com.moonlight.utils.Dialog;
+import com.moonlight.utils.ServerHelper;
+import com.moonlight.utils.SpinnerDialog;
+import com.moonlight.utils.UiHelper;
 
 import android.app.Activity;
 import android.app.AlertDialog;

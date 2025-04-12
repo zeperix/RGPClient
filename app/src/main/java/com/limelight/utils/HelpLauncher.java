@@ -1,11 +1,11 @@
-package com.rgpclient.utils;
+package com.moonlight.utils;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 
-import com.rgpclient.HelpActivity;
+import com.moonlight.HelpActivity;
 
 public class HelpLauncher {
     public static void launchUrl(Context context, String url) {

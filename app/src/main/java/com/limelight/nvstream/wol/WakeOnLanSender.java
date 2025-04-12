@@ -1,4 +1,4 @@
-package com.rgpclient.nvstream.wol;
+package com.moonlight.nvstream.wol;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -6,8 +6,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Scanner;
 
-import com.rgpclient.LimeLog;
-import com.rgpclient.nvstream.http.ComputerDetails;
+import com.moonlight.LimeLog;
+import com.moonlight.nvstream.http.ComputerDetails;
 
 public class WakeOnLanSender {
     // These ports will always be tried as-is.

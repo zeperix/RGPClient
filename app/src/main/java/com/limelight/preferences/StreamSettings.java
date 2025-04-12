@@ -1,4 +1,4 @@
-package com.rgpclient.preferences;
+package com.moonlight.preferences;
 
 import android.content.Context;
 import android.content.Intent;
@@ -45,17 +45,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.rgpclient.DebugInfoActivity;
-import com.rgpclient.BuildConfig;
-import com.rgpclient.GameMenu;
-import com.rgpclient.LimeLog;
-import com.rgpclient.PcView;
-import com.rgpclient.R;
-import com.rgpclient.binding.input.virtual_controller.keyboard.KeyBoardControllerConfigurationLoader;
-import com.rgpclient.binding.video.MediaCodecHelper;
-import com.rgpclient.utils.Dialog;
-import com.rgpclient.utils.FileUriUtils;
-import com.rgpclient.utils.UiHelper;
+import com.moonlight.DebugInfoActivity;
+import com.moonlight.BuildConfig;
+import com.moonlight.GameMenu;
+import com.moonlight.LimeLog;
+import com.moonlight.PcView;
+import com.moonlight.R;
+import com.moonlight.binding.input.virtual_controller.keyboard.KeyBoardControllerConfigurationLoader;
+import com.moonlight.binding.video.MediaCodecHelper;
+import com.moonlight.utils.Dialog;
+import com.moonlight.utils.FileUriUtils;
+import com.moonlight.utils.UiHelper;
 import org.json.JSONObject;
 import java.io.File;
 import java.util.Arrays;

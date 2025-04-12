@@ -1,11 +1,11 @@
-package com.rgpclient.binding.input.driver;
+package com.moonlight.binding.input.driver;
 
 import android.hardware.usb.UsbConstants;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbDeviceConnection;
 
-import com.rgpclient.LimeLog;
-import com.rgpclient.nvstream.input.ControllerPacket;
+import com.moonlight.LimeLog;
+import com.moonlight.nvstream.input.ControllerPacket;
 
 import java.nio.ByteBuffer;
 

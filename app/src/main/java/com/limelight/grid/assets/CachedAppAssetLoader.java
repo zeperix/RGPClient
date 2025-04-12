@@ -1,4 +1,4 @@
-package com.rgpclient.grid.assets;
+package com.moonlight.grid.assets;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -11,9 +11,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.rgpclient.R;
-import com.rgpclient.nvstream.http.ComputerDetails;
-import com.rgpclient.nvstream.http.NvApp;
+import com.moonlight.R;
+import com.moonlight.nvstream.http.ComputerDetails;
+import com.moonlight.nvstream.http.NvApp;
 
 import java.io.IOException;
 import java.io.InputStream;

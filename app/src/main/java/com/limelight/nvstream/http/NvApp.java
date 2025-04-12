@@ -1,6 +1,6 @@
-package com.rgpclient.nvstream.http;
+package com.moonlight.nvstream.http;
 
-import com.rgpclient.LimeLog;
+import com.moonlight.LimeLog;
 
 public class NvApp {
     private String appName = "";

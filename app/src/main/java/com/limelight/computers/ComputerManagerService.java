@@ -1,4 +1,4 @@
-package com.rgpclient.computers;
+package com.moonlight.computers;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -13,19 +13,19 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import com.rgpclient.LimeLog;
-import com.rgpclient.binding.PlatformBinding;
-import com.rgpclient.discovery.DiscoveryService;
-import com.rgpclient.nvstream.NvConnection;
-import com.rgpclient.nvstream.http.ComputerDetails;
-import com.rgpclient.nvstream.http.NvApp;
-import com.rgpclient.nvstream.http.NvHTTP;
-import com.rgpclient.nvstream.http.PairingManager;
-import com.rgpclient.nvstream.mdns.MdnsComputer;
-import com.rgpclient.nvstream.mdns.MdnsDiscoveryListener;
-import com.rgpclient.utils.CacheHelper;
-import com.rgpclient.utils.NetHelper;
-import com.rgpclient.utils.ServerHelper;
+import com.moonlight.LimeLog;
+import com.moonlight.binding.PlatformBinding;
+import com.moonlight.discovery.DiscoveryService;
+import com.moonlight.nvstream.NvConnection;
+import com.moonlight.nvstream.http.ComputerDetails;
+import com.moonlight.nvstream.http.NvApp;
+import com.moonlight.nvstream.http.NvHTTP;
+import com.moonlight.nvstream.http.PairingManager;
+import com.moonlight.nvstream.mdns.MdnsComputer;
+import com.moonlight.nvstream.mdns.MdnsDiscoveryListener;
+import com.moonlight.utils.CacheHelper;
+import com.moonlight.utils.NetHelper;
+import com.moonlight.utils.ServerHelper;
 
 import android.app.Service;
 import android.content.ComponentName;

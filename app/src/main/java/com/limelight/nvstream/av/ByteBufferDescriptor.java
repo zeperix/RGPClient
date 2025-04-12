@@ -1,4 +1,4 @@
-package com.rgpclient.nvstream.av;
+package com.moonlight.nvstream.av;
 
 public class ByteBufferDescriptor {
     public byte[] data;

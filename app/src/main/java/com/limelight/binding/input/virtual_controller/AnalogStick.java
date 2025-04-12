@@ -2,7 +2,7 @@
  * Created by Karim Mreisi.
  */
 
-package com.rgpclient.binding.input.virtual_controller;
+package com.moonlight.binding.input.virtual_controller;
 
 import android.content.Context;
 import android.graphics.Canvas;

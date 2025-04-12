@@ -1,4 +1,4 @@
-package com.rgpclient.binding.input.evdev;
+package com.moonlight.binding.input.evdev;
 
 import android.view.KeyEvent;
 

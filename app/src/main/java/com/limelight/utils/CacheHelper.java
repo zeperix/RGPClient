@@ -1,4 +1,4 @@
-package com.rgpclient.utils;
+package com.moonlight.utils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

@@ -1,4 +1,4 @@
-package com.rgpclient.nvstream.mdns;
+package com.moonlight.nvstream.mdns;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.net.nsd.NsdManager;
 import android.net.nsd.NsdServiceInfo;
 import android.os.Build;
 
-import com.rgpclient.LimeLog;
+import com.moonlight.LimeLog;
 
 import java.net.Inet4Address;
 import java.net.Inet6Address;

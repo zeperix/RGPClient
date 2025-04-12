@@ -1,4 +1,4 @@
-package com.rgpclient.utils;
+package com.moonlight.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

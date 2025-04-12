@@ -1,4 +1,4 @@
-package com.rgpclient;
+package com.moonlight;
 
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;

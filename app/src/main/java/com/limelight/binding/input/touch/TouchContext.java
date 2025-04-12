@@ -1,4 +1,4 @@
-package com.rgpclient.binding.input.touch;
+package com.moonlight.binding.input.touch;
 
 public interface TouchContext {
     int getActionIndex();

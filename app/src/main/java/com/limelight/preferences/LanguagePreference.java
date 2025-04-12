@@ -1,4 +1,4 @@
-package com.rgpclient.preferences;
+package com.moonlight.preferences;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
 
-import com.rgpclient.utils.UiHelper;
+import com.moonlight.utils.UiHelper;
 
 public class LanguagePreference extends ListPreference {
 

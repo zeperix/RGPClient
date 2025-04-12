@@ -1,10 +1,10 @@
-package com.rgpclient.binding.input.evdev;
+package com.moonlight.binding.input.evdev;
 
 
 import android.app.Activity;
 
-import com.rgpclient.BuildConfig;
-import com.rgpclient.binding.input.capture.InputCaptureProvider;
+import com.moonlight.BuildConfig;
+import com.moonlight.binding.input.capture.InputCaptureProvider;
 
 public class EvdevCaptureProviderShim {
     public static boolean isCaptureProviderSupported() {
@@ -14,7 +14,7 @@ public class EvdevCaptureProviderShim {
     // We need to construct our capture provider using reflection because it isn't included in non-root builds
     public static InputCaptureProvider createEvdevCaptureProvider(Activity activity, EvdevListener listener) {
         try {
-            Class providerClass = Class.forName("com.rgpclient.binding.input.evdev.EvdevCaptureProvider");
+            Class providerClass = Class.forName("com.moonlight.binding.input.evdev.EvdevCaptureProvider");
             return (InputCaptureProvider) providerClass.getConstructors()[0].newInstance(activity, listener);
         } catch (Exception e) {
             e.printStackTrace();

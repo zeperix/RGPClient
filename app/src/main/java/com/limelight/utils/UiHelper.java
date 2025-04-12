@@ -1,4 +1,4 @@
-package com.rgpclient.utils;
+package com.moonlight.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,12 +22,12 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rgpclient.AppView;
-import com.rgpclient.Game;
-import com.rgpclient.LimeLog;
-import com.rgpclient.R;
-import com.rgpclient.nvstream.http.ComputerDetails;
-import com.rgpclient.preferences.PreferenceConfiguration;
+import com.moonlight.AppView;
+import com.moonlight.Game;
+import com.moonlight.LimeLog;
+import com.moonlight.R;
+import com.moonlight.nvstream.http.ComputerDetails;
+import com.moonlight.preferences.PreferenceConfiguration;
 
 import java.util.Locale;
 

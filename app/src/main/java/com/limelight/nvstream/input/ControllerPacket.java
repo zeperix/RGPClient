@@ -1,4 +1,4 @@
-package com.rgpclient.nvstream.input;
+package com.moonlight.nvstream.input;
 
 public class ControllerPacket {
     public static final int A_FLAG = 0x1000;

@@ -1,6 +1,6 @@
-package com.rgpclient.nvstream.av.audio;
+package com.moonlight.nvstream.av.audio;
 
-import com.rgpclient.nvstream.jni.MoonBridge;
+import com.moonlight.nvstream.jni.MoonBridge;
 
 public interface AudioRenderer {
     int setup(MoonBridge.AudioConfiguration audioConfiguration, int sampleRate, int samplesPerFrame);

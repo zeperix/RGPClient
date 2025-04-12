@@ -1,4 +1,4 @@
-package com.rgpclient;
+package com.moonlight;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;

@@ -1,4 +1,4 @@
-package com.rgpclient.grid.assets;
+package com.moonlight.grid.assets;
 
 import android.graphics.Bitmap;
 

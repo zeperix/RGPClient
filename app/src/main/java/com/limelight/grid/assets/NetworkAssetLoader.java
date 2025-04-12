@@ -1,11 +1,11 @@
-package com.rgpclient.grid.assets;
+package com.moonlight.grid.assets;
 
 import android.content.Context;
 
-import com.rgpclient.LimeLog;
-import com.rgpclient.binding.PlatformBinding;
-import com.rgpclient.nvstream.http.NvHTTP;
-import com.rgpclient.utils.ServerHelper;
+import com.moonlight.LimeLog;
+import com.moonlight.binding.PlatformBinding;
+import com.moonlight.nvstream.http.NvHTTP;
+import com.moonlight.utils.ServerHelper;
 
 import java.io.IOException;
 import java.io.InputStream;

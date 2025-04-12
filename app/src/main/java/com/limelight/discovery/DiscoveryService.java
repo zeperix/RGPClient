@@ -1,12 +1,12 @@
-package com.rgpclient.discovery;
+package com.moonlight.discovery;
 
 import java.util.List;
 
-import com.rgpclient.nvstream.mdns.MdnsComputer;
-import com.rgpclient.nvstream.mdns.JmDNSDiscoveryAgent;
-import com.rgpclient.nvstream.mdns.MdnsDiscoveryAgent;
-import com.rgpclient.nvstream.mdns.MdnsDiscoveryListener;
-import com.rgpclient.nvstream.mdns.NsdManagerDiscoveryAgent;
+import com.moonlight.nvstream.mdns.MdnsComputer;
+import com.moonlight.nvstream.mdns.JmDNSDiscoveryAgent;
+import com.moonlight.nvstream.mdns.MdnsDiscoveryAgent;
+import com.moonlight.nvstream.mdns.MdnsDiscoveryListener;
+import com.moonlight.nvstream.mdns.NsdManagerDiscoveryAgent;
 
 import android.app.Service;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package com.rgpclient;
+package com.moonlight;
 
 /**
  * Description

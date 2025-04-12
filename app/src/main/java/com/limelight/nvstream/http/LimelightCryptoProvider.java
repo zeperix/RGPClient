@@ -1,4 +1,4 @@
-package com.rgpclient.nvstream.http;
+package com.moonlight.nvstream.http;
 
 import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
