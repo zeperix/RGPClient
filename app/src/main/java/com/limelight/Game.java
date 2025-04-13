@@ -90,7 +90,6 @@ import android.view.ViewOutlineProvider;
 import android.view.ViewParent;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
@@ -693,61 +692,48 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         floatingMenuButton = findViewById(R.id.floatingMenuButton);
         updateFloatingButtonVisibility();
         
-        // Đặt độ nổi cố định cao cho nút menu để luôn hiển thị trên các thành phần khác
-        floatingMenuButton.setZ(Float.MAX_VALUE);
-        
         // Touch listener for drag and click
         floatingMenuButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        // Lưu vị trí ban đầu khi touch bắt đầu
                         startX = event.getRawX();
                         startY = event.getRawY();
                         dX = view.getX() - event.getRawX();
                         dY = view.getY() - event.getRawY();
                         isMovingButton = false;
                         return true;
-                        
                     case MotionEvent.ACTION_MOVE:
-                        // Tính vị trí mới
                         float newX = event.getRawX() + dX;
                         float newY = event.getRawY() + dY;
                         
-                        // Kiểm tra nếu là di chuyển thật sự hay chỉ là touch nhỏ
-                        float deltaX = Math.abs(event.getRawX() - startX);
-                        float deltaY = Math.abs(event.getRawY() - startY);
-                        if (deltaX > CLICK_ACTION_THRESHOLD || deltaY > CLICK_ACTION_THRESHOLD) {
+                        // Check if it's a move or just a tap
+                        if (Math.abs(event.getRawX() - startX) > CLICK_ACTION_THRESHOLD ||
+                                Math.abs(event.getRawY() - startY) > CLICK_ACTION_THRESHOLD) {
                             isMovingButton = true;
-                            
-                            // Giới hạn phạm vi di chuyển trong màn hình
-                            if (newX < 0) newX = 0;
-                            if (newY < 0) newY = 0;
-                            
-                            int maxX = getWindow().getDecorView().getWidth() - view.getWidth();
-                            int maxY = getWindow().getDecorView().getHeight() - view.getHeight();
-                            
-                            if (newX > maxX) newX = maxX;
-                            if (newY > maxY) newY = maxY;
-                            
-                            // Di chuyển nút
-                            view.setX(newX);
-                            view.setY(newY);
                         }
-                        return true;
                         
+                        // Ensure the button stays within screen bounds
+                        if (newX < 0) newX = 0;
+                        if (newY < 0) newY = 0;
+                        if (newX > getWindow().getDecorView().getWidth() - view.getWidth()) {
+                            newX = getWindow().getDecorView().getWidth() - view.getWidth();
+                        }
+                        if (newY > getWindow().getDecorView().getHeight() - view.getHeight()) {
+                            newY = getWindow().getDecorView().getHeight() - view.getHeight();
+                        }
+                        
+                        view.setX(newX);
+                        view.setY(newY);
+                        return true;
                     case MotionEvent.ACTION_UP:
-                        // Nếu không phải là di chuyển, thì xử lý như một sự kiện click
                         if (!isMovingButton) {
+                            // It's a click event, show menu
                             showGameMenu(null);
                         }
-                        isMovingButton = false; // Đặt lại trạng thái di chuyển
-                        
-                        // Đảm bảo độ nổi vẫn cao nhất
-                        view.setZ(Float.MAX_VALUE);
+                        isMovingButton = false;
                         return true;
-                        
                     default:
                         return false;
                 }
@@ -863,9 +849,6 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         if(keyBoardLayoutController != null){
             keyBoardLayoutController.refreshLayout();
         }
-        
-        // Không cần gọi bringFloatingButtonToFront() nữa
-        // bringFloatingButtonToFront();
 
         // Hide on-screen overlays in PiP mode
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -3660,8 +3643,6 @@ public class Game extends Activity implements SurfaceHolder.Callback,
     private void updateFloatingButtonVisibility() {
         if (floatingMenuButton != null) {
             floatingMenuButton.setVisibility(prefConfig.enableBackMenu ? View.VISIBLE : View.GONE);
-            
-            // Không cần gọi bringFloatingButtonToFront() nữa vì đã đặt độ nổi cố định cao
         }
     }
 }

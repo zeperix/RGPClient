@@ -89,21 +89,27 @@
 
     </LinearLayout>
     
-    <!-- Floating Menu Button -->
-    <ImageButton
-        android:id="@+id/floatingMenuButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/floating_menu_button"
-        android:contentDescription="@string/menu_button"
-        android:src="@drawable/ic_menu"
-        android:visibility="visible"
-        android:elevation="1000dp"
-        android:translationZ="1000dp"
-        android:stateListAnimator="@null" />
+    <!-- Thêm một FrameLayout cho nút nổi ở cuối file -->
+    <android.widget.FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:focusable="false">
+        
+        <!-- Floating Menu Button -->
+        <ImageButton
+            android:id="@+id/floatingMenuButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/floating_menu_button"
+            android:contentDescription="@string/menu_button"
+            android:src="@drawable/ic_menu"
+            android:visibility="visible"
+            android:elevation="9999dp" />
+    </android.widget.FrameLayout>
 
 </merge>
