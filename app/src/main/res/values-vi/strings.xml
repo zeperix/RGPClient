@@ -202,7 +202,7 @@
     <string name="category_gamepad_settings">Cài đặt gamepad</string>
     <string name="title_checkbox_multi_controller">Phát hiện tự động sự hiện diện của gamepad</string>
     <string name="summary_checkbox_multi_controller">Bỏ chọn tùy chọn này buộc một gamepad luôn có mặt</string>
-    <string name="title_checkbox_vibrate_fallback">Mô phỏng hỗ trợ rung bằng rung</string>
+    <string name="title_checkbox_vibrate_fallback">Mô phỏng hỗ trợ rung</string>
     <string name="summary_checkbox_vibrate_fallback">Rung thiết bị của bạn để mô phỏng rung nếu gamepad của bạn không hỗ trợ</string>
     <string name="title_seekbar_vibrate_fallback_strength">Điều chỉnh cường độ rung mô phỏng</string>
     <string name="summary_seekbar_vibrate_fallback_strength">Khuếch đại hoặc giảm cường độ rung trên thiết bị của bạn</string>
@@ -437,10 +437,7 @@
     <string name="summary_import_special_button">Sử dụng được trong Menu Quay lại và phím đặc biệt.\nLưu ý: Nhập sẽ ghi đè cấu hình hiện tại, vui lòng sao lưu trước.</string>
 
     <string name="title_software_update">Cập nhật phần mềm</string>
-    <string name="summary_software_update">Phiên bản Artemis Nior của ClassicOldSong - Truy cập GitHub Release để nhận phiên bản mới nhất</string>
-
-    <string name="title_follow_update">Theo dõi cập nhật</string>
-    <string name="summary_follow_update">Theo dõi cập nhật Artemis bằng Obtainium</string>
+    <string name="summary_software_update">Phiên bản RGPClient của ZeronX - Truy cập GitHub Release để nhận phiên bản mới nhất</string>
 
     <string name="title_special_key_layout">Bố cục phím đặc biệt</string>
 

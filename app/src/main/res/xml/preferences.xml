@@ -235,7 +235,7 @@
             android:title="@string/title_checkbox_vibrate_fallback"
             app:iconSpaceReserved="false" />
         <com.limelight.preferences.SeekBarPreference
-            android:defaultValue="100"
+            android:defaultValue="0"
             android:dependency="checkbox_vibrate_fallback"
             android:key="seekbar_vibrate_fallback_strength"
             android:max="200"
@@ -848,17 +848,10 @@
             app:iconSpaceReserved="false" />
 
         <com.limelight.preferences.WebLauncherPreference
-            url="https://github.com/ClassicOldSong/moonlight-android/releases"
+            url="https://github.com/zeperix/RGPClient/releases/latest"
             android:key="option_software_release"
             android:summary="@string/summary_software_update"
             android:title="@string/title_software_update"
-            app:iconSpaceReserved="false" />
-
-        <com.limelight.preferences.WebLauncherPreference
-            url="@string/obtainium_app_url"
-            android:key="option_follow_update"
-            android:summary="@string/summary_follow_update"
-            android:title="@string/title_follow_update"
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
 </PreferenceScreen>
