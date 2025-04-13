@@ -110,9 +110,9 @@ android {
         }
         release {
             applicationIdSuffix ".app"
-            resValue "string", "app_label", "Artemis"
-            resValue "string", "app_label_root", "Artemis (Root)"
-            resValue "string", "app_label_game", "Artemis (Game)"
+            resValue "string", "app_label", "RGPClient"
+            resValue "string", "app_label_root", "RGPClient (Root)"
+            resValue "string", "app_label_game", "RGPClient (Game)"
 
             signingConfig signingConfigs.release
             minifyEnabled true
