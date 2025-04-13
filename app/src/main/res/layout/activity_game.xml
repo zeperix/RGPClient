@@ -101,6 +101,7 @@
         android:background="@drawable/floating_menu_button"
         android:contentDescription="@string/menu_button"
         android:src="@drawable/ic_menu"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:elevation="1000dp" />
 
 </merge>

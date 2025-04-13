@@ -90,6 +90,7 @@ import android.view.ViewOutlineProvider;
 import android.view.ViewParent;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
@@ -692,6 +693,17 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         floatingMenuButton = findViewById(R.id.floatingMenuButton);
         updateFloatingButtonVisibility();
         
+        // Thêm listener để đảm bảo nút nổi luôn ở trên cùng khi bố cục thay đổi
+        getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                // Đưa nút menu nổi lên trên cùng mỗi khi có thay đổi bố cục
+                if (prefConfig.enableBackMenu) {
+                    bringFloatingButtonToFront();
+                }
+            }
+        });
+        
         // Touch listener for drag and click
         floatingMenuButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -745,6 +757,8 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         keyBoardController = new KeyBoardController(conn,(FrameLayout)rootView, this);
         keyBoardController.refreshLayout();
         keyBoardController.show();
+        // Đảm bảo nút menu nổi luôn ở trên cùng sau khi hiển thị bàn phím
+        bringFloatingButtonToFront();
     }
 
 
@@ -752,29 +766,41 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         virtualController = new VirtualController(controllerHandler, (FrameLayout)rootView, this);
         virtualController.refreshLayout();
         virtualController.show();
+        // Đảm bảo nút menu nổi luôn ở trên cùng sau khi hiển thị bộ điều khiển ảo
+        bringFloatingButtonToFront();
     }
 
     private void initkeyBoardLayoutController(){
         keyBoardLayoutController = new KeyBoardLayoutController((FrameLayout)rootView, this, prefConfig);
         keyBoardLayoutController.refreshLayout();
         keyBoardLayoutController.show();
+        // Đảm bảo nút menu nổi luôn ở trên cùng sau khi hiển thị bố cục bàn phím
+        bringFloatingButtonToFront();
     }
 
     //显示隐藏虚拟特殊按键
     public void showHideKeyboardController(){
         if(keyBoardController==null){
             initKeyboardController();
+            // Đảm bảo nút menu nổi luôn ở trên cùng
+            updateFloatingButtonVisibility();
             return;
         }
         keyBoardController.toggleVisibility();
+        // Đảm bảo nút menu nổi luôn ở trên cùng
+        updateFloatingButtonVisibility();
     }
 
     public void showHidekeyBoardLayoutController(){
         if(keyBoardLayoutController==null){
             initkeyBoardLayoutController();
+            // Đảm bảo nút menu nổi luôn ở trên cùng
+            updateFloatingButtonVisibility();
             return;
         }
         keyBoardLayoutController.toggleVisibility();
+        // Đảm bảo nút menu nổi luôn ở trên cùng
+        updateFloatingButtonVisibility();
     }
 
     //显示隐藏虚拟手柄控制器
@@ -782,9 +808,13 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         if(virtualController==null){
             initVirtualController();
             prefConfig.onscreenController=true;
+            // Đảm bảo nút menu nổi luôn ở trên cùng
+            updateFloatingButtonVisibility();
             return;
         }
         prefConfig.onscreenController= virtualController.switchShowHide() != 0;
+        // Đảm bảo nút menu nổi luôn ở trên cùng
+        updateFloatingButtonVisibility();
     }
 
     private void setPreferredOrientationForCurrentDisplay() {
@@ -849,6 +879,9 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         if(keyBoardLayoutController != null){
             keyBoardLayoutController.refreshLayout();
         }
+        
+        // Đảm bảo nút menu nổi luôn ở trên cùng sau khi các controller đã cập nhật layout
+        bringFloatingButtonToFront();
 
         // Hide on-screen overlays in PiP mode
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -3643,6 +3676,29 @@ public class Game extends Activity implements SurfaceHolder.Callback,
     private void updateFloatingButtonVisibility() {
         if (floatingMenuButton != null) {
             floatingMenuButton.setVisibility(prefConfig.enableBackMenu ? View.VISIBLE : View.GONE);
+            
+            // Đảm bảo nút menu nổi luôn ở trên cùng
+            if (prefConfig.enableBackMenu) {
+                bringFloatingButtonToFront();
+            }
+        }
+    }
+    
+    /**
+     * Đưa nút menu nổi lên trên cùng của tất cả các phần tử UI
+     */
+    private void bringFloatingButtonToFront() {
+        if (floatingMenuButton != null) {
+            // Đưa nút lên trên cùng bằng cách xóa và thêm lại vào ViewParent
+            ViewParent parent = floatingMenuButton.getParent();
+            if (parent instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup) parent;
+                viewGroup.removeView(floatingMenuButton);
+                viewGroup.addView(floatingMenuButton);
+                
+                // Thiết lập Z-order cao để luôn nổi trên các thành phần khác
+                floatingMenuButton.setZ(Float.MAX_VALUE);
+            }
         }
     }
 }
