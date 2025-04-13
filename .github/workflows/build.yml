@@ -36,7 +36,7 @@ jobs:
       run: chmod +x ./gradlew
 
     - name: Build APK
-      run: ./gradlew assembleRelease
+      run: ./gradlew assembleNonRoot_gameRelease
 
     - name: Upload to GitHub Release
       uses: softprops/action-gh-release@v2
