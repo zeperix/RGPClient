@@ -11,7 +11,7 @@ android {
         minSdk 21
         targetSdk 34
 
-        versionName "12.1.250410-1"
+        versionName "1.0.7"
         versionCode = 43
 
         // Generate native debug symbols to allow Google Play to symbolicate our native crashes
@@ -98,7 +98,7 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix ".noirdebug"
+            applicationIdSuffix ".debug"
             resValue "string", "app_label", "Diana"
             resValue "string", "app_label_root", "Diana (Root)"
             resValue "string", "app_label_game", "Diana (Game)"
