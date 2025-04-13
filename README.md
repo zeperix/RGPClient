@@ -1,15 +1,15 @@
-# Artemis Android
+# RGPClient Android
 
 Previously named Moonlight Noir
 
 An open source client for [Apollo](https://github.com/ClassicOldSong/Apollo)/[Sunshine](https://github.com/LizardByte/Sunshine).
 
-Artemis Android will allow you to stream your collection of games from your Windows PC to your Android device,
+RGPClient Android will allow you to stream your collection of games from your Windows PC to your Android device,
 whether in your own home or over the internet.
 
-Artemis is currently the best fork of Moonlight with loads of optimizations for office usage.
+RGPClient is currently the best fork of Moonlight with loads of optimizations for office usage.
 
-A more seamless experience with virtual display will be Artemis paired with [Apollo](https://github.com/ClassicOldSong/Apollo).
+A more seamless experience with virtual display will be RGPClient paired with [Apollo](https://github.com/ClassicOldSong/Apollo).
 
 # Features
 
@@ -63,8 +63,7 @@ The main repo had stayed silent for 5 months, with nobody actually responding to
 **Update**: They have contacted me and apologized for this incident, but the fact it **happened** still motivated me to start my own fork.
 
 ## Downloads
-* [Download APK directly](https://github.com/ClassicOldSong/moonlight-android/releases)
-* [Use Obtainium](https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22com.limelight.noir%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FClassicOldSong%2Fmoonlight-android%22%2C%22author%22%3A%22ClassicOldSong%22%2C%22name%22%3A%22Artemis%22%2C%22additionalSettings%22%3A%22%7B%5C%22apkFilterRegEx%5C%22%3A%5C%22nonRoot%5C%22%2C%5C%22matchGroutToUse%5C%22%3A%5C%22%241%5C%22%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22v(.%2B)%5C%22%7D%22%7D) (recommended)
+* [Download APK directly](https://github.com/zeperix/RGPClient/releases/latest)
 
 ## Building
 * Install Android Studio and the Android NDK
