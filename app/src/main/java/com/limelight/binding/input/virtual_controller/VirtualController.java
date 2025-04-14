@@ -308,6 +308,20 @@ public class VirtualController {
     }
 
     /**
+     * Invalidate all controller elements and the configuration button
+     * to force a redraw after changing the controller mode
+     */
+    private void invalidateAll() {
+        // Invalidate the configuration button
+        buttonConfigure.invalidate();
+        
+        // Invalidate all controller elements
+        for (VirtualControllerElement element : elements) {
+            element.invalidate();
+        }
+    }
+
+    /**
      * Start configuration mode for the virtual controller
      */
     public void startConfiguration() {
