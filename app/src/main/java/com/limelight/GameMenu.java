@@ -392,11 +392,13 @@ public class GameMenu implements Game.GameMenuCallbacks {
 
     private void showGamepadLayoutSelection() {
         // Check if layout editing is in progress
+        if (game.isFinishing()) return;
+        
         if (game.isEditingLayout()) {
             // Ask if user wants to save changes
             AlertDialog.Builder builder = new AlertDialog.Builder(game);
             builder.setTitle(R.string.gamepad_layout_save_dialog_title);
-            builder.setMessage(getString(R.string.gamepad_layout_save_dialog_message, "current"));
+            builder.setMessage(game.getResources().getString(R.string.gamepad_layout_save_dialog_message, "current"));
             
             builder.setPositiveButton(getString(R.string.yes), (dialog, which) -> {
                 game.stopEditingLayout(true);

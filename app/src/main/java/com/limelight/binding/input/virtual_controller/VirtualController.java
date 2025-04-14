@@ -274,4 +274,52 @@ public class VirtualController {
     public void sendControllerInputContext() {
         sendControllerInputContext(0, 0);
     }
+
+    /**
+     * Start configuration mode for editing the layout
+     * This will cycle through all configuration modes
+     */
+    public void configureController() {
+        // Change to configuration mode (disable/enable buttons)
+        currentMode = ControllerMode.DisableEnableButtons;
+        
+        // Make configuration button visible
+        buttonConfigure.setVisibility(View.VISIBLE);
+        
+        invalidateAll();
+    }
+    
+    /**
+     * Set the controller mode directly
+     * @param mode The mode to set
+     */
+    public void setControllerMode(ControllerMode mode) {
+        currentMode = mode;
+        
+        if (mode == ControllerMode.Active) {
+            // Hide configuration button in active mode
+            buttonConfigure.setVisibility(View.GONE);
+        } else {
+            // Show configuration button in configuration modes
+            buttonConfigure.setVisibility(View.VISIBLE);
+        }
+        
+        invalidateAll();
+    }
+
+    /**
+     * Start configuration mode for the virtual controller
+     */
+    public void startConfiguration() {
+        // Set to configuration mode
+        configureController();
+    }
+
+    /**
+     * Stop configuration mode and return to active mode
+     */
+    public void stopConfiguration() {
+        // Return to active mode
+        setControllerMode(ControllerMode.Active);
+    }
 }

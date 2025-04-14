@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ import com.limelight.binding.input.virtual_controller.GamepadLayoutManager;
 import java.util.List;
 
 public class GamepadLayoutActivity extends Activity {
+    
+    private static final String TAG = "GamepadLayoutActivity";
     
     public static final String EXTRA_SELECTED_LAYOUT = "selected_layout";
     public static final int RESULT_LAYOUT_SELECTED = 100;
@@ -44,7 +47,14 @@ public class GamepadLayoutActivity extends Activity {
         
         // Initialize layout manager
         if (gameActivity != null && gameActivity.getVirtualController() != null) {
-            layoutManager = new GamepadLayoutManager(this, gameActivity.getVirtualController());
+            try {
+                layoutManager = new GamepadLayoutManager(this, gameActivity.getVirtualController());
+            } catch (Exception e) {
+                Log.e(TAG, "Error initializing GamepadLayoutManager", e);
+                Toast.makeText(this, "Error: Failed to initialize layout manager", Toast.LENGTH_SHORT).show();
+                finish();
+                return;
+            }
         } else {
             Toast.makeText(this, "Error: Virtual controller not available", Toast.LENGTH_SHORT).show();
             finish();
@@ -63,7 +73,28 @@ public class GamepadLayoutActivity extends Activity {
         btnNewLayout.setOnClickListener(v -> showNewLayoutDialog());
     }
     
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (layoutManager != null) {
+            outState.putString("current_layout", layoutManager.getCurrentLayoutName());
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null && layoutManager != null) {
+            String currentLayout = savedInstanceState.getString("current_layout");
+            if (currentLayout != null && !currentLayout.isEmpty()) {
+                layoutManager.setCurrentLayoutName(currentLayout);
+            }
+        }
+    }
+    
     private void showNewLayoutDialog() {
+        if (isFinishing()) return;
+        
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.gamepad_layout_new);
         
@@ -98,9 +129,11 @@ public class GamepadLayoutActivity extends Activity {
     }
     
     private void refreshLayouts() {
-        layoutAdapter.clear();
-        layoutAdapter.addAll(layoutManager.getAvailableLayouts());
-        layoutAdapter.notifyDataSetChanged();
+        if (layoutAdapter != null) {
+            layoutAdapter.clear();
+            layoutAdapter.addAll(layoutManager.getAvailableLayouts());
+            layoutAdapter.notifyDataSetChanged();
+        }
     }
     
     private class LayoutAdapter extends ArrayAdapter<String> {
@@ -117,6 +150,10 @@ public class GamepadLayoutActivity extends Activity {
             }
             
             String layoutName = getItem(position);
+            if (layoutName == null) {
+                return convertView;
+            }
+            
             TextView tvLayoutName = convertView.findViewById(R.id.tv_layout_name);
             Button btnUse = convertView.findViewById(R.id.btn_use);
             Button btnEdit = convertView.findViewById(R.id.btn_edit);
@@ -125,7 +162,7 @@ public class GamepadLayoutActivity extends Activity {
             tvLayoutName.setText(layoutName);
             
             // Current layout indicator
-            if (layoutName != null && layoutName.equals(layoutManager.getCurrentLayoutName())) {
+            if (layoutName.equals(layoutManager.getCurrentLayoutName())) {
                 tvLayoutName.append(" (Current)");
             }
             
@@ -151,12 +188,15 @@ public class GamepadLayoutActivity extends Activity {
             });
             
             btnDelete.setOnClickListener(v -> {
+                // Check if this is the default layout - cannot delete it
                 if (layoutName.equals(GamepadLayoutManager.DEFAULT_LAYOUT_NAME)) {
                     Toast.makeText(GamepadLayoutActivity.this, 
                             R.string.gamepad_layout_delete_default, 
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
+                
+                if (isFinishing()) return;
                 
                 new AlertDialog.Builder(getContext())
                         .setTitle(R.string.gamepad_layout_delete_title)

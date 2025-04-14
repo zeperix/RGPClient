@@ -110,6 +110,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import com.limelight.binding.input.virtual_controller.GamepadLayoutManager;
 
 public class Game extends Activity implements SurfaceHolder.Callback,
         OnGenericMotionListener, OnTouchListener, NvConnectionListener, EvdevListener,
@@ -763,7 +764,9 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         virtualController.show();
         
         // Initialize gamepad layout manager
-        gamepadLayoutManager = new GamepadLayoutManager(this, virtualController);
+        if (gamepadLayoutManager == null) {
+            gamepadLayoutManager = new GamepadLayoutManager(this, virtualController);
+        }
     }
 
     private void initkeyBoardLayoutController(){
@@ -3696,8 +3699,10 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             gamepadLayoutManager.loadLayout(layoutName);
         }
         
-        // Set virtual controller to configuration mode
-        virtualController.startConfiguration();
+        // Set virtual controller to configuration mode (using existing methods)
+        if (virtualController != null) {
+            virtualController.configureController();
+        }
         
         // Show toast to inform user about edit mode
         Toast.makeText(this, R.string.gamepad_layout_edit_mode, Toast.LENGTH_LONG).show();
@@ -3723,9 +3728,9 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         isEditingLayout = false;
         currentEditingLayout = null;
         
-        // Return virtual controller to normal mode
+        // Return virtual controller to normal mode (exit configuration mode)
         if (virtualController != null) {
-            virtualController.stopConfiguration();
+            virtualController.setControllerMode(VirtualController.ControllerMode.Active);
         }
     }
     

@@ -21,7 +21,7 @@ import java.util.List;
 public class GamepadLayoutManager {
     private static final String TAG = "GamepadLayoutManager";
     private static final String LAYOUTS_DIR = "gamepad_layouts";
-    private static final String DEFAULT_LAYOUT_NAME = "default_layout";
+    public static final String DEFAULT_LAYOUT_NAME = "default_layout";
     private static final String FILE_EXTENSION = ".json";
     
     private Context context;
