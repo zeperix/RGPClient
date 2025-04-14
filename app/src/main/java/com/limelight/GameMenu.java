@@ -2,6 +2,7 @@ package com.limelight;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
@@ -40,6 +41,9 @@ public class GameMenu implements Game.GameMenuCallbacks {
     public static final String PREF_NAME = "specialPrefs"; // SharedPreferences的名称
 
     public static final String KEY_NAME = "special_key"; // 要保存的键名称
+
+    // Activity request codes
+    private static final int REQUEST_GAMEPAD_LAYOUT = 1001;
 
     public static class MenuOption {
         private final String label;
@@ -366,6 +370,9 @@ public class GameMenu implements Game.GameMenuCallbacks {
                 
         options.add(new MenuOption(getString(R.string.game_menu_select_mouse_mode), true,
                 game::selectMouseMode));
+
+        options.add(new MenuOption(getString(R.string.game_menu_select_layout), true,
+                this::showGamepadLayoutSelection));
                 
         options.add(new MenuOption(getString(game.isZoomModeEnabled() ? R.string.game_menu_disable_zoom_mode : R.string.game_menu_enable_zoom_mode), true,
                 game::toggleZoomMode));
@@ -381,6 +388,44 @@ public class GameMenu implements Game.GameMenuCallbacks {
         options.add(new MenuOption(getString(R.string.game_menu_cancel), null));
 
         showMenuDialog(getString(R.string.quick_menu_title), options.toArray(new MenuOption[options.size()]));
+    }
+
+    private void showGamepadLayoutSelection() {
+        // Check if layout editing is in progress
+        if (game.isEditingLayout()) {
+            // Ask if user wants to save changes
+            AlertDialog.Builder builder = new AlertDialog.Builder(game);
+            builder.setTitle(R.string.gamepad_layout_save_dialog_title);
+            builder.setMessage(getString(R.string.gamepad_layout_save_dialog_message, "current"));
+            
+            builder.setPositiveButton(getString(R.string.yes), (dialog, which) -> {
+                game.stopEditingLayout(true);
+                startGamepadLayoutActivity();
+            });
+            
+            builder.setNegativeButton(getString(R.string.no), (dialog, which) -> {
+                game.stopEditingLayout(false);
+                startGamepadLayoutActivity();
+            });
+            
+            builder.setCancelable(true);
+            builder.setOnCancelListener(dialog -> {
+                // User cancelled, do nothing
+            });
+            
+            builder.show();
+        } else {
+            startGamepadLayoutActivity();
+        }
+    }
+    
+    private void startGamepadLayoutActivity() {
+        // Hide the current menu
+        hideMenu();
+        
+        // Start the layout selection activity
+        Intent intent = new Intent(game, GamepadLayoutActivity.class);
+        game.startActivityForResult(intent, REQUEST_GAMEPAD_LAYOUT);
     }
 
     public void hideMenu() {

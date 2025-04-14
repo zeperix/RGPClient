@@ -600,4 +600,28 @@
     <string name="title_checkbox_stretch_video" />
 
     <string name="menu_button">Menu</string>
+
+    <!-- Gamepad Layout Management -->
+    <string name="game_menu_select_layout">Chọn layout gamepad</string>
+    <string name="gamepad_layout_title">Quản lý layout gamepad</string>
+    <string name="gamepad_layout_new">Tạo layout mới</string>
+    <string name="gamepad_layout_use">Sử dụng</string>
+    <string name="gamepad_layout_edit">Chỉnh sửa</string>
+    <string name="gamepad_layout_delete">Xóa</string>
+    <string name="gamepad_layout_delete_title">Xác nhận xóa</string>
+    <string name="gamepad_layout_delete_message">Bạn có chắc muốn xóa layout \"%1$s\"?</string>
+    <string name="gamepad_layout_delete_default">Không thể xóa layout mặc định</string>
+    <string name="gamepad_layout_delete_failed">Không thể xóa layout</string>
+    <string name="gamepad_layout_deleted">Đã xóa layout %1$s</string>
+    <string name="gamepad_layout_selected">Đã chọn layout %1$s</string>
+    <string name="gamepad_layout_load_failed">Không thể tải layout</string>
+    <string name="gamepad_layout_save_failed">Không thể lưu layout</string>
+    <string name="gamepad_layout_saved">Đã lưu layout %1$s</string>
+    <string name="gamepad_layout_create_failed">Không thể tạo layout mới</string>
+    <string name="gamepad_layout_created">Đã tạo layout %1$s</string>
+    <string name="gamepad_layout_name_empty">Tên layout không được để trống</string>
+    <string name="gamepad_layout_edit_mode">Đang ở chế độ chỉnh sửa layout. Kéo và thả các nút để điều chỉnh. Nhấn nút menu để lưu thay đổi.</string>
+    <string name="gamepad_layout_save_dialog_title">Lưu layout</string>
+    <string name="gamepad_layout_save_dialog_message">Bạn có muốn lưu thay đổi vào layout \"%1$s\"?</string>
+    <!-- End of Gamepad Layout Management -->
 </resources>

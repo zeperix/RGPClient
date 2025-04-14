@@ -266,11 +266,17 @@ public class Game extends Activity implements SurfaceHolder.Callback,
     private static final float CLICK_ACTION_THRESHOLD = 5;
     private float startX, startY;
 
+    // Variables for gamepad layout management
+    private String currentEditingLayout = null;
+    private boolean isEditingLayout = false;
+    private GamepadLayoutManager gamepadLayoutManager;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        
+        // Set static instance for access from GamepadLayoutActivity
         instance = this;
 
         UiHelper.setLocale(this);
@@ -286,7 +292,10 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                         View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                        View.SYSTEM_UI_FLAG_FULLSCREEN |
+                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
 
@@ -752,6 +761,9 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         virtualController = new VirtualController(controllerHandler, (FrameLayout)rootView, this);
         virtualController.refreshLayout();
         virtualController.show();
+        
+        // Initialize gamepad layout manager
+        gamepadLayoutManager = new GamepadLayoutManager(this, virtualController);
     }
 
     private void initkeyBoardLayoutController(){
@@ -1352,6 +1364,11 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
         // Destroy the capture provider
         inputCaptureProvider.destroy();
+        
+        // Clear static instance
+        if (instance == this) {
+            instance = null;
+        }
     }
 
     @Override
@@ -3643,6 +3660,99 @@ public class Game extends Activity implements SurfaceHolder.Callback,
     private void updateFloatingButtonVisibility() {
         if (floatingMenuButton != null) {
             floatingMenuButton.setVisibility(prefConfig.enableBackMenu ? View.VISIBLE : View.GONE);
+        }
+    }
+
+    public VirtualController getVirtualController() {
+        return virtualController;
+    }
+    
+    /**
+     * Get the static instance of Game activity
+     */
+    public static Game getInstance() {
+        return instance;
+    }
+    
+    /**
+     * Start gamepad layout editing mode
+     * @param layoutName Name of the layout to edit
+     */
+    public void startEditingLayout(String layoutName) {
+        if (layoutName == null || layoutName.isEmpty()) {
+            return;
+        }
+        
+        currentEditingLayout = layoutName;
+        isEditingLayout = true;
+        
+        if (virtualController == null) {
+            initVirtualController();
+        }
+        
+        // Load the layout if it's not the current one
+        if (gamepadLayoutManager != null && 
+                !layoutName.equals(gamepadLayoutManager.getCurrentLayoutName())) {
+            gamepadLayoutManager.loadLayout(layoutName);
+        }
+        
+        // Set virtual controller to configuration mode
+        virtualController.startConfiguration();
+        
+        // Show toast to inform user about edit mode
+        Toast.makeText(this, R.string.gamepad_layout_edit_mode, Toast.LENGTH_LONG).show();
+    }
+    
+    /**
+     * Stop gamepad layout editing mode and optionally save changes
+     */
+    public void stopEditingLayout(boolean save) {
+        if (!isEditingLayout || currentEditingLayout == null) {
+            return;
+        }
+        
+        if (save && gamepadLayoutManager != null) {
+            if (gamepadLayoutManager.saveLayout(currentEditingLayout)) {
+                Toast.makeText(this, getString(R.string.gamepad_layout_saved, currentEditingLayout), 
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, R.string.gamepad_layout_save_failed, Toast.LENGTH_SHORT).show();
+            }
+        }
+        
+        isEditingLayout = false;
+        currentEditingLayout = null;
+        
+        // Return virtual controller to normal mode
+        if (virtualController != null) {
+            virtualController.stopConfiguration();
+        }
+    }
+    
+    /**
+     * Check if currently in layout editing mode
+     */
+    public boolean isEditingLayout() {
+        return isEditingLayout;
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        
+        // Handle result from GamepadLayoutActivity
+        if (requestCode == 1001) { // REQUEST_GAMEPAD_LAYOUT
+            if (data != null) {
+                String layoutName = data.getStringExtra(GamepadLayoutActivity.EXTRA_SELECTED_LAYOUT);
+                if (layoutName != null && !layoutName.isEmpty()) {
+                    if (resultCode == GamepadLayoutActivity.RESULT_LAYOUT_SELECTED) {
+                        // Layout selected, nothing extra to do since it was already loaded in GamepadLayoutActivity
+                    } else if (resultCode == GamepadLayoutActivity.RESULT_LAYOUT_EDIT) {
+                        // Start editing the selected layout
+                        startEditingLayout(layoutName);
+                    }
+                }
+            }
         }
     }
 }
