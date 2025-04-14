@@ -14,13 +14,15 @@
         android:gravity="center"
         android:layout_marginBottom="16dp" />
 
-    <ListView
-        android:id="@+id/layout_list"
+    <FrameLayout
+        android:id="@+id/layout_list_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp" />
+        android:layout_weight="1">
+
+        <!-- The ListView/GridView will be added here programmatically -->
+
+    </FrameLayout>
 
     <Button
         android:id="@+id/btn_new_layout"

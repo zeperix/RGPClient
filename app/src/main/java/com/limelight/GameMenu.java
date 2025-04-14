@@ -43,7 +43,7 @@ public class GameMenu implements Game.GameMenuCallbacks {
     public static final String KEY_NAME = "special_key"; // 要保存的键名称
 
     // Activity request codes
-    private static final int REQUEST_GAMEPAD_LAYOUT = 1001;
+    public static final int REQUEST_GAMEPAD_LAYOUT = 1001;
 
     public static class MenuOption {
         private final String label;

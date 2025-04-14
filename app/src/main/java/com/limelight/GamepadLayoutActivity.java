@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.limelight.binding.input.virtual_controller.GamepadLayoutManager;
+import com.limelight.binding.input.virtual_controller.VirtualController;
 
 import java.util.List;
 
@@ -32,7 +36,7 @@ public class GamepadLayoutActivity extends Activity {
     public static final int RESULT_LAYOUT_EDIT = 101;
     
     private GamepadLayoutManager layoutManager;
-    private ListView layoutListView;
+    private View layoutListContainer;
     private LayoutAdapter layoutAdapter;
     private Button btnNewLayout;
     private Game gameActivity;
@@ -45,10 +49,27 @@ public class GamepadLayoutActivity extends Activity {
         // Get reference to GameActivity
         gameActivity = Game.getInstance();
         
-        // Initialize layout manager
-        if (gameActivity != null && gameActivity.getVirtualController() != null) {
+        // Initialize layout manager with VirtualController from Game instance or create a temporary one
+        if (gameActivity != null) {
+            VirtualController virtualController = gameActivity.getVirtualController();
+            
+            // If virtual controller doesn't exist yet, we'll still allow viewing layouts
+            if (virtualController == null) {
+                Log.w(TAG, "Virtual controller not available, will create temporary instance for layout management");
+                try {
+                    // Create a temporary virtual controller just for layout management
+                    FrameLayout tempFrame = new FrameLayout(this);
+                    virtualController = new VirtualController(null, tempFrame, this);
+                } catch (Exception e) {
+                    Log.e(TAG, "Error creating temporary virtual controller", e);
+                    Toast.makeText(this, "Error: Failed to initialize layout manager", Toast.LENGTH_SHORT).show();
+                    finish();
+                    return;
+                }
+            }
+            
             try {
-                layoutManager = new GamepadLayoutManager(this, gameActivity.getVirtualController());
+                layoutManager = new GamepadLayoutManager(this, virtualController);
             } catch (Exception e) {
                 Log.e(TAG, "Error initializing GamepadLayoutManager", e);
                 Toast.makeText(this, "Error: Failed to initialize layout manager", Toast.LENGTH_SHORT).show();
@@ -56,21 +77,73 @@ public class GamepadLayoutActivity extends Activity {
                 return;
             }
         } else {
-            Toast.makeText(this, "Error: Virtual controller not available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error: Game activity not available", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
         
-        layoutListView = findViewById(R.id.layout_list);
+        // Check if we should show list or grid based on orientation
+        layoutListContainer = findViewById(R.id.layout_list_container);
         btnNewLayout = findViewById(R.id.btn_new_layout);
-        
-        // Load available layouts
-        List<String> layouts = layoutManager.getAvailableLayouts();
-        layoutAdapter = new LayoutAdapter(this, layouts);
-        layoutListView.setAdapter(layoutAdapter);
         
         // Set onclick for new layout button
         btnNewLayout.setOnClickListener(v -> showNewLayoutDialog());
+        
+        // Load available layouts and setup the appropriate view
+        setupLayoutListView();
+    }
+    
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        
+        // Re-setup the layout list view based on new orientation
+        setupLayoutListView();
+    }
+    
+    private void setupLayoutListView() {
+        // Remove previous view if exists
+        if (layoutListContainer.getChildCount() > 0) {
+            layoutListContainer.removeAllViews();
+        }
+        
+        // Create appropriate view based on orientation
+        boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        
+        View layoutView;
+        if (isLandscape) {
+            // Use GridView for landscape orientation
+            GridView gridView = new GridView(this);
+            gridView.setNumColumns(3); // Adjust columns as needed
+            gridView.setVerticalSpacing(20);
+            gridView.setHorizontalSpacing(20);
+            gridView.setPadding(20, 20, 20, 20);
+            layoutView = gridView;
+        } else {
+            // Use ListView for portrait orientation
+            ListView listView = new ListView(this);
+            listView.setDividerHeight(10);
+            listView.setPadding(10, 10, 10, 10);
+            layoutView = listView;
+        }
+        
+        // Set ID for the layout view
+        layoutView.setId(R.id.layout_list);
+        
+        // Add the new view to container
+        layoutListContainer.addView(layoutView, new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        
+        // Load available layouts and set adapter
+        List<String> layouts = layoutManager.getAvailableLayouts();
+        layoutAdapter = new LayoutAdapter(this, layouts);
+        
+        if (isLandscape) {
+            ((GridView) layoutView).setAdapter(layoutAdapter);
+        } else {
+            ((ListView) layoutView).setAdapter(layoutAdapter);
+        }
     }
     
     @Override

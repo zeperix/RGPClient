@@ -3686,26 +3686,29 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             return;
         }
         
+        // Update the editing state
         currentEditingLayout = layoutName;
         isEditingLayout = true;
         
-        if (virtualController == null) {
-            initVirtualController();
-        }
-        
-        // Load the layout if it's not the current one
-        if (gamepadLayoutManager != null && 
-                !layoutName.equals(gamepadLayoutManager.getCurrentLayoutName())) {
+        // Load the layout if needed
+        if (gamepadLayoutManager != null) {
             gamepadLayoutManager.loadLayout(layoutName);
         }
         
-        // Set virtual controller to configuration mode (using existing methods)
+        // Make virtual controller visible if not already visible
         if (virtualController != null) {
-            virtualController.configureController();
+            // First make sure virtual controller is visible
+            virtualController.show();
+            
+            // Then start configuration mode
+            virtualController.startConfiguration();
+            
+            // Update floating menu button to save layout when clicked
+            updateFloatingButtonVisibility();
+            
+            Toast.makeText(this, getString(R.string.gamepad_layout_editing_started, layoutName), 
+                    Toast.LENGTH_SHORT).show();
         }
-        
-        // Show toast to inform user about edit mode
-        Toast.makeText(this, R.string.gamepad_layout_edit_mode, Toast.LENGTH_LONG).show();
     }
     
     /**
@@ -3717,21 +3720,23 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         }
         
         if (save && gamepadLayoutManager != null) {
-            if (gamepadLayoutManager.saveLayout(currentEditingLayout)) {
-                Toast.makeText(this, getString(R.string.gamepad_layout_saved, currentEditingLayout), 
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, R.string.gamepad_layout_save_failed, Toast.LENGTH_SHORT).show();
-            }
+            // Save the current layout
+            gamepadLayoutManager.saveLayout(currentEditingLayout);
+            Toast.makeText(this, getString(R.string.gamepad_layout_saved, currentEditingLayout), 
+                    Toast.LENGTH_SHORT).show();
         }
         
+        // Reset the editing state
         isEditingLayout = false;
         currentEditingLayout = null;
         
-        // Return virtual controller to normal mode (exit configuration mode)
+        // Return virtual controller to normal
         if (virtualController != null) {
-            virtualController.setControllerMode(VirtualController.ControllerMode.Active);
+            virtualController.stopConfiguration();
         }
+        
+        // Restore the floating menu button functionality
+        updateFloatingButtonVisibility();
     }
     
     /**
@@ -3745,18 +3750,62 @@ public class Game extends Activity implements SurfaceHolder.Callback,
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         
-        // Handle result from GamepadLayoutActivity
-        if (requestCode == 1001) { // REQUEST_GAMEPAD_LAYOUT
-            if (data != null) {
+        if (requestCode == GameMenu.REQUEST_GAMEPAD_LAYOUT) {
+            if (resultCode == GamepadLayoutActivity.RESULT_LAYOUT_SELECTED) {
+                // A layout was selected, load it and show the virtual controller
                 String layoutName = data.getStringExtra(GamepadLayoutActivity.EXTRA_SELECTED_LAYOUT);
-                if (layoutName != null && !layoutName.isEmpty()) {
-                    if (resultCode == GamepadLayoutActivity.RESULT_LAYOUT_SELECTED) {
-                        // Layout selected, nothing extra to do since it was already loaded in GamepadLayoutActivity
-                    } else if (resultCode == GamepadLayoutActivity.RESULT_LAYOUT_EDIT) {
-                        // Start editing the selected layout
-                        startEditingLayout(layoutName);
+                if (layoutName != null && !layoutName.isEmpty() && gamepadLayoutManager != null) {
+                    // Load the selected layout
+                    if (gamepadLayoutManager.loadLayout(layoutName)) {
+                        // Make sure virtual controller is visible after selecting a layout
+                        if (virtualController != null) {
+                            virtualController.show();
+                            Toast.makeText(this, getString(R.string.gamepad_layout_selected, layoutName), 
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
+            } else if (resultCode == GamepadLayoutActivity.RESULT_LAYOUT_EDIT) {
+                // A layout was selected for editing
+                String layoutName = data.getStringExtra(GamepadLayoutActivity.EXTRA_SELECTED_LAYOUT);
+                if (layoutName != null && !layoutName.isEmpty()) {
+                    // Start editing this layout
+                    startEditingLayout(layoutName);
+                }
+            }
+        }
+    }
+
+    // This updates the floating menu button's function based on whether we're editing a layout
+    private void updateFloatingButtonVisibility() {
+        if (floatingMenuButton == null) {
+            return;
+        }
+        
+        if (isEditingLayout) {
+            floatingMenuButton.setVisibility(View.VISIBLE);
+            floatingMenuButton.setImageResource(R.drawable.ic_save); // Use a save icon
+            
+            // Change the onClick behavior to save the layout
+            floatingMenuButton.setOnClickListener(v -> {
+                if (!isMovingButton) {
+                    stopEditingLayout(true);
+                }
+            });
+        } else {
+            // Restore normal functionality
+            if (gameMenuCallbacks == null) {
+                floatingMenuButton.setVisibility(View.GONE);
+            } else {
+                floatingMenuButton.setVisibility(View.VISIBLE);
+                floatingMenuButton.setImageResource(R.drawable.ic_menu);
+                
+                // Restore the original onClick handler
+                floatingMenuButton.setOnClickListener(v -> {
+                    if (!isMovingButton) {
+                        gameMenuCallbacks.showMenu(null);
+                    }
+                });
             }
         }
     }

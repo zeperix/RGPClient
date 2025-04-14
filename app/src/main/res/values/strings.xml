@@ -623,5 +623,6 @@
     <string name="gamepad_layout_edit_mode">Đang ở chế độ chỉnh sửa layout. Kéo và thả các nút để điều chỉnh. Nhấn nút menu để lưu thay đổi.</string>
     <string name="gamepad_layout_save_dialog_title">Lưu layout</string>
     <string name="gamepad_layout_save_dialog_message">Bạn có muốn lưu thay đổi vào layout \"%1$s\"?</string>
+    <string name="gamepad_layout_editing_started">Đang chỉnh sửa layout %1$s. Nhấn nút lưu (nút menu) khi hoàn tất.</string>
     <!-- End of Gamepad Layout Management -->
 </resources>
