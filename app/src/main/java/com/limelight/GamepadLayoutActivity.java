@@ -36,7 +36,7 @@ public class GamepadLayoutActivity extends Activity {
     public static final int RESULT_LAYOUT_EDIT = 101;
     
     private GamepadLayoutManager layoutManager;
-    private View layoutListContainer;
+    private FrameLayout layoutListContainer;
     private LayoutAdapter layoutAdapter;
     private Button btnNewLayout;
     private Game gameActivity;

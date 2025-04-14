@@ -3661,8 +3661,36 @@ public class Game extends Activity implements SurfaceHolder.Callback,
     }
 
     private void updateFloatingButtonVisibility() {
-        if (floatingMenuButton != null) {
-            floatingMenuButton.setVisibility(prefConfig.enableBackMenu ? View.VISIBLE : View.GONE);
+        if (floatingMenuButton == null) {
+            return;
+        }
+        
+        if (isEditingLayout) {
+            // When in layout editing mode, show the save icon
+            floatingMenuButton.setVisibility(View.VISIBLE);
+            floatingMenuButton.setImageResource(R.drawable.ic_save); // Use a save icon
+            
+            // Change the onClick behavior to save the layout
+            floatingMenuButton.setOnClickListener(v -> {
+                if (!isMovingButton) {
+                    stopEditingLayout(true);
+                }
+            });
+        } else {
+            // Regular functionality - respect the preference setting
+            if (gameMenuCallbacks == null || prefConfig == null || !prefConfig.enableBackMenu) {
+                floatingMenuButton.setVisibility(View.GONE);
+            } else {
+                floatingMenuButton.setVisibility(View.VISIBLE);
+                floatingMenuButton.setImageResource(R.drawable.ic_menu);
+                
+                // Restore the original onClick handler
+                floatingMenuButton.setOnClickListener(v -> {
+                    if (!isMovingButton) {
+                        gameMenuCallbacks.showMenu(null);
+                    }
+                });
+            }
         }
     }
 
@@ -3772,40 +3800,6 @@ public class Game extends Activity implements SurfaceHolder.Callback,
                     // Start editing this layout
                     startEditingLayout(layoutName);
                 }
-            }
-        }
-    }
-
-    // This updates the floating menu button's function based on whether we're editing a layout
-    private void updateFloatingButtonVisibility() {
-        if (floatingMenuButton == null) {
-            return;
-        }
-        
-        if (isEditingLayout) {
-            floatingMenuButton.setVisibility(View.VISIBLE);
-            floatingMenuButton.setImageResource(R.drawable.ic_save); // Use a save icon
-            
-            // Change the onClick behavior to save the layout
-            floatingMenuButton.setOnClickListener(v -> {
-                if (!isMovingButton) {
-                    stopEditingLayout(true);
-                }
-            });
-        } else {
-            // Restore normal functionality
-            if (gameMenuCallbacks == null) {
-                floatingMenuButton.setVisibility(View.GONE);
-            } else {
-                floatingMenuButton.setVisibility(View.VISIBLE);
-                floatingMenuButton.setImageResource(R.drawable.ic_menu);
-                
-                // Restore the original onClick handler
-                floatingMenuButton.setOnClickListener(v -> {
-                    if (!isMovingButton) {
-                        gameMenuCallbacks.showMenu(null);
-                    }
-                });
             }
         }
     }
