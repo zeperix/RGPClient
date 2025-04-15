@@ -280,18 +280,26 @@ public class VirtualController {
      * This will cycle through all configuration modes
      */
     public void configureController() {
-        // Change to configuration mode (disable/enable buttons)
-        currentMode = ControllerMode.DisableEnableButtons;
-        
-        // Make sure all elements are visible for configuration
-        showElements();
-        
-        // Make configuration button visible
-        buttonConfigure.setVisibility(View.VISIBLE);
-        
-        Toast.makeText(context, context.getString(R.string.configuration_mode_disable_enable_buttons), Toast.LENGTH_SHORT).show();
-        
-        invalidateAll();
+        try {
+            // Change to configuration mode (disable/enable buttons)
+            currentMode = ControllerMode.DisableEnableButtons;
+            
+            // Make sure all elements are visible for configuration
+            showElements();
+            
+            // Make configuration button visible
+            buttonConfigure.setVisibility(View.VISIBLE);
+            
+            // Toast a message about the mode
+            Toast.makeText(context, "Configuration mode: Toggle buttons on/off", Toast.LENGTH_SHORT).show();
+            
+            // Invalidate all views to force redraw
+            invalidateAll();
+            
+            LimeLog.info("Virtual controller entering configuration mode");
+        } catch (Exception e) {
+            LimeLog.severe("Error entering configuration mode: " + e.getMessage());
+        }
     }
     
     /**
@@ -299,21 +307,25 @@ public class VirtualController {
      * @param mode The mode to set
      */
     public void setControllerMode(ControllerMode mode) {
-        currentMode = mode;
-        
-        if (mode == ControllerMode.Active) {
-            // Only show enabled elements in active mode
-            showEnabledElements();
-            // Keep the configuration button visible in active mode
-            buttonConfigure.setVisibility(View.VISIBLE);
-        } else {
-            // In configuration mode, show all elements
-            showElements();
-            // Always make configuration button visible in configuration modes
-            buttonConfigure.setVisibility(View.VISIBLE);
+        try {
+            currentMode = mode;
+            
+            if (mode == ControllerMode.Active) {
+                // Only show enabled elements in active mode
+                showEnabledElements();
+                // Keep the configuration button visible in active mode
+                buttonConfigure.setVisibility(View.VISIBLE);
+            } else {
+                // In configuration mode, show all elements
+                showElements();
+                // Always make configuration button visible in configuration modes
+                buttonConfigure.setVisibility(View.VISIBLE);
+            }
+            
+            invalidateAll();
+        } catch (Exception e) {
+            LimeLog.severe("Error setting controller mode: " + e.getMessage());
         }
-        
-        invalidateAll();
     }
 
     /**
@@ -342,8 +354,13 @@ public class VirtualController {
      * Stop configuration mode and return to active mode
      */
     public void stopConfiguration() {
-        // Return to active mode
-        setControllerMode(ControllerMode.Active);
+        try {
+            // Return to active mode
+            setControllerMode(ControllerMode.Active);
+            LimeLog.info("Virtual controller exiting configuration mode");
+        } catch (Exception e) {
+            LimeLog.severe("Error stopping configuration mode: " + e.getMessage());
+        }
     }
 
     public boolean isVisible() {
