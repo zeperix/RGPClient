@@ -761,7 +761,7 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
     private void initVirtualController(){
         if(virtualController == null){
-            int controllerMargin = UiHelper.dpToPx(this, 15);
+            int controllerMargin = Math.round(UiHelper.dpToPx(this, 15));
             
             // Use the rootView instead of looking for a non-existent verticalLayout
             FrameLayout containerLayout = (FrameLayout)rootView;
