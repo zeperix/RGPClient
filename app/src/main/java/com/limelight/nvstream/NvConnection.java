@@ -627,6 +627,18 @@ public class NvConnection {
         }
     }
 
+    /**
+     * Resume the application stream if it was paused
+     */
+    public void resumeApp() {
+        // Implement app resumption logic if needed
+        // This method is called when returning from layout selection
+        LimeLog.info("Resuming application stream");
+        
+        // No specific action needed for now - the stream continues automatically
+        // In the future, if specific resumption steps are required, they can be added here
+    }
+    
     public static String findExternalAddressForMdns(String stunHostname, int stunPort) {
         return MoonBridge.findExternalAddressIP4(stunHostname, stunPort);
     }

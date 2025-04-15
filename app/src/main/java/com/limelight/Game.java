@@ -111,6 +111,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import com.limelight.binding.input.virtual_controller.GamepadLayoutManager;
+import android.util.DisplayMetrics;
 
 public class Game extends Activity implements SurfaceHolder.Callback,
         OnGenericMotionListener, OnTouchListener, NvConnectionListener, EvdevListener,
@@ -760,12 +761,13 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
     private void initVirtualController(){
         if(virtualController == null){
-            int controllerMargin = Utils.dpToPx(this, 15);
+            int controllerMargin = UiHelper.dpToPx(this, 15);
             
-            FrameLayout verticalLayout = findViewById(R.id.verticalLayout);
+            // Use the rootView instead of looking for a non-existent verticalLayout
+            FrameLayout containerLayout = (FrameLayout)rootView;
             
             DisplayMetrics screen = getResources().getDisplayMetrics();
-            virtualController = new VirtualController(controllerHandler, verticalLayout, this);
+            virtualController = new VirtualController(controllerHandler, containerLayout, this);
             virtualController.refreshLayout();
             
             // Khởi tạo GamepadLayoutManager nếu chưa tồn tại
@@ -945,8 +947,7 @@ public class Game extends Activity implements SurfaceHolder.Callback,
                 isHidingOverlays = false;
                 
                 // Restore overlays to previous state when leaving PiP
-
-                if (virtualController != null && wasVCVisible && !isInEditMode) {
+                if (virtualController != null && wasVCVisible && !isEditingLayout) {
                     virtualController.show();
                 }
 

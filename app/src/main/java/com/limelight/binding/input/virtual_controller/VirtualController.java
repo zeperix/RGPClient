@@ -336,4 +336,9 @@ public class VirtualController {
         // Return to active mode
         setControllerMode(ControllerMode.Active);
     }
+
+    public boolean isVisible() {
+        // Check if the configuration button is visible as an indicator of visibility
+        return buttonConfigure.getVisibility() == View.VISIBLE;
+    }
 }
