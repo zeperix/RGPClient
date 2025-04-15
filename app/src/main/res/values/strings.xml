@@ -625,4 +625,8 @@
     <string name="gamepad_layout_save_dialog_message">Bạn có muốn lưu thay đổi vào layout \"%1$s\"?</string>
     <string name="gamepad_layout_editing_started">Đang chỉnh sửa layout %1$s. Nhấn nút lưu (nút menu) khi hoàn tất.</string>
     <!-- End of Gamepad Layout Management -->
+
+    <!-- Virtual Controller Toast Messages -->
+    <string name="virtual_controller_shown">Đã hiển thị bộ điều khiển ảo</string>
+    <string name="virtual_controller_hidden">Đã ẩn bộ điều khiển ảo</string>
 </resources>

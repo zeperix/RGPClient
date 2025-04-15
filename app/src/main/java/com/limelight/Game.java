@@ -759,13 +759,25 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
 
     private void initVirtualController(){
-        virtualController = new VirtualController(controllerHandler, (FrameLayout)rootView, this);
-        virtualController.refreshLayout();
-        virtualController.show();
-        
-        // Initialize gamepad layout manager
-        if (gamepadLayoutManager == null) {
-            gamepadLayoutManager = new GamepadLayoutManager(this, virtualController);
+        if(virtualController == null){
+            int controllerMargin = Utils.dpToPx(this, 15);
+            
+            FrameLayout verticalLayout = findViewById(R.id.verticalLayout);
+            
+            DisplayMetrics screen = getResources().getDisplayMetrics();
+            virtualController = new VirtualController(controllerHandler, verticalLayout, this);
+            virtualController.refreshLayout();
+            
+            // Khởi tạo GamepadLayoutManager nếu chưa tồn tại
+            if (gamepadLayoutManager == null) {
+                gamepadLayoutManager = new GamepadLayoutManager(this, virtualController);
+            }
+            
+            if (prefConfig != null && prefConfig.onscreenController) {
+                virtualController.show();
+            } else {
+                virtualController.hide();
+            }
         }
     }
 
@@ -794,12 +806,28 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
     //显示隐藏虚拟手柄控制器
     public void showHideVirtualController(){
-        if(virtualController==null){
+        if (virtualController == null) {
             initVirtualController();
-            prefConfig.onscreenController=true;
-            return;
+            // Make sure to apply the current saved layout
+            if (gamepadLayoutManager != null) {
+                gamepadLayoutManager.loadLayout(gamepadLayoutManager.getCurrentLayoutName());
+            }
+            virtualController.show();
+            prefConfig.onscreenController = true;
+            Toast.makeText(this, R.string.virtual_controller_shown, Toast.LENGTH_SHORT).show();
+        } else {
+            int result = virtualController.switchShowHide();
+            prefConfig.onscreenController = (result != 0);
+            if (result == 0) {
+                Toast.makeText(this, R.string.virtual_controller_hidden, Toast.LENGTH_SHORT).show();
+            } else {
+                // Khi hiển thị lại, hãy đảm bảo áp dụng layout hiện tại
+                if (gamepadLayoutManager != null) {
+                    gamepadLayoutManager.loadLayout(gamepadLayoutManager.getCurrentLayoutName());
+                }
+                Toast.makeText(this, R.string.virtual_controller_shown, Toast.LENGTH_SHORT).show();
+            }
         }
-        prefConfig.onscreenController= virtualController.switchShowHide() != 0;
     }
 
     private void setPreferredOrientationForCurrentDisplay() {
@@ -848,13 +876,33 @@ public class Game extends Activity implements SurfaceHolder.Callback,
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
+        
         // Set requested orientation for possible new screen size
         setPreferredOrientationForCurrentDisplay();
-
+        
+        // Save virtual controller state if exists
+        boolean wasVCVisible = false;
+        boolean wasInEditMode = isEditingLayout;
+        String editingLayout = currentEditingLayout;
+        
         if (virtualController != null) {
+            // Check if the controller was visible
+            wasVCVisible = virtualController.isVisible();
+            
             // Refresh layout of OSC for possible new screen size
             virtualController.refreshLayout();
+            
+            // Reload current layout
+            if (gamepadLayoutManager != null) {
+                gamepadLayoutManager.loadLayout(gamepadLayoutManager.getCurrentLayoutName());
+            }
+            
+            // Restore edit mode if needed
+            if (wasInEditMode && editingLayout != null) {
+                startEditingLayout(editingLayout);
+            } else if (wasVCVisible) {
+                virtualController.show();
+            }
         }
 
         if(keyBoardController != null){
@@ -895,17 +943,17 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             }
             else {
                 isHidingOverlays = false;
-
+                
                 // Restore overlays to previous state when leaving PiP
 
-                if (virtualController != null) {
+                if (virtualController != null && wasVCVisible && !isInEditMode) {
                     virtualController.show();
                 }
 
                 if (keyBoardController != null && keyBoardController.shown) {
                     keyBoardController.show();
                 }
-
+                
                 if(keyBoardLayoutController!=null && keyBoardLayoutController.shown){
                     keyBoardLayoutController.show();
                 }
@@ -3718,6 +3766,11 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         currentEditingLayout = layoutName;
         isEditingLayout = true;
         
+        // Ensure we initialize virtual controller if it doesn't exist
+        if (virtualController == null) {
+            initVirtualController();
+        }
+        
         // Load the layout if needed
         if (gamepadLayoutManager != null) {
             gamepadLayoutManager.loadLayout(layoutName);
@@ -3733,6 +3786,9 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             
             // Update floating menu button to save layout when clicked
             updateFloatingButtonVisibility();
+            
+            // Ensure this activity remains in the foreground
+            hideSystemUi(1000);
             
             Toast.makeText(this, getString(R.string.gamepad_layout_editing_started, layoutName), 
                     Toast.LENGTH_SHORT).show();
@@ -3783,11 +3839,17 @@ public class Game extends Activity implements SurfaceHolder.Callback,
                 // A layout was selected, load it and show the virtual controller
                 String layoutName = data.getStringExtra(GamepadLayoutActivity.EXTRA_SELECTED_LAYOUT);
                 if (layoutName != null && !layoutName.isEmpty() && gamepadLayoutManager != null) {
+                    // Ensure virtual controller is initialized
+                    if (virtualController == null) {
+                        initVirtualController();
+                    }
+                    
                     // Load the selected layout
                     if (gamepadLayoutManager.loadLayout(layoutName)) {
                         // Make sure virtual controller is visible after selecting a layout
                         if (virtualController != null) {
                             virtualController.show();
+                            prefConfig.onscreenController = true;
                             Toast.makeText(this, getString(R.string.gamepad_layout_selected, layoutName), 
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -3800,6 +3862,13 @@ public class Game extends Activity implements SurfaceHolder.Callback,
                     // Start editing this layout
                     startEditingLayout(layoutName);
                 }
+            }
+            // Resume normal game operations that might have been paused
+            hideSystemUi(1000);
+            
+            // Ensure stream continues
+            if (conn != null) {
+                conn.resumeApp();
             }
         }
     }

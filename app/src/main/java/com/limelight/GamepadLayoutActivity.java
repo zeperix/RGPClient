@@ -70,6 +70,12 @@ public class GamepadLayoutActivity extends Activity {
             
             try {
                 layoutManager = new GamepadLayoutManager(this, virtualController);
+                
+                // Check if there's a current layout passed from the intent
+                String currentLayout = getIntent().getStringExtra("current_layout");
+                if (currentLayout != null && !currentLayout.isEmpty()) {
+                    layoutManager.setCurrentLayoutName(currentLayout);
+                }
             } catch (Exception e) {
                 Log.e(TAG, "Error initializing GamepadLayoutManager", e);
                 Toast.makeText(this, "Error: Failed to initialize layout manager", Toast.LENGTH_SHORT).show();
@@ -114,10 +120,17 @@ public class GamepadLayoutActivity extends Activity {
         if (isLandscape) {
             // Use GridView for landscape orientation
             GridView gridView = new GridView(this);
-            gridView.setNumColumns(3); // Adjust columns as needed
+            gridView.setNumColumns(2); // Adjust columns as needed
             gridView.setVerticalSpacing(20);
             gridView.setHorizontalSpacing(20);
             gridView.setPadding(20, 20, 20, 20);
+            
+            // Add specific settings for landscape layout
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
+            gridView.setLayoutParams(params);
+            
             layoutView = gridView;
         } else {
             // Use ListView for portrait orientation
@@ -131,9 +144,7 @@ public class GamepadLayoutActivity extends Activity {
         layoutView.setId(R.id.layout_list);
         
         // Add the new view to container
-        layoutListContainer.addView(layoutView, new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
+        layoutListContainer.addView(layoutView);
         
         // Load available layouts and set adapter
         List<String> layouts = layoutManager.getAvailableLayouts();
