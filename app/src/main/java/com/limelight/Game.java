@@ -112,6 +112,7 @@ import java.util.Map;
 
 import com.limelight.binding.input.virtual_controller.GamepadLayoutManager;
 import android.util.DisplayMetrics;
+import com.limelight.binding.input.virtual_controller.VirtualControllerConfigurationLoader;
 
 public class Game extends Activity implements SurfaceHolder.Callback,
         OnGenericMotionListener, OnTouchListener, NvConnectionListener, EvdevListener,
@@ -761,25 +762,44 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
     private void initVirtualController(){
         if(virtualController == null){
-            // Get controller margin in pixels
-            int controllerMargin = Math.round(UiHelper.dpToPx(this, 15));
-            
-            // Use the existing rootView as the container - do not look for verticalLayout
-            FrameLayout containerLayout = (FrameLayout)findViewById(android.R.id.content);
-            
-            DisplayMetrics screen = getResources().getDisplayMetrics();
-            virtualController = new VirtualController(controllerHandler, containerLayout, this);
-            virtualController.refreshLayout();
-            
-            // Initialize GamepadLayoutManager if it doesn't exist yet
-            if (gamepadLayoutManager == null) {
-                gamepadLayoutManager = new GamepadLayoutManager(this, virtualController);
-            }
-            
-            if (prefConfig != null && prefConfig.onscreenController) {
-                virtualController.show();
-            } else {
-                virtualController.hide();
+            try {
+                // Get controller margin in pixels using proper rounding
+                int controllerMargin = Math.round(UiHelper.dpToPx(this, 15));
+                
+                // Use the content frame layout which is guaranteed to exist
+                FrameLayout containerLayout = (FrameLayout)findViewById(android.R.id.content);
+                
+                if (containerLayout == null) {
+                    LimeLog.severe("Failed to find content layout for virtual controller");
+                    Toast.makeText(this, "Error: Cannot initialize virtual controller - layout not found", 
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                
+                // Create and initialize the virtual controller
+                LimeLog.info("Initializing virtual controller with container: " + containerLayout);
+                virtualController = new VirtualController(controllerHandler, containerLayout, this);
+                virtualController.refreshLayout();
+                
+                // Initialize GamepadLayoutManager if it doesn't exist yet
+                if (gamepadLayoutManager == null) {
+                    LimeLog.info("Creating new GamepadLayoutManager");
+                    gamepadLayoutManager = new GamepadLayoutManager(this, virtualController);
+                }
+                
+                // Set visibility based on preference
+                if (prefConfig != null && prefConfig.onscreenController) {
+                    virtualController.show();
+                } else {
+                    virtualController.hide();
+                }
+                
+                LimeLog.info("Virtual controller initialized successfully");
+            } catch (Exception e) {
+                LimeLog.severe("Error initializing virtual controller: " + e.getMessage());
+                e.printStackTrace();
+                Toast.makeText(this, "Failed to initialize virtual controller: " + e.getMessage(), 
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -3761,41 +3781,56 @@ public class Game extends Activity implements SurfaceHolder.Callback,
      */
     public void startEditingLayout(String layoutName) {
         if (layoutName == null || layoutName.isEmpty()) {
+            LimeLog.warning("Cannot start editing: invalid layout name");
             return;
         }
         
         try {
+            LimeLog.info("Starting layout editing for: " + layoutName);
+            
             // Update the editing state
             currentEditingLayout = layoutName;
             isEditingLayout = true;
             
             // Ensure we initialize virtual controller if it doesn't exist
             if (virtualController == null) {
+                LimeLog.info("Initializing virtual controller for editing");
                 initVirtualController();
+            }
+            
+            // Make sure virtual controller exists after initialization
+            if (virtualController == null) {
+                LimeLog.severe("Failed to initialize virtual controller for editing");
+                isEditingLayout = false;
+                currentEditingLayout = null;
+                Toast.makeText(this, "Failed to initialize controller for editing", Toast.LENGTH_SHORT).show();
+                return;
             }
             
             // Load the layout if needed
             if (gamepadLayoutManager != null) {
-                gamepadLayoutManager.loadLayout(layoutName);
+                boolean loaded = gamepadLayoutManager.loadLayout(layoutName);
+                if (!loaded) {
+                    LimeLog.warning("Could not load layout, using current configuration: " + layoutName);
+                }
+            } else {
+                LimeLog.warning("GamepadLayoutManager is null, cannot load layout");
             }
             
-            // Make virtual controller visible if not already visible
-            if (virtualController != null) {
-                // First make sure virtual controller is visible
-                virtualController.show();
-                
-                // Then start configuration mode
-                virtualController.startConfiguration();
-                
-                // Update floating menu button to save layout when clicked
-                updateFloatingButtonVisibility();
-                
-                // Ensure this activity remains in the foreground
-                hideSystemUi(1000);
-                
-                Toast.makeText(this, getString(R.string.gamepad_layout_editing_started, layoutName), 
-                        Toast.LENGTH_SHORT).show();
-            }
+            // Make virtual controller visible and enter configuration mode
+            virtualController.show();
+            virtualController.startConfiguration();
+            
+            // Update floating menu button to save layout when clicked
+            updateFloatingButtonVisibility();
+            
+            // Ensure this activity remains in the foreground
+            hideSystemUi(1000);
+            
+            Toast.makeText(this, getString(R.string.gamepad_layout_editing_started, layoutName), 
+                    Toast.LENGTH_SHORT).show();
+            LimeLog.info("Successfully entered layout editing mode for: " + layoutName);
+            
         } catch (Exception e) {
             // Log any errors that occur
             LimeLog.severe("Error starting layout editing mode: " + e.getMessage());
@@ -3816,26 +3851,43 @@ public class Game extends Activity implements SurfaceHolder.Callback,
      */
     public void stopEditingLayout(boolean save) {
         if (!isEditingLayout || currentEditingLayout == null) {
+            LimeLog.warning("Cannot stop editing: not in edit mode");
             return;
         }
         
         try {
+            LimeLog.info("Stopping layout editing for: " + currentEditingLayout + ", save=" + save);
+            
+            String layoutName = currentEditingLayout;
+            
             if (save && gamepadLayoutManager != null) {
-                // Save the current layout
-                boolean saved = gamepadLayoutManager.saveLayout(currentEditingLayout);
+                // Save the current layout to file
+                boolean savedToFile = gamepadLayoutManager.saveLayout(layoutName);
                 
-                if (saved) {
+                if (savedToFile) {
+                    LimeLog.info("Successfully saved layout to file: " + layoutName);
+                    
                     // Also save to preferences
                     if (virtualController != null) {
-                        VirtualControllerConfigurationLoader.saveProfile(virtualController, this);
+                        try {
+                            VirtualControllerConfigurationLoader.saveProfile(virtualController, this);
+                            LimeLog.info("Successfully saved controller profile to preferences");
+                        } catch (Exception e) {
+                            LimeLog.warning("Error saving to preferences: " + e.getMessage());
+                        }
+                    } else {
+                        LimeLog.warning("Cannot save profile to preferences, controller is null");
                     }
                     
-                    Toast.makeText(this, getString(R.string.gamepad_layout_saved, currentEditingLayout), 
+                    Toast.makeText(this, getString(R.string.gamepad_layout_saved, layoutName), 
                             Toast.LENGTH_SHORT).show();
                 } else {
+                    LimeLog.warning("Failed to save layout file: " + layoutName);
                     Toast.makeText(this, getString(R.string.gamepad_layout_save_failed), 
                             Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                LimeLog.info("Exiting edit mode without saving");
             }
             
             // Reset the editing state
@@ -3844,11 +3896,16 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             
             // Return virtual controller to normal
             if (virtualController != null) {
+                LimeLog.info("Stopping controller configuration mode");
                 virtualController.stopConfiguration();
+            } else {
+                LimeLog.warning("Cannot stop configuration, controller is null");
             }
             
             // Restore the floating menu button functionality
             updateFloatingButtonVisibility();
+            
+            LimeLog.info("Successfully exited layout editing mode");
             
         } catch (Exception e) {
             // Log any errors
@@ -3865,9 +3922,18 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             
             // Try to restore UI
             if (virtualController != null) {
-                virtualController.stopConfiguration();
+                try {
+                    virtualController.stopConfiguration();
+                } catch (Exception ex) {
+                    LimeLog.warning("Error stopping configuration after error: " + ex.getMessage());
+                }
             }
-            updateFloatingButtonVisibility();
+            
+            try {
+                updateFloatingButtonVisibility();
+            } catch (Exception ex) {
+                LimeLog.warning("Error updating button visibility after error: " + ex.getMessage());
+            }
         }
     }
     
@@ -3884,50 +3950,55 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         
         try {
             if (requestCode == GameMenu.REQUEST_GAMEPAD_LAYOUT) {
-                LimeLog.info("Returning from layout selection/edit activity with result: " + resultCode);
+                LimeLog.info("Returning from gamepad layout activity with result: " + resultCode);
+                
+                // Always ensure the UI is visible after returning from layout selection
+                hideSystemUi(1000);
                 
                 if (resultCode == GamepadLayoutActivity.RESULT_LAYOUT_SELECTED) {
                     // A layout was selected, load it and show the virtual controller
                     String layoutName = data.getStringExtra(GamepadLayoutActivity.EXTRA_SELECTED_LAYOUT);
-                    if (layoutName != null && !layoutName.isEmpty() && gamepadLayoutManager != null) {
+                    if (layoutName != null && !layoutName.isEmpty()) {
+                        LimeLog.info("Selected layout: " + layoutName);
+                        
                         // Ensure virtual controller is initialized
                         if (virtualController == null) {
                             initVirtualController();
                         }
                         
                         // Load the selected layout
-                        if (gamepadLayoutManager.loadLayout(layoutName)) {
+                        if (gamepadLayoutManager != null && gamepadLayoutManager.loadLayout(layoutName)) {
                             // Make sure virtual controller is visible after selecting a layout
                             if (virtualController != null) {
                                 virtualController.show();
                                 prefConfig.onscreenController = true;
                                 Toast.makeText(this, getString(R.string.gamepad_layout_selected, layoutName), 
                                         Toast.LENGTH_SHORT).show();
+                                LimeLog.info("Successfully loaded and applied layout: " + layoutName);
                             }
                         } else {
                             Toast.makeText(this, R.string.gamepad_layout_load_failed, Toast.LENGTH_SHORT).show();
+                            LimeLog.warning("Failed to load layout: " + layoutName);
                         }
                     }
                 } else if (resultCode == GamepadLayoutActivity.RESULT_LAYOUT_EDIT) {
                     // A layout was selected for editing
                     String layoutName = data.getStringExtra(GamepadLayoutActivity.EXTRA_SELECTED_LAYOUT);
                     if (layoutName != null && !layoutName.isEmpty()) {
+                        LimeLog.info("Preparing to edit layout: " + layoutName);
+                        
                         // Start editing this layout
                         startEditingLayout(layoutName);
                     }
                 }
                 
-                // Resume normal game operations that might have been paused
-                hideSystemUi(1000);
-                
-                // Make no connection changes that might cause disconnection
-                // Just log that we're resuming
-                LimeLog.info("Resuming normal game operation after layout selection/editing");
+                // No connection operations that might cause a disconnect
+                LimeLog.info("Resuming normal game operation - no connection changes needed");
             }
         } catch (Exception e) {
-            LimeLog.severe("Error in onActivityResult: " + e.getMessage());
+            LimeLog.severe("Error handling activity result: " + e.getMessage());
             e.printStackTrace();
-            Toast.makeText(this, "Error processing layout: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error handling layout: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 }
