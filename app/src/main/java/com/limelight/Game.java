@@ -761,16 +761,17 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
     private void initVirtualController(){
         if(virtualController == null){
+            // Get controller margin in pixels
             int controllerMargin = Math.round(UiHelper.dpToPx(this, 15));
             
-            // Use the rootView instead of looking for a non-existent verticalLayout
-            FrameLayout containerLayout = (FrameLayout)rootView;
+            // Use the existing rootView as the container - do not look for verticalLayout
+            FrameLayout containerLayout = (FrameLayout)findViewById(android.R.id.content);
             
             DisplayMetrics screen = getResources().getDisplayMetrics();
             virtualController = new VirtualController(controllerHandler, containerLayout, this);
             virtualController.refreshLayout();
             
-            // Khởi tạo GamepadLayoutManager nếu chưa tồn tại
+            // Initialize GamepadLayoutManager if it doesn't exist yet
             if (gamepadLayoutManager == null) {
                 gamepadLayoutManager = new GamepadLayoutManager(this, virtualController);
             }
@@ -3867,8 +3868,10 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             // Resume normal game operations that might have been paused
             hideSystemUi(1000);
             
-            // Ensure stream continues
+            // Call resumeApp but don't perform any actual connection operations
+            // that might cause a disconnect
             if (conn != null) {
+                // Just log the event without attempting to restart the connection
                 conn.resumeApp();
             }
         }

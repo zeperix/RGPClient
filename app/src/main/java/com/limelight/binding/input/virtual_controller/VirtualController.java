@@ -283,8 +283,13 @@ public class VirtualController {
         // Change to configuration mode (disable/enable buttons)
         currentMode = ControllerMode.DisableEnableButtons;
         
+        // Make sure all elements are visible for configuration
+        showElements();
+        
         // Make configuration button visible
         buttonConfigure.setVisibility(View.VISIBLE);
+        
+        Toast.makeText(context, context.getString(R.string.configuration_mode_disable_enable_buttons), Toast.LENGTH_SHORT).show();
         
         invalidateAll();
     }
@@ -297,11 +302,8 @@ public class VirtualController {
         currentMode = mode;
         
         if (mode == ControllerMode.Active) {
-            // Hide configuration button in active mode
-            buttonConfigure.setVisibility(View.GONE);
-        } else {
-            // Show configuration button in configuration modes
-            buttonConfigure.setVisibility(View.VISIBLE);
+            // Only show enabled elements in active mode
+            showEnabledElements();
         }
         
         invalidateAll();

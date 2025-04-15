@@ -629,14 +629,14 @@ public class NvConnection {
 
     /**
      * Resume the application stream if it was paused
+     * This is called when returning from layout selection
      */
     public void resumeApp() {
-        // Implement app resumption logic if needed
-        // This method is called when returning from layout selection
-        LimeLog.info("Resuming application stream");
+        // Simply log the action but don't perform any operations that could cause a disconnect
+        LimeLog.info("Resuming application stream after UI operation");
         
-        // No specific action needed for now - the stream continues automatically
-        // In the future, if specific resumption steps are required, they can be added here
+        // The stream should continue on its own without any special action needed
+        // Attempting to stop/restart the connection here would cause a disconnect
     }
     
     public static String findExternalAddressForMdns(String stunHostname, int stunPort) {
