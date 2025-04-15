@@ -304,6 +304,13 @@ public class VirtualController {
         if (mode == ControllerMode.Active) {
             // Only show enabled elements in active mode
             showEnabledElements();
+            // Keep the configuration button visible in active mode
+            buttonConfigure.setVisibility(View.VISIBLE);
+        } else {
+            // In configuration mode, show all elements
+            showElements();
+            // Always make configuration button visible in configuration modes
+            buttonConfigure.setVisibility(View.VISIBLE);
         }
         
         invalidateAll();

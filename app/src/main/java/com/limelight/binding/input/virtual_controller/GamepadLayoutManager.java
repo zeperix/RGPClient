@@ -91,18 +91,34 @@ public class GamepadLayoutManager {
             layoutJson.put("elements", elementsJson);
             layoutJson.put("name", layoutName);
             
+            // Create the layout directory if it doesn't exist
+            File layoutsDir = getLayoutsDir();
+            if (!layoutsDir.exists()) {
+                boolean created = layoutsDir.mkdirs();
+                if (!created) {
+                    Log.e(TAG, "Failed to create layouts directory: " + layoutsDir.getAbsolutePath());
+                    Toast.makeText(context, "Failed to create layouts directory", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }
+            
             // Save to file
-            File layoutFile = new File(getLayoutsDir(), layoutName + FILE_EXTENSION);
+            File layoutFile = new File(layoutsDir, layoutName + FILE_EXTENSION);
             try (FileOutputStream fos = new FileOutputStream(layoutFile)) {
-                fos.write(layoutJson.toString().getBytes(StandardCharsets.UTF_8));
+                String jsonString = layoutJson.toString();
+                fos.write(jsonString.getBytes(StandardCharsets.UTF_8));
+                Log.i(TAG, "Successfully saved layout to " + layoutFile.getAbsolutePath());
+                Log.d(TAG, "Layout JSON: " + jsonString);
                 return true;
             } catch (IOException e) {
                 Log.e(TAG, "Failed to save layout file: " + layoutFile.getAbsolutePath(), e);
+                Toast.makeText(context, "Failed to save layout: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 return false;
             }
             
         } catch (JSONException e) {
             Log.e(TAG, "Failed to create layout JSON", e);
+            Toast.makeText(context, "Failed to create layout JSON: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             return false;
         }
     }
@@ -189,6 +205,9 @@ public class GamepadLayoutManager {
     
     private File getLayoutsDir() {
         File filesDir = context.getFilesDir();
-        return new File(filesDir, LAYOUTS_DIR);
+        Log.d(TAG, "App files directory: " + filesDir.getAbsolutePath());
+        File layoutsDir = new File(filesDir, LAYOUTS_DIR);
+        Log.d(TAG, "Layouts directory: " + layoutsDir.getAbsolutePath());
+        return layoutsDir;
     }
 } 

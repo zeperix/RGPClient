@@ -413,18 +413,31 @@ public class VirtualControllerConfigurationLoader {
 
     public static void saveProfile(final VirtualController controller,
                                    final Context context) {
-        SharedPreferences.Editor prefEditor = context.getSharedPreferences(OSC_PREFERENCE, Activity.MODE_PRIVATE).edit();
-
-        for (VirtualControllerElement element : controller.getElements()) {
-            String prefKey = ""+element.elementId;
-            try {
-                prefEditor.putString(prefKey, element.getConfiguration().toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        if (controller == null || context == null) {
+            return;
         }
-
-        prefEditor.apply();
+        
+        try {
+            SharedPreferences.Editor prefEditor = context.getSharedPreferences(OSC_PREFERENCE, Activity.MODE_PRIVATE).edit();
+    
+            for (VirtualControllerElement element : controller.getElements()) {
+                String prefKey = ""+element.elementId;
+                try {
+                    JSONObject config = element.getConfiguration();
+                    prefEditor.putString(prefKey, config.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+    
+            prefEditor.apply();
+            
+            // Let the user know the layout was saved
+            android.util.Log.i("VirtualController", "Successfully saved controller profile to preferences");
+            
+        } catch (Exception e) {
+            android.util.Log.e("VirtualController", "Failed to save controller profile", e);
+        }
     }
 
     public static void loadFromPreferences(final VirtualController controller, final Context context) {
