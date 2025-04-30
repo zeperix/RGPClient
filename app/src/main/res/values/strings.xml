@@ -632,4 +632,8 @@
     <string name="add">Thêm</string>
     <string name="rename">Đổi tên</string>
     <string name="delete">Xóa</string>
+
+    <!-- Controller config help strings -->
+    <string name="controller_config_help_title">Quản lý cấu hình Gamepad</string>
+    <string name="controller_config_help_content">Bạn có thể tạo và quản lý nhiều cấu hình gamepad khác nhau:\n\n1. Nhấn nút Gamepad ở giữa phía trên màn hình để quản lý cấu hình\n2. Nút "..." ở góc phải để xuất/nhập cấu hình\n3. Cấu hình hiện tại hiển thị ở trên cùng\n\nMỗi cấu hình sẽ lưu vị trí và kích thước của tất cả các nút điều khiển.</string>
 </resources>

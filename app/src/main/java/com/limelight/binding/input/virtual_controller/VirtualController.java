@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
@@ -148,8 +149,8 @@ public class VirtualController {
 
     public void show() {
         showEnabledElements();
-
         buttonConfigure.setVisibility(View.VISIBLE);
+        checkFirstTimeConfigHelp();
     }
 
     public int switchShowHide() {
@@ -214,14 +215,17 @@ public class VirtualController {
         DisplayMetrics screen = context.getResources().getDisplayMetrics();
 
         int buttonSize = (int)(screen.heightPixels*0.06f);
+        
+        // Nút cấu hình chính
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(buttonSize, buttonSize);
         params.leftMargin = 15;
         params.topMargin = 15;
+        buttonConfigure.setAlpha(0.6f); // Tăng độ trong suốt
         frame_layout.addView(buttonConfigure, params);
 
-        // Thêm nút tùy chọn xuất/nhập cấu hình ở góc phải
+        // Thêm nút tùy chọn xuất/nhập và quản lý cấu hình ở góc phải
         Button buttonConfigOptions = new Button(context);
-        buttonConfigOptions.setAlpha(0.25f);
+        buttonConfigOptions.setAlpha(0.6f); // Tăng độ trong suốt
         buttonConfigOptions.setFocusable(false);
         buttonConfigOptions.setBackgroundResource(R.drawable.ic_more_vert);
         buttonConfigOptions.setOnClickListener(new View.OnClickListener() {
@@ -236,6 +240,39 @@ public class VirtualController {
         optionsParams.topMargin = 15;
         optionsParams.gravity = android.view.Gravity.RIGHT;
         frame_layout.addView(buttonConfigOptions, optionsParams);
+        
+        // Hiển thị tên cấu hình hiện tại
+        TextView profileNameView = new TextView(context);
+        String currentProfile = VirtualControllerConfigManager.getCurrentProfileName(context);
+        profileNameView.setText(currentProfile);
+        profileNameView.setTextColor(0xFFFFFFFF);
+        profileNameView.setShadowLayer(3.0f, 1.0f, 1.0f, 0xFF000000);
+        profileNameView.setTextSize(14);
+        profileNameView.setAlpha(0.6f);
+        
+        FrameLayout.LayoutParams profileNameParams = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT);
+        profileNameParams.gravity = android.view.Gravity.CENTER_HORIZONTAL | android.view.Gravity.TOP;
+        profileNameParams.topMargin = 20;
+        frame_layout.addView(profileNameView, profileNameParams);
+        
+        // Thêm nút quản lý cấu hình ở giữa trên cùng
+        Button profileManagerButton = new Button(context);
+        profileManagerButton.setAlpha(0.6f);
+        profileManagerButton.setFocusable(false);
+        profileManagerButton.setBackgroundResource(R.drawable.ic_controller_config);
+        profileManagerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showProfilesDialog();
+            }
+        });
+        
+        FrameLayout.LayoutParams profileButtonParams = new FrameLayout.LayoutParams(buttonSize, buttonSize);
+        profileButtonParams.gravity = android.view.Gravity.CENTER_HORIZONTAL | android.view.Gravity.TOP;
+        profileButtonParams.topMargin = 50;
+        frame_layout.addView(profileManagerButton, profileButtonParams);
 
         // Start with the default layout
         VirtualControllerConfigurationLoader.createDefaultLayout(this, context);
@@ -675,6 +712,31 @@ public class VirtualController {
         
         builder.setNegativeButton(R.string.cancel, null);
         builder.show();
+    }
+
+    /**
+     * Hiển thị hướng dẫn nhanh về quản lý cấu hình gamepad
+     */
+    private void showControllerConfigHelp() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(R.string.controller_config_help_title);
+        builder.setMessage(R.string.controller_config_help_content);
+        builder.setPositiveButton(R.string.proceed, null);
+        builder.show();
+    }
+    
+    /**
+     * Kiểm tra và hiển thị hướng dẫn lần đầu sử dụng
+     */
+    private void checkFirstTimeConfigHelp() {
+        SharedPreferences prefs = context.getSharedPreferences("controller_config_help", Activity.MODE_PRIVATE);
+        boolean hasShownHelp = prefs.getBoolean("shown_help", false);
+        
+        if (!hasShownHelp) {
+            // Hiển thị hướng dẫn và đánh dấu đã hiển thị
+            showControllerConfigHelp();
+            prefs.edit().putBoolean("shown_help", true).apply();
+        }
     }
 
     public ControllerMode getControllerMode() {
