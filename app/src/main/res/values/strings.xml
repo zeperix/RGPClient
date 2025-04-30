@@ -605,4 +605,31 @@
     <string name="title_checkbox_stretch_video" />
 
     <string name="menu_button">Menu</string>
+
+    <string name="unlocking_or_starting">Server is starting or computer is unlocking, please wait…</string>
+    <string name="error_msg_permission_denied">Permission Denied</string>
+    <string name="error_msg_timeout">Connection Timeout</string>
+    <string name="permission_launch_app">Launch Apps</string>
+    <string name="permission_sync_clipboard">Sync Clipboard</string>
+
+    <!-- Gamepad profile strings -->
+    <string name="profiles_controller_config">Quản lý cấu hình</string>
+    <string name="add_profile">Thêm cấu hình mới</string>
+    <string name="profile_name_empty">Tên cấu hình không được để trống</string>
+    <string name="profile_added">Đã thêm cấu hình: %1$s</string>
+    <string name="profile_exists">Cấu hình %1$s đã tồn tại</string>
+    <string name="use_profile">Sử dụng cấu hình này</string>
+    <string name="rename_profile">Đổi tên cấu hình</string>
+    <string name="delete_profile">Xóa cấu hình</string>
+    <string name="profile_switched">Đã chuyển sang cấu hình: %1$s</string>
+    <string name="profile_renamed">Đã đổi tên cấu hình từ %1$s thành %2$s</string>
+    <string name="profile_deleted">Đã xóa cấu hình: %1$s</string>
+    <string name="profile_delete_failed">Không thể xóa cấu hình: %1$s</string>
+    <string name="delete_profile_confirm">Bạn có chắc chắn muốn xóa cấu hình %1$s?</string>
+    <string name="import_options">Tùy chọn nhập</string>
+    <string name="import_overwrite_current">Ghi đè lên cấu hình hiện tại</string>
+    <string name="import_as_new_profile">Nhập thành cấu hình mới</string>
+    <string name="add">Thêm</string>
+    <string name="rename">Đổi tên</string>
+    <string name="delete">Xóa</string>
 </resources>

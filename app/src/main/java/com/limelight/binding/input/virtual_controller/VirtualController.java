@@ -32,6 +32,10 @@ import com.limelight.preferences.PreferenceConfiguration;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import android.text.InputType;
+import android.widget.EditText;
 
 public class VirtualController {
     public static class ControllerInputContext {
@@ -248,7 +252,8 @@ public class VirtualController {
         
         String[] options = {
             context.getString(R.string.export_controller_config),
-            context.getString(R.string.import_controller_config)
+            context.getString(R.string.import_controller_config),
+            context.getString(R.string.profiles_controller_config),
         };
         
         builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -261,6 +266,281 @@ public class VirtualController {
                     case 1: // Nhập cấu hình
                         importControllerConfig();
                         break;
+                    case 2: // Quản lý cấu hình
+                        showProfilesDialog();
+                        break;
+                }
+            }
+        });
+        
+        builder.setNegativeButton(R.string.cancel, null);
+        builder.show();
+    }
+    
+    /**
+     * Hiển thị hộp thoại quản lý cấu hình
+     */
+    private void showProfilesDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(R.string.profiles_controller_config);
+        
+        List<String> profileNames = VirtualControllerConfigManager.getProfileNames(context);
+        String currentProfile = VirtualControllerConfigManager.getCurrentProfileName(context);
+        
+        // Tạo danh sách hiển thị với đánh dấu cấu hình hiện tại
+        String[] displayNames = new String[profileNames.size()];
+        for (int i = 0; i < profileNames.size(); i++) {
+            String profileName = profileNames.get(i);
+            if (profileName.equals(currentProfile)) {
+                displayNames[i] = "✓ " + profileName;
+            } else {
+                displayNames[i] = profileName;
+            }
+        }
+        
+        builder.setItems(displayNames, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                showProfileOptionsDialog(profileNames.get(which));
+            }
+        });
+        
+        builder.setPositiveButton(R.string.add_profile, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                showAddProfileDialog();
+            }
+        });
+        
+        builder.setNegativeButton(R.string.cancel, null);
+        builder.show();
+    }
+    
+    /**
+     * Hiển thị hộp thoại thêm cấu hình mới
+     */
+    private void showAddProfileDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(R.string.add_profile);
+        
+        // Tạo input để nhập tên cấu hình
+        final EditText input = new EditText(context);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+        
+        builder.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String profileName = input.getText().toString().trim();
+                
+                if (profileName.isEmpty()) {
+                    Toast.makeText(context, R.string.profile_name_empty, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                
+                // Lưu cấu hình hiện tại trước khi tạo mới
+                VirtualControllerConfigurationLoader.saveProfile(VirtualController.this, context);
+                
+                // Thêm cấu hình mới
+                if (VirtualControllerConfigManager.addProfile(context, profileName)) {
+                    // Chuyển sang cấu hình mới
+                    VirtualControllerConfigManager.setCurrentProfileName(context, profileName);
+                    
+                    // Làm mới giao diện để áp dụng cấu hình mới
+                    refreshLayout();
+                    
+                    Toast.makeText(context, 
+                        context.getString(R.string.profile_added, profileName), 
+                        Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, 
+                        context.getString(R.string.profile_exists, profileName), 
+                        Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        
+        builder.setNegativeButton(R.string.cancel, null);
+        builder.show();
+    }
+    
+    /**
+     * Hiển thị tùy chọn cho một cấu hình cụ thể
+     */
+    private void showProfileOptionsDialog(final String profileName) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(profileName);
+        
+        String currentProfile = VirtualControllerConfigManager.getCurrentProfileName(context);
+        boolean isCurrentProfile = profileName.equals(currentProfile);
+        
+        // Tạo các tùy chọn dựa trên trạng thái cấu hình
+        List<String> optionsList = new ArrayList<>();
+        final List<Integer> actionsList = new ArrayList<>();
+        
+        if (!isCurrentProfile) {
+            optionsList.add(context.getString(R.string.use_profile));
+            actionsList.add(0); // Sử dụng cấu hình
+        }
+        
+        if (!VirtualControllerConfigManager.DEFAULT_PROFILE_NAME.equals(profileName)) {
+            optionsList.add(context.getString(R.string.rename_profile));
+            actionsList.add(1); // Đổi tên cấu hình
+            
+            optionsList.add(context.getString(R.string.delete_profile));
+            actionsList.add(2); // Xóa cấu hình
+        }
+        
+        // Chuyển danh sách thành mảng
+        String[] options = optionsList.toArray(new String[0]);
+        
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int action = actionsList.get(which);
+                
+                switch (action) {
+                    case 0: // Sử dụng cấu hình
+                        // Lưu cấu hình hiện tại trước khi chuyển
+                        VirtualControllerConfigurationLoader.saveProfile(VirtualController.this, context);
+                        
+                        // Chuyển cấu hình
+                        VirtualControllerConfigManager.setCurrentProfileName(context, profileName);
+                        
+                        // Làm mới giao diện
+                        refreshLayout();
+                        
+                        Toast.makeText(context, 
+                            context.getString(R.string.profile_switched, profileName), 
+                            Toast.LENGTH_SHORT).show();
+                        break;
+                        
+                    case 1: // Đổi tên cấu hình
+                        showRenameProfileDialog(profileName);
+                        break;
+                        
+                    case 2: // Xóa cấu hình
+                        showDeleteProfileConfirmation(profileName);
+                        break;
+                }
+            }
+        });
+        
+        builder.setNegativeButton(R.string.cancel, null);
+        builder.show();
+    }
+    
+    /**
+     * Hiển thị hộp thoại đổi tên cấu hình
+     */
+    private void showRenameProfileDialog(final String oldProfileName) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(R.string.rename_profile);
+        
+        // Tạo input để nhập tên mới
+        final EditText input = new EditText(context);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setText(oldProfileName);
+        builder.setView(input);
+        
+        builder.setPositiveButton(R.string.rename, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String newProfileName = input.getText().toString().trim();
+                
+                if (newProfileName.isEmpty()) {
+                    Toast.makeText(context, R.string.profile_name_empty, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                
+                if (newProfileName.equals(oldProfileName)) {
+                    // Không có thay đổi
+                    return;
+                }
+                
+                // Kiểm tra xem tên mới đã tồn tại chưa
+                List<String> profiles = VirtualControllerConfigManager.getProfileNames(context);
+                if (profiles.contains(newProfileName)) {
+                    Toast.makeText(context,
+                        context.getString(R.string.profile_exists, newProfileName),
+                        Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                
+                // Lưu cấu hình hiện tại
+                String currentProfile = VirtualControllerConfigManager.getCurrentProfileName(context);
+                boolean isCurrentProfile = oldProfileName.equals(currentProfile);
+                
+                // Lưu cấu hình cũ vào SharedPreferences mới
+                String oldPrefName = VirtualControllerConfigManager.getProfilePreferenceName(oldProfileName);
+                String newPrefName = VirtualControllerConfigManager.getProfilePreferenceName(newProfileName);
+                
+                SharedPreferences oldPrefs = context.getSharedPreferences(oldPrefName, Activity.MODE_PRIVATE);
+                SharedPreferences.Editor newPrefsEditor = context.getSharedPreferences(newPrefName, Activity.MODE_PRIVATE).edit();
+                
+                // Sao chép tất cả cấu hình từ cấu hình cũ sang cấu hình mới
+                Map<String, ?> allPrefs = oldPrefs.getAll();
+                for (Map.Entry<String, ?> entry : allPrefs.entrySet()) {
+                    Object value = entry.getValue();
+                    if (value instanceof String) {
+                        newPrefsEditor.putString(entry.getKey(), (String) value);
+                    }
+                }
+                newPrefsEditor.apply();
+                
+                // Xóa cấu hình cũ
+                oldPrefs.edit().clear().apply();
+                
+                // Cập nhật danh sách cấu hình
+                VirtualControllerConfigManager.deleteProfile(context, oldProfileName);
+                VirtualControllerConfigManager.addProfile(context, newProfileName);
+                
+                // Nếu đang sử dụng cấu hình này thì chuyển sang tên mới
+                if (isCurrentProfile) {
+                    VirtualControllerConfigManager.setCurrentProfileName(context, newProfileName);
+                }
+                
+                Toast.makeText(context,
+                    context.getString(R.string.profile_renamed, oldProfileName, newProfileName),
+                    Toast.LENGTH_SHORT).show();
+                
+                // Làm mới giao diện nếu cần
+                if (isCurrentProfile) {
+                    refreshLayout();
+                }
+            }
+        });
+        
+        builder.setNegativeButton(R.string.cancel, null);
+        builder.show();
+    }
+    
+    /**
+     * Hiển thị xác nhận xóa cấu hình
+     */
+    private void showDeleteProfileConfirmation(final String profileName) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(R.string.delete_profile);
+        builder.setMessage(context.getString(R.string.delete_profile_confirm, profileName));
+        
+        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                boolean isCurrentProfile = profileName.equals(VirtualControllerConfigManager.getCurrentProfileName(context));
+                
+                if (VirtualControllerConfigManager.deleteProfile(context, profileName)) {
+                    Toast.makeText(context,
+                        context.getString(R.string.profile_deleted, profileName),
+                        Toast.LENGTH_SHORT).show();
+                    
+                    // Làm mới giao diện nếu cấu hình bị xóa là cấu hình đang sử dụng
+                    if (isCurrentProfile) {
+                        refreshLayout();
+                    }
+                } else {
+                    Toast.makeText(context,
+                        context.getString(R.string.profile_delete_failed, profileName),
+                        Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -343,8 +623,32 @@ public class VirtualController {
         builder.setItems(fileNames, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                showImportOptionsDialog(configFiles[which]);
+            }
+        });
+        
+        builder.setNegativeButton(R.string.cancel, null);
+        builder.show();
+    }
+    
+    /**
+     * Hiển thị tùy chọn khi nhập cấu hình
+     */
+    private void showImportOptionsDialog(final File configFile) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(R.string.import_options);
+        
+        String[] options = {
+            context.getString(R.string.import_overwrite_current),
+            context.getString(R.string.import_as_new_profile)
+        };
+        
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                boolean createNewProfile = (which == 1);
                 boolean success = VirtualControllerConfigManager.importConfig(
-                    VirtualController.this, context, configFiles[which].getAbsolutePath());
+                    VirtualController.this, context, configFile.getAbsolutePath(), createNewProfile);
                 
                 if (success) {
                     Toast.makeText(context, 
