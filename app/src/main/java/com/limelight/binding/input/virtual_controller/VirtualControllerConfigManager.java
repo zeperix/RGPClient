@@ -26,7 +26,7 @@ public class VirtualControllerConfigManager {
     private static final String CONFIG_FILE_EXTENSION = ".json";
     private static final String PROFILES_PREFERENCE = "GAMEPAD_PROFILES";
     private static final String CURRENT_PROFILE_PREFERENCE = "CURRENT_GAMEPAD_PROFILE";
-    private static final String DEFAULT_PROFILE_NAME = "Default";
+    public static final String DEFAULT_PROFILE_NAME = "Default";
     
     /**
      * Lấy tên cấu hình hiện tại

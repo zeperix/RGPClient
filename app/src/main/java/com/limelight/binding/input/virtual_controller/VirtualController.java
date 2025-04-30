@@ -36,6 +36,7 @@ import java.util.Map;
 
 import android.text.InputType;
 import android.widget.EditText;
+import android.content.SharedPreferences;
 
 public class VirtualController {
     public static class ControllerInputContext {
@@ -383,7 +384,9 @@ public class VirtualController {
             actionsList.add(0); // Sử dụng cấu hình
         }
         
-        if (!VirtualControllerConfigManager.DEFAULT_PROFILE_NAME.equals(profileName)) {
+        // Kiểm tra xem có phải là cấu hình mặc định hay không
+        boolean isDefaultProfile = profileName.equals("Default");
+        if (!isDefaultProfile) {
             optionsList.add(context.getString(R.string.rename_profile));
             actionsList.add(1); // Đổi tên cấu hình
             
@@ -519,6 +522,14 @@ public class VirtualController {
      * Hiển thị xác nhận xóa cấu hình
      */
     private void showDeleteProfileConfirmation(final String profileName) {
+        // Kiểm tra nếu đây là cấu hình mặc định thì không cho xóa
+        if (profileName.equals("Default")) {
+            Toast.makeText(context,
+                context.getString(R.string.profile_delete_failed, profileName),
+                Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.delete_profile);
         builder.setMessage(context.getString(R.string.delete_profile_confirm, profileName));

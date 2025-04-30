@@ -12,7 +12,7 @@ import android.util.DisplayMetrics;
 import com.limelight.R;
 import com.limelight.nvstream.input.ControllerPacket;
 import com.limelight.preferences.PreferenceConfiguration;
-import com.limelight.preferences.VirtualControllerConfigManager;
+import com.limelight.binding.input.virtual_controller.VirtualControllerConfigManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
