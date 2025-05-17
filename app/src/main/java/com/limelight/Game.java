@@ -140,7 +140,10 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
     private ControllerHandler controllerHandler;
     private KeyboardTranslator keyboardTranslator;
-    private VirtualController virtualController;
+
+    private VirtualController[] virtualControllers;
+    private int currentActiveController = -1;
+    private ImageButton[] gamepadConfigButtons;
 
     private KeyBoardController keyBoardController;
 
@@ -739,6 +742,22 @@ public class Game extends Activity implements SurfaceHolder.Callback,
                 }
             }
         });
+
+        // Initialize gamepad configuration buttons
+        gamepadConfigButtons = new ImageButton[]{
+            findViewById(R.id.gamepadConfig1),
+            findViewById(R.id.gamepadConfig2),
+            findViewById(R.id.gamepadConfig3)
+        };
+
+        // Initialize virtual controllers array
+        virtualControllers = new VirtualController[3];
+
+        // Setup click listeners for gamepad config buttons
+        for (int i = 0; i < gamepadConfigButtons.length; i++) {
+            final int configNum = i + 1;
+            gamepadConfigButtons[i].setOnClickListener(v -> toggleGamepadConfig(configNum));
+        }
     }
 
     private void initKeyboardController(){
@@ -749,9 +768,9 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
 
     private void initVirtualController(){
-        virtualController = new VirtualController(controllerHandler, (FrameLayout)rootView, this);
-        virtualController.refreshLayout();
-        virtualController.show();
+        virtualControllers[0] = new VirtualController(controllerHandler, (FrameLayout)rootView, this);
+        virtualControllers[0].refreshLayout();
+        virtualControllers[0].show();
     }
 
     private void initkeyBoardLayoutController(){
@@ -777,14 +796,55 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         keyBoardLayoutController.toggleVisibility();
     }
 
-    //显示隐藏虚拟手柄控制器
-    public void showHideVirtualController(){
-        if(virtualController==null){
-            initVirtualController();
-            prefConfig.onscreenController=true;
-            return;
+    // Override existing showHideVirtualController to work with current active controller
+    public void showHideVirtualController() {
+        if (currentActiveController != -1 && virtualControllers[currentActiveController - 1] != null) {
+            virtualControllers[currentActiveController - 1].switchShowHide();
+            updateGamepadButtonStates();
         }
-        prefConfig.onscreenController= virtualController.switchShowHide() != 0;
+    }
+
+    private void toggleGamepadConfig(int configNum) {
+        if (currentActiveController == configNum) {
+            // Hide current controller
+            if (virtualControllers[configNum - 1] != null) {
+                virtualControllers[configNum - 1].hide();
+                GamepadConfigManager.saveConfig(this, virtualControllers[configNum - 1], configNum);
+            }
+            currentActiveController = -1;
+        } else {
+            // Hide previous controller if any
+            if (currentActiveController != -1 && virtualControllers[currentActiveController - 1] != null) {
+                virtualControllers[currentActiveController - 1].hide();
+                GamepadConfigManager.saveConfig(this, virtualControllers[currentActiveController - 1], currentActiveController);
+            }
+            
+            // Show selected controller
+            if (virtualControllers[configNum - 1] == null) {
+                // Create new controller if it doesn't exist
+                virtualControllers[configNum - 1] = new VirtualController(controllerHandler, (FrameLayout)rootView, this);
+                
+                // Load saved configuration if it exists
+                if (GamepadConfigManager.configExists(this, configNum)) {
+                    GamepadConfigManager.loadConfig(this, virtualControllers[configNum - 1], configNum);
+                } else {
+                    // Initialize with default layout
+                    virtualControllers[configNum - 1].refreshLayout();
+                }
+            }
+            
+            virtualControllers[configNum - 1].show();
+            currentActiveController = configNum;
+        }
+        
+        // Update button appearances
+        updateGamepadButtonStates();
+    }
+
+    private void updateGamepadButtonStates() {
+        for (int i = 0; i < gamepadConfigButtons.length; i++) {
+            gamepadConfigButtons[i].setSelected(currentActiveController == (i + 1));
+        }
     }
 
     private void setPreferredOrientationForCurrentDisplay() {
@@ -837,9 +897,13 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         // Set requested orientation for possible new screen size
         setPreferredOrientationForCurrentDisplay();
 
-        if (virtualController != null) {
+        if (virtualControllers != null) {
             // Refresh layout of OSC for possible new screen size
-            virtualController.refreshLayout();
+            for (VirtualController virtualController : virtualControllers) {
+                if (virtualController != null) {
+                    virtualController.refreshLayout();
+                }
+            }
         }
 
         if(keyBoardController != null){
@@ -855,8 +919,12 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             if (isInPictureInPictureMode()) {
                 isHidingOverlays = true;
 
-                if (virtualController != null) {
-                    virtualController.hide();
+                if (virtualControllers != null) {
+                    for (VirtualController virtualController : virtualControllers) {
+                        if (virtualController != null) {
+                            virtualController.hide();
+                        }
+                    }
                 }
 
                 if (keyBoardController != null && keyBoardController.shown) {
@@ -883,8 +951,12 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
                 // Restore overlays to previous state when leaving PiP
 
-                if (virtualController != null) {
-                    virtualController.show();
+                if (virtualControllers != null) {
+                    for (VirtualController virtualController : virtualControllers) {
+                        if (virtualController != null) {
+                            virtualController.show();
+                        }
+                    }
                 }
 
                 if (keyBoardController != null && keyBoardController.shown) {
@@ -1356,6 +1428,12 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
     @Override
     protected void onPause() {
+        super.onPause();
+        // Save current configuration before pausing
+        if (currentActiveController != -1 && virtualControllers[currentActiveController - 1] != null) {
+            GamepadConfigManager.saveConfig(this, virtualControllers[currentActiveController - 1], currentActiveController);
+        }
+
         if (isFinishing()) {
             // Stop any further input device notifications before we lose focus (and pointer capture)
             if (controllerHandler != null) {
@@ -1365,8 +1443,6 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             // Ungrab input to prevent further input device notifications
             setInputGrabState(false);
         }
-
-        super.onPause();
     }
 
     @Override
@@ -1376,8 +1452,12 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         SpinnerDialog.closeDialogs(this);
         Dialog.closeDialogs();
 
-        if (virtualController != null) {
-            virtualController.hide();
+        if (virtualControllers != null) {
+            for (VirtualController virtualController : virtualControllers) {
+                if (virtualController != null) {
+                    virtualController.hide();
+                }
+            }
         }
         if (keyBoardController != null) {
             keyBoardController.hide();
@@ -2010,65 +2090,10 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         }
     }
 
-    //灵敏度保存到集合 适配多个手指
-    private Map<String,SensitivityBean> sensitivityMap=new HashMap<>();
-
-    //修改移动的触控灵敏度（通过修改移动的距离实现） 默认使用右半边屏幕的时候开启
-    private float[] getStreamViewRelativeSensitivityXY(MotionEvent event,float normalizedX,float normalizedY,int pointerIndex){
-        float[] normalized=new float[2];
-        normalized[0]=normalizedX;
-        normalized[1]=normalizedY;
-
-        //如果不是全局模式 并且 坐标 不在右边 则返回
-        if(!prefConfig.touchSensitivityGlobal&&normalizedX<getResources().getDisplayMetrics().widthPixels/2){
-            return normalized;
-        }
-        if (event.getActionMasked() == MotionEvent.ACTION_MOVE) {
-            SensitivityBean bean=sensitivityMap.get(String.valueOf(event.getPointerId(pointerIndex)));
-            if(bean==null){
-                bean=new SensitivityBean();
-            }
-            if(bean.getLastAbsoluteX() !=-1){
-                float dx=normalizedX- bean.getLastAbsoluteX();
-                float dy=normalizedY- bean.getLastAbsoluteY();
-                dx*=0.01f*prefConfig.touchSensitivityX;//灵敏度
-                dy*=0.01f*prefConfig.touchSensitivityY;
-                normalizedX= bean.getLastRelativelyX() +dx;
-                normalizedY= bean.getLastRelativelyY() +dy;
-            }
-            if(prefConfig.touchSensitivityRotationAuto){
-                if(normalizedX>=streamView.getWidth()){
-                    normalizedX=streamView.getWidth()/2.0f;
-                }
-                if(normalizedY>=streamView.getHeight()){
-                    normalizedY=streamView.getHeight()/2.0f;
-                }
-            }
-            bean.setLastAbsoluteX(event.getX(pointerIndex));
-            bean.setLastAbsoluteY(event.getY(pointerIndex));
-            bean.setLastRelativelyX(normalizedX);
-            bean.setLastRelativelyY(normalizedY);
-            sensitivityMap.put(String.valueOf(event.getPointerId(pointerIndex)),bean);
-        }
-        //抬起的时候，恢复初始化状态
-        if (event.getActionMasked() == MotionEvent.ACTION_UP||event.getActionMasked() == MotionEvent.ACTION_POINTER_UP) {
-            sensitivityMap.remove(String.valueOf(event.getPointerId(pointerIndex)));
-        }
-        normalized[0]=normalizedX;
-        normalized[1]=normalizedY;
-        return normalized;
-    }
-
-
     private float[] getStreamViewRelativeNormalizedXY(View view, MotionEvent event, int pointerIndex) {
         float normalizedX = event.getX(pointerIndex);
         float normalizedY = event.getY(pointerIndex);
-        //开启自定义修改触控灵敏度 并且 数值不为100
-        if(prefConfig.enableTouchSensitivity&&(prefConfig.touchSensitivityX !=100||prefConfig.touchSensitivityY!=100)){
-            float[] normalized=getStreamViewRelativeSensitivityXY(event,normalizedX,normalizedY,pointerIndex);
-            normalizedX=normalized[0];
-            normalizedY=normalized[1];
-        }
+
         // For the containing background view, we must subtract the origin
         // of the StreamView to get video-relative coordinates.
         if (view != streamView) {
@@ -2625,9 +2650,9 @@ public class Game extends Activity implements SurfaceHolder.Callback,
                 if (eventSource == InputDevice.SOURCE_TOUCHPAD) {
                     return handleTouchInput(event, trackpadContextMap, false);
                 } else {
-                    if (virtualController != null &&
-                            (virtualController.getControllerMode() == VirtualController.ControllerMode.MoveButtons ||
-                                    virtualController.getControllerMode() == VirtualController.ControllerMode.ResizeButtons)) {
+                    if (virtualControllers != null &&
+                            (virtualControllers[0].getControllerMode() == VirtualController.ControllerMode.MoveButtons ||
+                                    virtualControllers[0].getControllerMode() == VirtualController.ControllerMode.ResizeButtons)) {
                         // Ignore presses when the virtual controller is being configured
                         return true;
                     }

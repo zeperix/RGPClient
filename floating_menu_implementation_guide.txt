@@ -1,0 +1,226 @@
+FLOATING MENU IMPLEMENTATION GUIDE
+===================================
+
+This guide explains how to implement a floating menu in your Android app that can be dragged around the screen and shows game control options.
+
+1. XML Layout Files
+------------------
+
+File: app/src/main/res/layout/activity_game.xml
+Add before closing </merge> tag:
+
+```xml
+<!-- Floating Menu Button -->
+<ImageButton
+    android:id="@+id/floatingMenuButton"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_gravity="top|start"
+    android:layout_marginTop="24dp"
+    android:background="@drawable/floating_menu_button"
+    android:contentDescription="@string/menu_button"
+    android:src="@drawable/ic_menu"
+    android:visibility="visible"
+    android:elevation="9999dp" />
+```
+
+File: app/src/main/res/drawable/floating_menu_button.xml
+Create new file with:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#80000000" />
+</shape>
+```
+
+File: app/src/main/res/drawable/ic_menu.xml
+Create new file with:
+
+```xml
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M3,18h18v-2H3v2zm0,-5h18v-2H3v2zm0,-7v2h18V6H3z"/>
+</vector>
+```
+
+2. String Resources
+------------------
+
+File: app/src/main/res/values/strings.xml
+Add:
+
+```xml
+<string name="menu_button">Menu</string>
+<string name="quick_menu_title">Quick Menu</string>
+<string name="configuration_mode_move_buttons">Move buttons mode</string>
+<string name="configuration_mode_resize_buttons">Resize buttons mode</string>
+<string name="configuration_mode_disable_enable_buttons">Enable/Disable buttons mode</string>
+<string name="configuration_mode_exiting">Exiting configuration mode</string>
+```
+
+3. Java Implementation
+---------------------
+
+File: app/src/main/java/com/limelight/Game.java
+Add member variables:
+
+```java
+// Floating menu button
+private ImageButton floatingMenuButton;
+private float dX, dY;
+private boolean isMovingButton = false;
+private static final float CLICK_ACTION_THRESHOLD = 5;
+private float startX, startY;
+```
+
+In onCreate() method, add:
+
+```java
+// Setup floating menu button
+floatingMenuButton = findViewById(R.id.floatingMenuButton);
+updateFloatingButtonVisibility();
+
+// Touch listener for drag and click
+floatingMenuButton.setOnTouchListener(new View.OnTouchListener() {
+    @Override
+    public boolean onTouch(View view, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                startX = event.getRawX();
+                startY = event.getRawY();
+                dX = view.getX() - event.getRawX();
+                dY = view.getY() - event.getRawY();
+                isMovingButton = false;
+                return true;
+
+            case MotionEvent.ACTION_MOVE:
+                float newX = event.getRawX() + dX;
+                float newY = event.getRawY() + dY;
+                
+                // Calculate distance moved
+                float dx = Math.abs(event.getRawX() - startX);
+                float dy = Math.abs(event.getRawY() - startY);
+                
+                // If dragged beyond threshold, consider it a move
+                if (dx > CLICK_ACTION_THRESHOLD || dy > CLICK_ACTION_THRESHOLD) {
+                    isMovingButton = true;
+                    view.setX(newX);
+                    view.setY(newY);
+                }
+                return true;
+
+            case MotionEvent.ACTION_UP:
+                if (!isMovingButton) {
+                    // This was a click, show menu
+                    showGameMenu(null);
+                }
+                return true;
+
+            default:
+                return false;
+        }
+    }
+});
+```
+
+Add visibility control method:
+
+```java
+private void updateFloatingButtonVisibility() {
+    if (floatingMenuButton != null) {
+        floatingMenuButton.setVisibility(prefConfig.enableBackMenu ? View.VISIBLE : View.GONE);
+    }
+}
+```
+
+4. Menu Implementation Details
+----------------------------
+
+The floating menu provides access to these features:
+
+1. Disconnect from session
+2. Toggle on-screen controller
+3. Toggle keyboard
+4. Toggle full keyboard
+5. Toggle special keys
+6. Select mouse mode
+7. Enable/disable zoom mode
+8. Rotate screen
+9. Advanced menu options:
+   - Show/hide performance HUD
+   - Adjust touch sensitivity
+   - Upload/fetch clipboard
+   - Send special keys
+   - Server commands
+   - Task manager
+
+5. How It Works
+--------------
+
+1. The floating menu button appears as a semi-transparent circle in the top-left corner
+2. Users can:
+   - Tap the button to open the menu
+   - Drag the button to reposition it on screen
+3. The button maintains high elevation (9999dp) to stay above other UI elements
+4. The menu closes when:
+   - A menu option is selected
+   - User taps outside the menu
+   - Back button is pressed
+
+6. Preferences
+-------------
+
+To enable/disable the floating menu, add to PreferenceConfiguration:
+
+```java
+public boolean enableBackMenu = true;
+```
+
+7. Common Issues & Solutions
+--------------------------
+
+1. Menu not appearing:
+   - Check enableBackMenu preference is true
+   - Verify floatingMenuButton is properly initialized
+   - Check XML layout is in correct layout file
+
+2. Menu button not draggable:
+   - Verify OnTouchListener is properly set
+   - Check ACTION_MOVE implementation
+   - Confirm CLICK_ACTION_THRESHOLD value is appropriate
+
+3. Menu appears behind other elements:
+   - Check elevation value in XML
+   - Verify layout hierarchy
+   - Consider using LAYER_TYPE_HARDWARE
+
+4. Menu disappears after rotation:
+   - Implement proper handling in onConfigurationChanged()
+   - Save and restore button position
+
+8. Testing
+---------
+
+Test these scenarios:
+1. Menu button visibility
+2. Dragging functionality
+3. Menu option selection
+4. Button position persistence
+5. Interface with game controls
+6. Multiple screen orientations
+7. Different Android versions
+8. Various device sizes
+
+Notes:
+- The floating menu should not interfere with game controls
+- Consider adding haptic feedback for better UX
+- Test with different screen sizes and densities
+- Ensure menu is accessible during gameplay
+- Verify menu closes properly in all scenarios

@@ -1,0 +1,130 @@
+FLOATING MENU IMPLEMENTATION DETAILS
+
+1. Layout XML Files
+------------------
+File: app/src/main/res/layout/activity_game.xml
+Thêm code sau vào cuối file trước thẻ đóng </merge>:
+
+<ImageButton
+    android:id="@+id/floatingMenuButton"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_gravity="top|start"
+    android:layout_marginTop="24dp"
+    android:background="@drawable/floating_menu_button"
+    android:contentDescription="@string/menu_button"
+    android:src="@drawable/ic_menu"
+    android:visibility="visible"
+    android:elevation="9999dp" />
+
+2. Drawable Files
+----------------
+File: app/src/main/res/drawable/floating_menu_button.xml
+Tạo file mới với nội dung:
+
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#80000000" />
+</shape>
+
+3. Java Files
+------------
+File: app/src/main/java/com/limelight/Game.java
+Thêm các biến thành viên:
+
+private ImageButton floatingMenuButton;
+private float dX, dY;
+private boolean isMovingButton = false;
+private static final float CLICK_ACTION_THRESHOLD = 5;
+private float startX, startY;
+
+Trong phương thức onCreate(), thêm:
+
+// Setup floating menu button
+floatingMenuButton = findViewById(R.id.floatingMenuButton);
+updateFloatingButtonVisibility();
+
+// Touch listener for drag and click
+floatingMenuButton.setOnTouchListener(new View.OnTouchListener() {
+    @Override
+    public boolean onTouch(View view, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                startX = event.getRawX();
+                startY = event.getRawY();
+                dX = view.getX() - event.getRawX();
+                dY = view.getY() - event.getRawY();
+                isMovingButton = false;
+                return true;
+                
+            case MotionEvent.ACTION_MOVE:
+                float newX = event.getRawX() + dX;
+                float newY = event.getRawY() + dY;
+                
+                // Calculate distance moved
+                float dx = Math.abs(event.getRawX() - startX);
+                float dy = Math.abs(event.getRawY() - startY);
+                
+                // If dragged beyond threshold, consider it a move
+                if (dx > CLICK_ACTION_THRESHOLD || dy > CLICK_ACTION_THRESHOLD) {
+                    isMovingButton = true;
+                    view.setX(newX);
+                    view.setY(newY);
+                }
+                return true;
+                
+            case MotionEvent.ACTION_UP:
+                if (!isMovingButton) {
+                    // This was a click, show menu
+                    showGameMenu(null);
+                }
+                return true;
+        }
+        return false;
+    }
+});
+
+Thêm phương thức mới:
+
+private void updateFloatingButtonVisibility() {
+    if (floatingMenuButton != null) {
+        floatingMenuButton.setVisibility(prefConfig.enableBackMenu ? View.VISIBLE : View.GONE);
+    }
+}
+
+4. Menu Implementation
+---------------------
+File: app/src/main/java/com/limelight/GameMenu.java
+Đã có sẵn class GameMenu để xử lý menu. Class này đã implement các tính năng:
+- Hiển thị menu
+- Xử lý các tùy chọn menu
+- Ẩn menu
+- Kiểm tra trạng thái menu
+
+5. String Resources
+------------------
+File: app/src/main/res/values/strings.xml
+Thêm:
+
+<string name="menu_button">Menu</string>
+
+File: app/src/main/res/values-vi/strings.xml
+Thêm:
+
+<string name="menu_button">Menu</string>
+
+6. Preferences
+-------------
+File: app/src/main/java/com/limelight/preferences/PreferenceConfiguration.java
+Đảm bảo có biến:
+
+public boolean enableBackMenu;
+
+-------------------
+CHÚ Ý:
+- Menu nổi sẽ xuất hiện ở góc trái trên cùng của màn hình
+- Có thể kéo thả để di chuyển vị trí menu
+- Nhấn để hiện menu tùy chọn
+- Menu có thể bật/tắt thông qua cài đặt enableBackMenu
+- Sử dụng elevation cao (9999dp) để đảm bảo menu luôn hiển thị trên cùng
