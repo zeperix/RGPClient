@@ -758,6 +758,9 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             final int configNum = i + 1;
             gamepadConfigButtons[i].setOnClickListener(v -> toggleGamepadConfig(configNum));
         }
+
+        // Update initial button states
+        updateGamepadButtonStates();
     }
 
     private void initKeyboardController(){
@@ -802,9 +805,7 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             virtualControllers[currentActiveController - 1].switchShowHide();
             updateGamepadButtonStates();
         }
-    }
-
-    private void toggleGamepadConfig(int configNum) {
+    }    private void toggleGamepadConfig(int configNum) {
         if (currentActiveController == configNum) {
             // Hide current controller
             if (virtualControllers[configNum - 1] != null) {
@@ -813,24 +814,23 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             }
             currentActiveController = -1;
         } else {
-            // Hide previous controller if any
+            // Hide and save previous controller if any
             if (currentActiveController != -1 && virtualControllers[currentActiveController - 1] != null) {
                 virtualControllers[currentActiveController - 1].hide();
                 GamepadConfigManager.saveConfig(this, virtualControllers[currentActiveController - 1], currentActiveController);
+                GamepadConfigManager.saveConfig(this, virtualControllers[currentActiveController - 1], currentActiveController);
             }
-            
-            // Show selected controller
+              // Show selected controller
             if (virtualControllers[configNum - 1] == null) {
                 // Create new controller if it doesn't exist
                 virtualControllers[configNum - 1] = new VirtualController(controllerHandler, (FrameLayout)rootView, this);
+            }
                 
-                // Load saved configuration if it exists
-                if (GamepadConfigManager.configExists(this, configNum)) {
-                    GamepadConfigManager.loadConfig(this, virtualControllers[configNum - 1], configNum);
-                } else {
-                    // Initialize with default layout
-                    virtualControllers[configNum - 1].refreshLayout();
-                }
+            // Load saved configuration if it exists, otherwise use default
+            if (GamepadConfigManager.configExists(this, configNum)) {
+                GamepadConfigManager.loadConfig(this, virtualControllers[configNum - 1], configNum);
+            } else {
+                VirtualControllerConfigurationLoader.createDefaultLayout(virtualControllers[configNum - 1], this);
             }
             
             virtualControllers[configNum - 1].show();

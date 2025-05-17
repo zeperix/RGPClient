@@ -76,7 +76,7 @@ public class VirtualController {
     ControllerMode currentMode = ControllerMode.Active;
     ControllerInputContext inputContext = new ControllerInputContext();
 
-    private Button buttonConfigure = null;
+    public Button buttonConfigure; // Make public for GamepadConfigManager
 
     private List<VirtualControllerElement> elements = new ArrayList<>();
 
@@ -177,11 +177,17 @@ public class VirtualController {
 
     public void removeElements() {
         for (VirtualControllerElement element : elements) {
-            frame_layout.removeView(element);
+            if (element.getParent() != null) {
+                ((FrameLayout)element.getParent()).removeView(element);
+            }
         }
         elements.clear();
 
         frame_layout.removeView(buttonConfigure);
+    }
+
+    public boolean isVisible() {
+        return buttonConfigure != null && buttonConfigure.getVisibility() == View.VISIBLE;
     }
 
     public void setOpacity(int opacity) {
