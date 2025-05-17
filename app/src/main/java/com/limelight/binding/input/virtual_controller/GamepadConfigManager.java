@@ -18,7 +18,7 @@ public class GamepadConfigManager {
     public static final int MAX_CONFIGS = 3;
 
     public static void saveConfig(Context context, VirtualController controller, int configNum) {
-        if (configNum < 1 || configNum > MAX_CONFIGS) {
+        if (configNum < 1 || configNum > MAX_CONFIGS || controller == null) {
             return;
         }
 
@@ -45,8 +45,7 @@ public class GamepadConfigManager {
             }
 
             editor.putString(CONFIG_KEY_PREFIX + configNum, configData.toString());
-            editor.putBoolean(VISIBILITY_KEY_PREFIX + configNum, 
-                controller.buttonConfigure != null && controller.buttonConfigure.getVisibility() == View.VISIBLE);
+            editor.putBoolean(VISIBILITY_KEY_PREFIX + configNum, controller.isVisible());
             editor.apply();
 
         } catch (Exception e) {
@@ -55,7 +54,7 @@ public class GamepadConfigManager {
     }
 
     public static void loadConfig(Context context, VirtualController controller, int configNum) {
-        if (configNum < 1 || configNum > MAX_CONFIGS) {
+        if (configNum < 1 || configNum > MAX_CONFIGS || controller == null) {
             return;
         }
 
@@ -94,8 +93,10 @@ public class GamepadConfigManager {
                 }
 
                 if (isVisible) {
+                    controller.setButtonConfigureVisibility(View.VISIBLE);
                     controller.show();
                 } else {
+                    controller.setButtonConfigureVisibility(View.GONE);
                     controller.hide();
                 }
             } else {

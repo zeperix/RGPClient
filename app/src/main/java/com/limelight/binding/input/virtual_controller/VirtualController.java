@@ -190,6 +190,12 @@ public class VirtualController {
         return buttonConfigure != null && buttonConfigure.getVisibility() == View.VISIBLE;
     }
 
+    public void setButtonConfigureVisibility(int visibility) {
+        if (buttonConfigure != null) {
+            buttonConfigure.setVisibility(visibility);
+        }
+    }
+
     public void setOpacity(int opacity) {
         for (VirtualControllerElement element : elements) {
             element.setOpacity(opacity);

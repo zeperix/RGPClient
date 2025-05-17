@@ -1,6 +1,5 @@
 package com.limelight;
 
-
 import com.limelight.binding.PlatformBinding;
 import com.limelight.binding.audio.AndroidAudioRenderer;
 import com.limelight.binding.input.ControllerHandler;
@@ -17,6 +16,8 @@ import com.limelight.binding.input.touch.TrackpadContext;
 import com.limelight.binding.input.virtual_controller.VirtualController;
 import com.limelight.binding.input.virtual_controller.keyboard.KeyBoardController;
 import com.limelight.binding.input.virtual_controller.keyboard.KeyBoardLayoutController;
+import com.limelight.binding.input.virtual_controller.GamepadConfigManager;
+import com.limelight.binding.input.virtual_controller.VirtualControllerConfigurationLoader;
 import com.limelight.binding.video.CrashListener;
 import com.limelight.binding.video.MediaCodecDecoderRenderer;
 import com.limelight.binding.video.MediaCodecHelper;
