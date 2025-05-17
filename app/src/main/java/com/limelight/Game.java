@@ -768,8 +768,7 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         keyBoardController = new KeyBoardController(conn,(FrameLayout)rootView, this);
         keyBoardController.refreshLayout();
         keyBoardController.show();
-    }
-    private void initVirtualController(){
+    }    private void initVirtualController() {
         try {
             if (virtualControllers == null) {
                 virtualControllers = new VirtualController[3];
@@ -781,6 +780,11 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             }
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(this, "Failed to initialize virtual controller: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Failed to initialize virtual controller: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -2370,13 +2374,17 @@ public class Game extends Activity implements SurfaceHolder.Callback,
     }
 
     // Returns true if the event was consumed
-    // NB: View is only present if called from a view callback
-    private boolean handleMotionEvent(View view, MotionEvent event) {
-
-        // Pass through mouse/touch/joystick input if we're not grabbing
-        if (!grabbedInput) {
-            return false;
-        }
+    // NB: View is only present if called from a view callback    private boolean handleMotionEvent(View view, MotionEvent event) {
+        try {
+            // Pass through mouse/touch/joystick input if we're not grabbing
+            if (!grabbedInput || event == null) {
+                return false;
+            }
+            
+            // Validate view state
+            if (view != null && !view.isAttachedToWindow()) {
+                return false;
+            }
 
         int deviceId = event.getDeviceId();
         if (prefConfig.ignoreSynthEvents && deviceId <= 0) {
@@ -2748,26 +2756,38 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
     private boolean handleTouchInput(MotionEvent event, TouchContext[] inputContextMap, boolean isTouchScreen) {
         return handleTouchInput(event, inputContextMap, isTouchScreen, event.getActionMasked(), event.getActionIndex(), event.getPointerCount());
-    }
+    }    private boolean handleTouchInput(MotionEvent event, TouchContext[] inputContextMap, boolean isTouchScreen, int eventAction, int actionIndex, int pointerCount) {
+        try {
+            int actualActionIndex = event.getActionIndex();
+            int actualPointerCount = event.getPointerCount();
 
-    private boolean handleTouchInput(MotionEvent event, TouchContext[] inputContextMap, boolean isTouchScreen, int eventAction, int actionIndex, int pointerCount) {
-        int actualActionIndex = event.getActionIndex();
-        int actualPointerCount = event.getPointerCount();
+            if (actualActionIndex < 0 || actualActionIndex >= actualPointerCount) {
+                return false;
+            }
 
-        boolean shouldDuplicateMovement = actualPointerCount < pointerCount;
+            boolean shouldDuplicateMovement = actualPointerCount < pointerCount;
 
-        int eventX = (int)event.getX(actualActionIndex);
-        int eventY = (int)event.getY(actualActionIndex);
+            int eventX = (int)event.getX(actualActionIndex);
+            int eventY = (int)event.getY(actualActionIndex);
 
-        // Handle view scaling
-        if (isTouchScreen) {
-            float[] normalizedCoords = getNormalizedCoordinates(streamView, eventX, eventY);
-            eventX = (int)normalizedCoords[0];
-            eventY = (int)normalizedCoords[1];
+            // Handle view scaling
+            if (isTouchScreen && streamView != null) {
+                float[] normalizedCoords = getNormalizedCoordinates(streamView, eventX, eventY);
+                eventX = (int)normalizedCoords[0];
+                eventY = (int)normalizedCoords[1];
+            }        // Safely get and validate touch context
+        TouchContext context = null;
+        try {
+            context = getTouchContext(actionIndex, inputContextMap);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        TouchContext context = getTouchContext(actionIndex, inputContextMap);
-        if (context == null) {
+        if (context == null || inputContextMap == null) {
+            return false;
+        }
+        
+        // Validate stream view state
+        if (streamView == null || !streamView.isAttachedToWindow()) {
             return false;
         }
 
