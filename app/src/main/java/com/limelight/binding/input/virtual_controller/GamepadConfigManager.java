@@ -29,19 +29,26 @@ public class GamepadConfigManager {
             // Save controller layout
             JSONArray configData = new JSONArray();
             List<VirtualControllerElement> elements = controller.getElements();
-            for (VirtualControllerElement element : elements) {
-                JSONObject elementData = element.getConfiguration(); 
-                elementData.put("type", element.getClass().getSimpleName());
-                elementData.put("id", element.elementId);
-                
-                // Save position and size
-                FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) element.getLayoutParams();
-                elementData.put("x", params.leftMargin);
-                elementData.put("y", params.topMargin);
-                elementData.put("width", params.width);
-                elementData.put("height", params.height);
-                
-                configData.put(elementData);
+            
+            if (elements != null) {
+                for (VirtualControllerElement element : elements) {
+                    if (element != null) {
+                        JSONObject elementData = element.getConfiguration();
+                        elementData.put("type", element.getClass().getSimpleName());
+                        elementData.put("id", element.elementId);
+                        
+                        // Save position and size
+                        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) element.getLayoutParams();
+                        if (params != null) {
+                            elementData.put("x", params.leftMargin);
+                            elementData.put("y", params.topMargin);
+                            elementData.put("width", params.width);
+                            elementData.put("height", params.height);
+                            elementData.put("visible", element.getVisibility() == View.VISIBLE);
+                            configData.put(elementData);
+                        }
+                    }
+                }
             }
 
             editor.putString(CONFIG_KEY_PREFIX + configNum, configData.toString());
@@ -63,35 +70,46 @@ public class GamepadConfigManager {
             String configStr = prefs.getString(CONFIG_KEY_PREFIX + configNum, null);
             boolean isVisible = prefs.getBoolean(VISIBILITY_KEY_PREFIX + configNum, false);
 
+            // Create default layout first
+            VirtualControllerConfigurationLoader.createDefaultLayout(controller, context);
+
             if (configStr != null) {
                 JSONArray configData = new JSONArray(configStr);
-                
-                // First create a default layout
-                VirtualControllerConfigurationLoader.createDefaultLayout(controller, context);
                 
                 // Then apply saved configurations to existing elements
                 for (int i = 0; i < configData.length(); i++) {
                     JSONObject elementData = configData.getJSONObject(i);
-                    int elementId = elementData.getInt("id");
-                    
-                    // Find matching element
-                    for (VirtualControllerElement element : controller.getElements()) {
-                        if (element.elementId == elementId) {
-                            element.loadConfiguration(elementData);
-                            
-                            // Update position and size
-                            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) element.getLayoutParams();
-                            params.leftMargin = elementData.getInt("x");
-                            params.topMargin = elementData.getInt("y");
-                            params.width = elementData.getInt("width");
-                            params.height = elementData.getInt("height");
-                            element.setLayoutParams(params);
-                            
-                            break;
+                    if (elementData != null) {
+                        int elementId = elementData.getInt("id");
+                        
+                        // Find matching element
+                        for (VirtualControllerElement element : controller.getElements()) {
+                            if (element != null && element.elementId == elementId) {
+                                try {
+                                    element.loadConfiguration(elementData);
+                                    
+                                    // Update position and size
+                                    FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) element.getLayoutParams();
+                                    params.leftMargin = elementData.getInt("x");
+                                    params.topMargin = elementData.getInt("y");
+                                    params.width = elementData.getInt("width");
+                                    params.height = elementData.getInt("height");
+                                    element.setLayoutParams(params);
+
+                                    // Set visibility
+                                    element.setVisibility(elementData.optBoolean("visible", true) ? View.VISIBLE : View.GONE);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    // If loading individual element fails, continue with next
+                                    continue;
+                                }
+                                break;
+                            }
                         }
                     }
                 }
 
+                // Set overall controller visibility
                 if (isVisible) {
                     controller.setButtonConfigureVisibility(View.VISIBLE);
                     controller.show();
@@ -99,12 +117,11 @@ public class GamepadConfigManager {
                     controller.setButtonConfigureVisibility(View.GONE);
                     controller.hide();
                 }
-            } else {
-                // If no saved config exists, create default layout
-                VirtualControllerConfigurationLoader.createDefaultLayout(controller, context);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            // If loading fails, ensure we have at least default layout
+            VirtualControllerConfigurationLoader.createDefaultLayout(controller, context);
         }
     }
 

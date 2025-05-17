@@ -769,12 +769,19 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         keyBoardController.refreshLayout();
         keyBoardController.show();
     }
-
-
     private void initVirtualController(){
-        virtualControllers[0] = new VirtualController(controllerHandler, (FrameLayout)rootView, this);
-        virtualControllers[0].refreshLayout();
-        virtualControllers[0].show();
+        try {
+            if (virtualControllers == null) {
+                virtualControllers = new VirtualController[3];
+            }
+            if (virtualControllers[0] == null && controllerHandler != null && rootView instanceof FrameLayout) {
+                virtualControllers[0] = new VirtualController(controllerHandler, (FrameLayout)rootView, this);
+                virtualControllers[0].refreshLayout();
+                virtualControllers[0].show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void initkeyBoardLayoutController(){
@@ -807,35 +814,60 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             updateGamepadButtonStates();
         }
     }    private void toggleGamepadConfig(int configNum) {
-        if (currentActiveController == configNum) {
-            // Hide current controller
-            if (virtualControllers[configNum - 1] != null) {
-                virtualControllers[configNum - 1].hide();
-                GamepadConfigManager.saveConfig(this, virtualControllers[configNum - 1], configNum);
-            }
-            currentActiveController = -1;
-        } else {
-            // Hide and save previous controller if any
-            if (currentActiveController != -1 && virtualControllers[currentActiveController - 1] != null) {
-                virtualControllers[currentActiveController - 1].hide();
-                GamepadConfigManager.saveConfig(this, virtualControllers[currentActiveController - 1], currentActiveController);
-                GamepadConfigManager.saveConfig(this, virtualControllers[currentActiveController - 1], currentActiveController);
-            }
-              // Show selected controller
-            if (virtualControllers[configNum - 1] == null) {
-                // Create new controller if it doesn't exist
-                virtualControllers[configNum - 1] = new VirtualController(controllerHandler, (FrameLayout)rootView, this);
-            }
-                
-            // Load saved configuration if it exists, otherwise use default
-            if (GamepadConfigManager.configExists(this, configNum)) {
-                GamepadConfigManager.loadConfig(this, virtualControllers[configNum - 1], configNum);
-            } else {
-                VirtualControllerConfigurationLoader.createDefaultLayout(virtualControllers[configNum - 1], this);
+        try {
+            if (virtualControllers == null) {
+                virtualControllers = new VirtualController[3];
             }
             
-            virtualControllers[configNum - 1].show();
-            currentActiveController = configNum;
+            if (configNum < 1 || configNum > 3) {
+                return;
+            }
+
+            if (currentActiveController == configNum) {
+                // Hide current controller
+                if (virtualControllers[configNum - 1] != null) {
+                    virtualControllers[configNum - 1].hide();
+                    try {
+                        GamepadConfigManager.saveConfig(this, virtualControllers[configNum - 1], configNum);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                currentActiveController = -1;
+            } else {                // Hide and save previous controller if any
+                if (currentActiveController != -1 && virtualControllers[currentActiveController - 1] != null) {
+                    virtualControllers[currentActiveController - 1].hide();
+                    try {
+                        GamepadConfigManager.saveConfig(this, virtualControllers[currentActiveController - 1], currentActiveController);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }// Show selected controller
+            if (virtualControllers[configNum - 1] == null && rootView instanceof FrameLayout) {
+                // Create new controller if it doesn't exist
+                try {
+                    virtualControllers[configNum - 1] = new VirtualController(controllerHandler, (FrameLayout)rootView, this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return;
+                }
+            }
+            
+            if (virtualControllers[configNum - 1] != null) {
+                // Load saved configuration if it exists, otherwise use default
+                try {
+                    if (GamepadConfigManager.configExists(this, configNum)) {
+                        GamepadConfigManager.loadConfig(this, virtualControllers[configNum - 1], configNum);
+                    } else {
+                        VirtualControllerConfigurationLoader.createDefaultLayout(virtualControllers[configNum - 1], this);
+                    }
+                    
+                    virtualControllers[configNum - 1].show();
+                    currentActiveController = configNum;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
         
         // Update button appearances

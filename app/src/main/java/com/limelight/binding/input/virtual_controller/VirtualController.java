@@ -84,6 +84,8 @@ public class VirtualController {
 
     private final VibrationEffect defaultVibrationEffect;
 
+    private boolean isVisible = false;
+
     public VirtualController(final ControllerHandler controllerHandler, FrameLayout layout, final Context context) {
         this.controllerHandler = controllerHandler;
         this.frame_layout = layout;
@@ -140,21 +142,32 @@ public class VirtualController {
     }
 
     public void hide() {
-        for (VirtualControllerElement element : elements) {
-            element.setVisibility(View.GONE);
+        isVisible = false;
+        if (buttonConfigure != null) {
+            buttonConfigure.setVisibility(View.GONE); 
         }
-
-        buttonConfigure.setVisibility(View.GONE);
+        for (VirtualControllerElement element : elements) {
+            if (element != null) {
+                element.setVisibility(View.GONE);
+            }
+        }
     }
 
     public void show() {
-        showEnabledElements();
-        buttonConfigure.setVisibility(View.VISIBLE);
+        isVisible = true;
+        if (buttonConfigure != null) {
+            buttonConfigure.setVisibility(View.VISIBLE);
+        }
+        for (VirtualControllerElement element : elements) {
+            if (element != null) {
+                element.setVisibility(View.VISIBLE);
+            }
+        }
         checkFirstTimeConfigHelp();
     }
 
     public int switchShowHide() {
-        if (buttonConfigure.getVisibility() == View.VISIBLE) {
+        if (isVisible) {
             hide();
             return 0;
         } else {
@@ -187,7 +200,7 @@ public class VirtualController {
     }
 
     public boolean isVisible() {
-        return buttonConfigure != null && buttonConfigure.getVisibility() == View.VISIBLE;
+        return isVisible;
     }
 
     public void setButtonConfigureVisibility(int visibility) {
