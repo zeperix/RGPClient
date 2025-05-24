@@ -596,8 +596,10 @@
     <string name="game_menu_advanced">Tùy chọn nâng cao</string>
     <string name="game_dialog_title_quit_confirm">Bạn có chắc muốn thoát không?</string>
     <string name="game_dialog_message_quit_confirm">Hãy chắc rằng bạn đã lưu tiến trình. Thoát khỏi phiên sẽ đóng ứng dụng đang chạy.</string>
-
-        <string name="game_menu_quit_session">Thoát phiên</string>
+    <string name="game_menu_toggle_floating_button">Ẩn/Hiện nút menu nổi</string>
+    <string name="title_floating_button">Nút menu nổi</string>
+    <string name="summary_floating_button">Kích hoạt bong bóng nổi để mở menu</string>
+    <string name="game_menu_quit_session">Thoát phiên</string>
     <string name="game_menu_server_cmd">Lệnh máy chủ</string>
     <string name="game_menu_fetch_clipboard">Lấy nội dung clipboard</string>
     <string name="game_menu_upload_clipboard">Gửi nội dung clipboard</string>
