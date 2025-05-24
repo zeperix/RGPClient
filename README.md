@@ -1,11 +1,11 @@
-# RGPClient Android
+# FireCly Android
 
 Một client mã nguồn mở dành cho [Apollo](https://github.com/ClassicOldSong/Apollo)/[Sunshine](https://github.com/LizardByte/Sunshine).
 
-RGPClient Android cho phép bạn stream bộ sưu tập game từ PC chạy Windows đến thiết bị Android của bạn,  
+FireCly Android cho phép bạn stream bộ sưu tập game từ PC chạy Windows đến thiết bị Android của bạn,  
 dù trong nhà hay qua Internet.
 
-Trải nghiệm mượt mà hơn với màn hình ảo khi kết hợp RGPClient với [Apollo](https://github.com/ClassicOldSong/Apollo).
+Trải nghiệm mượt mà hơn với màn hình ảo khi kết hợp FireCly với [Apollo](https://github.com/ClassicOldSong/Apollo).
 
 ---
 
@@ -46,14 +46,14 @@ Trải nghiệm mượt mà hơn với màn hình ảo khi kết hợp RGPClient
 
 ## Tải xuống
 
-* [Tải APK trực tiếp tại đây](https://github.com/zeperix/RGPClient/releases/latest)
+* [Tải APK trực tiếp tại đây](https://github.com/zeperix/FireCly/releases/latest)
 
 ---
 
 ## Biên dịch
 
 1. Cài đặt Android Studio và Android NDK  
-2. Chạy lệnh `git submodule update --init --recursive` trong thư mục `RGPClient/`  
-3. Trong thư mục `RGPClient/`, tạo file `local.properties`. Thêm dòng `ndk.dir=` trỏ đến thư mục cài NDK của bạn  
+2. Chạy lệnh `git submodule update --init --recursive` trong thư mục `FireCly/`  
+3. Trong thư mục `FireCly/`, tạo file `local.properties`. Thêm dòng `ndk.dir=` trỏ đến thư mục cài NDK của bạn  
 4. Biên dịch APK bằng Android Studio hoặc lệnh `gradlew assembleRelease` 
 
