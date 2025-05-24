@@ -61,6 +61,13 @@
 
         <CheckBoxPreference
             android:defaultValue="false"
+            android:key="checkbox_ultra_low_latency"
+            android:summary="@string/summary_checkbox_ultra_low_latency"
+            android:title="@string/title_checkbox_ultra_low_latency"
+            app:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
             android:key="checkbox_use_virtual_display"
             android:summary="@string/summary_checkbox_use_virtual_display"
             android:title="@string/title_checkbox_use_virtual_display"
@@ -235,7 +242,7 @@
             android:title="@string/title_checkbox_vibrate_fallback"
             app:iconSpaceReserved="false" />
         <com.limelight.preferences.SeekBarPreference
-            android:defaultValue="0"
+            android:defaultValue="100"
             android:dependency="checkbox_vibrate_fallback"
             android:key="seekbar_vibrate_fallback_strength"
             android:max="200"
@@ -312,6 +319,13 @@
             android:key="checkbox_mouse_local_cursor"
             android:summary="@string/summary_checkbox_mouse_local_cursor"
             android:title="@string/title_checkbox_mouse_local_cursor"
+            app:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="checkbox_multi_touch_gestures"
+            android:summary="@string/summary_checkbox_multi_touch_gestures"
+            android:title="@string/title_checkbox_multi_touch_gestures"
             app:iconSpaceReserved="false" />
 
         <CheckBoxPreference
@@ -452,6 +466,13 @@
             android:key="checkbox_enable_quit_dialog"
             android:summary="@string/summary_quit_dialog"
             android:title="@string/title_quit_dialog"
+            app:iconSpaceReserved="false" />
+        <CheckBoxPreference
+            android:dependency="checkbox_enable_quit_dialog"
+            android:defaultValue="false"
+            android:key="checkbox_enable_floating_button"
+            android:summary="@string/summary_floating_button"
+            android:title="@string/title_floating_button"
             app:iconSpaceReserved="false" />
         <com.limelight.preferences.SeekBarPreference
             android:defaultValue="90"
@@ -848,10 +869,17 @@
             app:iconSpaceReserved="false" />
 
         <com.limelight.preferences.WebLauncherPreference
-            url="https://github.com/zeperix/RGPClient/releases/latest"
+            url="https://github.com/ClassicOldSong/moonlight-android/releases"
             android:key="option_software_release"
             android:summary="@string/summary_software_update"
             android:title="@string/title_software_update"
+            app:iconSpaceReserved="false" />
+
+        <com.limelight.preferences.WebLauncherPreference
+            url="@string/obtainium_app_url"
+            android:key="option_follow_update"
+            android:summary="@string/summary_follow_update"
+            android:title="@string/title_follow_update"
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
 </PreferenceScreen>
