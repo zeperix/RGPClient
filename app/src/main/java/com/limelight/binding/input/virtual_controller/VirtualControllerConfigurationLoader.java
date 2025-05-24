@@ -12,7 +12,6 @@ import android.util.DisplayMetrics;
 import com.limelight.R;
 import com.limelight.nvstream.input.ControllerPacket;
 import com.limelight.preferences.PreferenceConfiguration;
-import com.limelight.binding.input.virtual_controller.VirtualControllerConfigManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -414,10 +413,7 @@ public class VirtualControllerConfigurationLoader {
 
     public static void saveProfile(final VirtualController controller,
                                    final Context context) {
-        String currentProfile = VirtualControllerConfigManager.getCurrentProfileName(context);
-        String preferenceName = VirtualControllerConfigManager.getProfilePreferenceName(currentProfile);
-        
-        SharedPreferences.Editor prefEditor = context.getSharedPreferences(preferenceName, Activity.MODE_PRIVATE).edit();
+        SharedPreferences.Editor prefEditor = context.getSharedPreferences(OSC_PREFERENCE, Activity.MODE_PRIVATE).edit();
 
         for (VirtualControllerElement element : controller.getElements()) {
             String prefKey = ""+element.elementId;
@@ -432,10 +428,7 @@ public class VirtualControllerConfigurationLoader {
     }
 
     public static void loadFromPreferences(final VirtualController controller, final Context context) {
-        String currentProfile = VirtualControllerConfigManager.getCurrentProfileName(context);
-        String preferenceName = VirtualControllerConfigManager.getProfilePreferenceName(currentProfile);
-        
-        SharedPreferences pref = context.getSharedPreferences(preferenceName, Activity.MODE_PRIVATE);
+        SharedPreferences pref = context.getSharedPreferences(OSC_PREFERENCE, Activity.MODE_PRIVATE);
 
         for (VirtualControllerElement element : controller.getElements()) {
             String prefKey = ""+element.elementId;
